@@ -1,6 +1,7 @@
 # genbank geolocation and other validated values
 host_lookup = {
-    'cow': 'bovine',
+    'cow': 'cow',
+    'bovine': 'cow',
     'mule_deer': 'cervine',
     'reindeer': 'cervine',
     'white_tailed_deer': 'cervine',

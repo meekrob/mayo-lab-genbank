@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 import sys
-import pandas as pd
 import re
-import textwrap
-from collections import defaultdict
-from Bio import SeqIO
+import textwrap # for wrapping sequence lines
 from datetime import datetime
+from collections import defaultdict
+from urllib.parse import unquote # Geneious output is URL-quoted
+import pandas as pd
+from Bio import SeqIO
+
+import tillie_data as tillie # to parse and canonicalize naming conventions she used
+
 USAGE = f"""
  This script is designed to help create FASTA files in the right format for Genbank submission.
 
@@ -54,13 +58,19 @@ RESET = '\033[0m'
 
 tsv_file = sys.argv[1]
 fasta_file = sys.argv[2]
+gff_file = sys.argv[3]
 
-metadata = defaultdict(lambda: {}) # map by seq_id: { header_field: value }
-
-from genbank_vals import geoloc_countries, state_names_to_abbrev, host_lookup
+metadata = defaultdict(dict) # map by seq_id: { header_field: value }
 
 
 def main():
+
+    # gff
+    GFF = pd.read_csv(gff_file, sep="\t", header = None, comment='#')
+    GFF.columns = ["seqid", "source", "type", "start", "end", "score", "strand", "phase", "attributes"]
+    GFF['seqid'] = GFF['seqid'].apply(unquote)
+    GFF['seqid'] = GFF['seqid'].apply(tillie.parse_seq_header)
+
     records = 0
     with open(tsv_file) as tsv_fh:
         header = []
@@ -88,11 +98,8 @@ def main():
                         if v == '': break # for the rows with notes off to the right (cell is empty), end of data was reached
                         metadata[seq_id][k] = v
 
-                    # yield from here
-                    #print(f"Expanding {metadata[seq_id]['seq_ID']}:", file=sys.stderr)
                     for processed_row in iterate_and_replicate_rows(metadata[seq_id]):
                         metadata[processed_row['seq_ID']] = processed_row
-                        #print(f"{records}\t{processed_row['seq_ID']}:", ";".join(metadata[processed_row['seq_ID']].values()))
                         records += 1
                     del metadata[seq_id]
 
@@ -107,12 +114,13 @@ def main():
         print(f"{GREEN}Processed {records} records from {line_i+1} lines from {BOLD}{tsv_file}.{RESET}",  file=sys.stderr)
     
     metadata_df = pd.DataFrame(metadata.values())
+    metadata_df['id_for_genbank'] = metadata_df['seq_ID'].apply(tillie.canonical_seq_name)
     processed_df = pd.DataFrame() # transfer rows here when processed
-    track_seq_id_unique = defaultdict(lambda: [])
+    track_seq_id_unique = defaultdict(list)
 
     for i, record in enumerate(SeqIO.parse(fasta_file, "fasta")):
         seq_id = record.description.strip()
-        parsed_seq_id = parse_seq_header(seq_id)
+        parsed_seq_id = tillie.parse_seq_header(seq_id)
         matched_row_in_metadata = metadata_df[(metadata_df['product'] == parsed_seq_id['prot']) & (metadata_df['strain'] == parsed_seq_id['strain'])]
         if len(matched_row_in_metadata) != 1:
             if len(matched_row_in_metadata) == 0:
@@ -139,7 +147,6 @@ def main():
                 val = str(v.item()).replace('"','')
                 annotations.append( f"[{str(k).strip()}={val}]" )
 
-        #annotations.append(f"[orig_seq_name = {seq_id}]")
         # write annotated header and sequence
         product = matched_row_in_metadata['product'].item()
         btv = matched_row_in_metadata['BTV'].item()
@@ -165,166 +172,13 @@ def main():
 
 ################
 
-def id_seqid_type(fields, btv_col):
-    """
-    fields - parsed from sequence header
-    btv_col - the column index containing the "BTV" entry. -1 if missing.
-    
-    The input fasta headers seem to come in 4 different flavors depending on what data are available.
-    Only "prot" and "strain" are common to all, but those two are sufficient to map to entries in the metadata file.
-
-    """
-    # most scant version of row. just FABRADU
-    if btv_col == -1:
-        prot, strain = fields
-        return {
-            'prot': prot,
-            'strain': strain #.replace('_','') # needed in previous version of data
-        }
-    
-    # VP3     Clinical_16     BTV6    mule_deer       5.5yo   female  2021.10.19      2/7
-    if btv_col == 2 and len(fields) == 7:
-        prot, strain, btv, host, age, sex, date = fields
-        return { 'prot': prot,
-            'strain': strain,
-            'btv': btv,
-            'host': host,
-            'age': age,
-            'sex': sex,
-            'date': date.replace('.', '-')}
-
-    # VP3     BTV17   AA17AAAFAAAC    CA77_Caramel    Bovine  Kern_California 2012-10-01      1/7    
-    if btv_col == 1 and len(fields) == 7:
-        
-        return {
-            'prot': fields[0],
-            'btv': fields[1],
-            'genotype': fields[2],
-            'strain': fields[3],
-            'host': fields[4],
-            'location': fields[5],
-            'date': fields[6]
-        }
-    
-    # VP3     BTV22   AG22AAAAAAAA    FABADRU000164   Trinidad        1/5
-    if btv_col == 1 and len(fields) == 5:
-        prot, btv, genotype, strain, location = fields
-        return {
-            'prot': prot,
-            'btv': btv,
-            'genotype': genotype,
-            'strain': strain,
-            'location': location
-        }
-    
-    return { 'error': ';'.join(fields)}
-
-def parse_seq_header(header_line):
-    fields = re.split('[/|]', header_line.strip())
-    found_BTV = False
-    for i, f in enumerate(fields):
-        if f.startswith('BTV'):
-            found_BTV = True
-            parsed = id_seqid_type(fields, i)
-            return parsed
-            
-    if not found_BTV:
-        parsed = id_seqid_type(fields, -1)
-        return parsed
-
-    print("Didn't recognize format of seq header:", header_line, file=sys.stderr)    
-    raise ValueError
-
-def print_parsed_header(parsed_dict):
-    for k,v in parsed_dict.items():
-        print(f"{k}={v}", end=' ')
-
-    print()
-
-
-def convert_date_and_location(row):
-
-    # combine columns to make the geo location
-    if row['country'] == 'United States':
-        row['country'] = 'USA'
-
-    elif row['country'] == 'Trinidad':
-        row['country'] = 'Trinidad and Tobago'
-
-    elif row['country'] not in geoloc_countries:
-        print(f"Country label {row['country']} not in list.", file=sys.stderr)
-        sys.exit(1)
-
-    row['state'] = state_names_to_abbrev[ row['state'] ]
-
-    row['geo_loc_name'] = row['country']
-    if row['state']:
-        if row['county'] == 'NA':
-            county = ''
-        else:
-            county = row['county'] + ' County, '
-        row['geo_loc_name'] += ": " + county + row['state']
-
-    del row['state']
-    del row['county']
-    del row['country']
-    del row['continent']
-
-    # combine columns to make the date
-    if "NA" in [row['year'],row['month'],row['day']]:
-        date = "NA"
-    else:
-        date = datetime(int(row['year']), int(row['month']), int(row['day'])).strftime("%d-%b-%Y")
-    row['Collection_date'] = date
-    del row['year']
-    del row['month']
-    del row['day']
-
-    return row
-
-
-
-platform_mapping = {
-    "Nanopore Sequencing": "nanopore",
-    "Illumina Sequencing": "illumina"
-}
-
-isolation_source_map = {
-    "cell culture isolate": "cell culture",
-    "Lung": "lung",
-    "Blood": "blood",
-    "Spleen": "spleen",
-    "Lymph node": "lymph node",
-    "whole blood": "whole blood",
-    '"Pool: Lung, Spleen, & Lymph"': "pooled_sample",
-    "Pool: Lung, Spleen, & Lymph": "pooled sample",
-    "Pool: Lung & Spleen": "pooled sample"
-}
-
-def validate_genbank_fields(fields):
-    if 'sequencing_platform' in fields:
-        fields['note'] = f"sequenced with {platform_mapping[ fields['sequencing_platform'] ]}"
-        del fields['sequencing_platform']
-
-    if 'source' in fields:
-        fields['isolation_source'] = isolation_source_map[ fields['source'] ]
-        if fields['source'].startswith("Pool"):
-            source_note = fields['source'].lower().replace(' &', ',')
-            if 'note' in fields:
-                fields['note'] += '; ' + "pooled from lung, spleen, lymph"
-            else:
-                fields['note'] = "pooled from lung, spleen, lymph"
-
-        del fields['source']
-
-    return fields
 
 def iterate_and_replicate_rows(fields):
     """
     iterate_and_replicate_rows - take a metadata row and repeat it for each of the gene products specified by the "number_segment_sequences" column
     """
-    fields = convert_date_and_location(fields)
-    fields = validate_genbank_fields(fields)
+    fields = tillie.convert_date_and_location(fields)
+    fields = tillie.validate_genbank_fields(fields)
 
     # need BTVXX out of the ID but it will have to be dropped before final printout
     fields['BTV'] = fields['seq_ID'].split('/')[0]

@@ -80,16 +80,35 @@ host_terms_to_sp = {
     'reindeer': 'reindeer'
 }
 
-with open('/Users/david/work/mayo_lab_sequence_submission/tillie/new_files/TD_n1257_GenBank.fasta') as infh:
-    for line in infh:
-        if line.startswith('>'):
-            parsed = parse_seq_header(line.lstrip('>'))
+TEST_FASTA_PARSE = False
+if TEST_FASTA_PARSE:
+
+    with open('tillie/new_files/TD_n1257_GenBank.fasta') as infh:
+        for line in infh:
+            if line.startswith('>'):
+                parsed = parse_seq_header(line.lstrip('>'))
+                if 'host' in parsed:
+                    if parsed['host'] in host_terms_to_sp: 
+                        parsed['host'] = host_terms_to_sp[ parsed['host'] ]
+                    else:
+                        del parsed['host']
+
+                print_parsed_header(parsed)
+                
+                
+else:
+
+    with open('tillie/new_files/TD_n1257_GenBank.gff') as infh:
+        for line in infh:
+            if line.startswith('#'): continue
+
+            parsed = parse_seq_header(line.split('\t')[0])
             if 'host' in parsed:
                 if parsed['host'] in host_terms_to_sp: 
                     parsed['host'] = host_terms_to_sp[ parsed['host'] ]
                 else:
                     del parsed['host']
 
-            print_parsed_header(parsed)
-            
-            
+                print_parsed_header(parsed)
+                
+                

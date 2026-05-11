@@ -7,7 +7,11 @@ from genbank_vals import geoloc_countries, state_names_to_abbrev, host_lookup
 
 def canonical_seq_name(header_line):
     parsed = parse_seq_header(header_line)
-    canonical_name = f"Bluetongue_virus_{parsed['strain']}_{parsed['prot']}"
+    if 'date' in parsed:
+        date_str = parsed['date'].replace('-','_').replace('.','_') + "_"
+    else:
+        date_str = ""
+    canonical_name = f"Bluetongue_virus_{parsed['strain']}_{date_str}{parsed['prot']}"
     return canonical_name
 
 def canonical_host(host_field):

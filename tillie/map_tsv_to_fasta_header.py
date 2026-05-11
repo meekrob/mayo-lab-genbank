@@ -69,7 +69,7 @@ def main():
     GFF = pd.read_csv(gff_file, sep="\t", header = None, comment='#')
     GFF.columns = ["seqid", "source", "type", "start", "end", "score", "strand", "phase", "attributes"]
     GFF['seqid'] = GFF['seqid'].apply(unquote)
-    GFF['seqid'] = GFF['seqid'].apply(tillie.parse_seq_header)
+    GFF['seqid'] = GFF['seqid'].apply(tillie.canonical_seq_name)
 
     records = 0
     with open(tsv_file) as tsv_fh:
@@ -116,58 +116,55 @@ def main():
     metadata_df = pd.DataFrame(metadata.values())
     metadata_df['id_for_genbank'] = metadata_df['seq_ID'].apply(tillie.canonical_seq_name)
     processed_df = pd.DataFrame() # transfer rows here when processed
-    track_seq_id_unique = defaultdict(list)
 
-    for i, record in enumerate(SeqIO.parse(fasta_file, "fasta")):
-        seq_id = record.description.strip()
-        parsed_seq_id = tillie.parse_seq_header(seq_id)
-        genbank_id = tillie.canonical_seq_name(seq_id)
-        #matched_row_in_metadata = metadata_df[(metadata_df['product'] == parsed_seq_id['prot']) & (metadata_df['strain'] == parsed_seq_id['strain'])]
-        matched_row_in_metadata = metadata_df[metadata_df['id_for_genbank'] == genbank_id]
-        if len(matched_row_in_metadata) != 1:
-            if len(matched_row_in_metadata) == 0:
-                print(f"Error, sequence {seq_id} matched no rows in metadata looking for strain = {parsed_seq_id['strain']} AND prot = {parsed_seq_id['prot']}", file=sys.stderr)   
-            raise ValueError
+    with open("additional_oc_sequences_for_submission.fsa", "w") as fsa_out:
 
+        for i, record in enumerate(SeqIO.parse(fasta_file, "fasta")):
+            seq_id = record.description.strip()
+            parsed_seq_id = tillie.parse_seq_header(seq_id)
+            genbank_id = tillie.canonical_seq_name(seq_id)
+            #matched_row_in_metadata = metadata_df[(metadata_df['product'] == parsed_seq_id['prot']) & (metadata_df['strain'] == parsed_seq_id['strain'])]
+            matched_row_in_metadata = metadata_df[metadata_df['id_for_genbank'] == genbank_id]
 
-        processed_df = pd.concat([processed_df, matched_row_in_metadata], axis=0)
-        metadata_df = metadata_df.drop(matched_row_in_metadata.index)
+            # crash if no match found
+            if len(matched_row_in_metadata) != 1:
+                if len(matched_row_in_metadata) == 0:
+                    print(f"Error, sequence {seq_id} matched no rows in metadata looking for strain = {parsed_seq_id['strain']} AND prot = {parsed_seq_id['prot']}", file=sys.stderr)   
+                raise ValueError
 
-        matched_seq_id = matched_row_in_metadata['seq_ID'].item()
-        annotations = []
-        for k,v in matched_row_in_metadata.items():
-            if k == 'seq_ID': continue
-            if k == 'prot': continue
-            if k == 'genotype' and v.item() == 'NA': continue
-            if k == 'product': 
-                k = 'gene'
-            if k == 'number_segment_sequences':
-                continue
-            if k == 'BTV':
-                continue
-            else:
+            # the sequence header has more specific host values, use if available
+            if 'host' in parsed_seq_id:
+                matched_row_in_metadata['host'] = parsed_seq_id['host']
+
+            # save new row and remove from original
+            processed_df = pd.concat([processed_df, matched_row_in_metadata], axis=0)
+            metadata_df = metadata_df.drop(matched_row_in_metadata.index)
+
+            matched_seq_id = matched_row_in_metadata['seq_ID'].item()
+            annotations = []
+            export_fields_keys = ["genotype", "host", "strain", "collected_by", "geo_loc_name", "Collection_date", "note", "isolation_source"] # 'gene' in the sequence file is unsupported in future releases
+        
+            for k,v in matched_row_in_metadata.items():
+                if k in export_fields_keys:
+                    if k == 'genotype' and v.item() == 'NA': continue
+
+                else: 
+                    continue
+
                 val = str(v.item()).replace('"','')
                 annotations.append( f"[{str(k).strip()}={val}]" )
-
-        # write annotated header and sequence
-        product = matched_row_in_metadata['product'].item()
-        btv = matched_row_in_metadata['BTV'].item()
-        strain = matched_row_in_metadata['strain'].item()
-        sanitized_seq_id = f"{product}_{btv}_{strain}"
-
-        # the following is to make sure the sanitized_seq_id stays unique
-        if sanitized_seq_id in track_seq_id_unique:
-            print(f"error: {sanitized_seq_id} already used for {','.join(track_seq_id_unique[sanitized_seq_id])}", file = sys.stderr)
-            sys.exit(1)
-        
-        track_seq_id_unique[sanitized_seq_id].append(matched_seq_id)
-
-        # done, print new sequence info
-        print('>' + sanitized_seq_id, *annotations)
-        print(textwrap.fill(str(record.seq),width=150))
+            annotations.append( '[organism: Bluetongue virus]')
+            # write annotated header and sequence
+            print('>' + genbank_id, *annotations, file=fsa_out)
+            print(textwrap.fill(str(record.seq),width=150), file=fsa_out)
 
     print(f"{GREEN}Processed {i + 1} sequences from {BOLD}{fasta_file}.{RESET}", file=sys.stderr)
     print("Done!", file=sys.stderr)
+
+    processed_df.to_csv("additional_oc_sequences_for_submission.txt", sep="\t", index=False)
+    with open("additional_oc_sequences_for_submission.gff","w") as gff_out:
+        print("##gff-version 3", file=gff_out)
+        GFF.to_csv(gff_out, sep="\t", index=False, mode="a", header= False)
 
     print("left over in metadata:", file=sys.stderr)
     metadata_df.to_csv(sys.stderr, sep="\t", index=False)

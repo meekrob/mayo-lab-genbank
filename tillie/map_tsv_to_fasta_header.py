@@ -121,7 +121,9 @@ def main():
     for i, record in enumerate(SeqIO.parse(fasta_file, "fasta")):
         seq_id = record.description.strip()
         parsed_seq_id = tillie.parse_seq_header(seq_id)
-        matched_row_in_metadata = metadata_df[(metadata_df['product'] == parsed_seq_id['prot']) & (metadata_df['strain'] == parsed_seq_id['strain'])]
+        genbank_id = tillie.canonical_seq_name(seq_id)
+        #matched_row_in_metadata = metadata_df[(metadata_df['product'] == parsed_seq_id['prot']) & (metadata_df['strain'] == parsed_seq_id['strain'])]
+        matched_row_in_metadata = metadata_df[metadata_df['id_for_genbank'] == genbank_id]
         if len(matched_row_in_metadata) != 1:
             if len(matched_row_in_metadata) == 0:
                 print(f"Error, sequence {seq_id} matched no rows in metadata looking for strain = {parsed_seq_id['strain']} AND prot = {parsed_seq_id['prot']}", file=sys.stderr)   

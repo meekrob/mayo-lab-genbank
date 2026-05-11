@@ -31,7 +31,7 @@ def id_seqid_type(fields, btv_col):
         prot, strain = fields
         return {
             'prot': prot,
-            'strain': strain #.replace('_','') # needed in previous version of data
+            'strain': strain.replace('_','') # needed in sequence headers
         }
     
     # VP3     Clinical_16     BTV6    mule_deer       5.5yo   female  2021.10.19      2/7
@@ -70,16 +70,29 @@ def id_seqid_type(fields, btv_col):
         }
     
     if btv_col == 1 and len(fields) == 6:
-        prot, btv, genotype, strain, location, date = fields
-        return {
-            'prot': prot,
-            'btv': btv,
-            'genotype': genotype,
-            'strain': strain,
-            'location': location,
-            'date': date
-            
-        }
+        if(fields[2].startswith('A') or fields[2] == 'NA'): # this version is in the metadata file
+            prot, btv, genotype, strain, host, date = fields
+            return {
+                'prot': prot,
+                'btv': btv,
+                'genotype': genotype,
+                'strain': strain,
+                'host': canonical_host(host),
+                'date': date
+            }
+    
+        else: # btv_col == 1 and len(fields) == 6: # this version is in the sequence header and GFF
+            prot, btv, strain, host, location, date = fields
+            return {
+                'prot': prot,
+                'btv': btv,
+                'strain': strain,
+                'location': location,
+                'date': date
+                
+            }
+    
+    
     raise ValueError
     return { 'error': ';'.join(fields)}
 

@@ -1,0 +1,7 @@
+PATH_TO_SCRIPTS=~/src/Helpful_code_snippets/create_files_for_genbank_submission
+echo "adding ${PATH_TO_SCRIPTS} to PATH"
+export PATH=$PATH:$PATH_TO_SCRIPTS
+
+which create_files_for_genbank_submission
+which create_gb_fsa
+which gff_to_feature_table

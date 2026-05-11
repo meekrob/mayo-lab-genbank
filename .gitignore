@@ -1,0 +1,7 @@
+SRA_Materials/Aim_2_SRA_Stuff/Fasta_Files/
+SRA_Materials/Aim_2_SRA_Stuff/GFF_Annotations/
+SRA_Materials/Aim_3_SRA_Stuff/Fasta_Files/
+SRA_Materials/Aim_3_SRA_Stuff/GFF_Annotations/
+*.swp
+.DS_Store
+*.zip

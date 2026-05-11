@@ -247,105 +247,107 @@ def iterate_and_replicate_rows(fields):
         print(f"Error, field: 'number_of_sequences' not found in row", file=sys.stderr)
         raise IndexError
 
+def main():
+    records = 0
+    with open(tsv_file) as tsv_fh:
+        header = []
+        for line_i, line in enumerate(tsv_fh):
+            if line.startswith('#'): continue
+        
+            fields = []
+            for f in line.strip().split("\t"):
+                if f == '': # blank cell means end of data in row
+                    break
+                else: 
+                    fields.append(f.strip())
 
-records = 0
-with open(tsv_file) as tsv_fh:
-    header = []
-    for line_i, line in enumerate(tsv_fh):
-        if line.startswith('#'): continue
+            # first line encountered
+            if not header:
+                header = fields
+                print(f"{GREEN}{tsv_file}: Encountered header at index: {line_i}{RESET}", file= sys.stderr)
+                continue
+
+            # all else a data line
+            if len(line.strip()) > 0:
+                try:
+                    seq_id = fields[0]
+                    for k,v in zip(header, fields):
+                        if v == '': break # for the rows with notes off to the right (cell is empty), end of data was reached
+                        metadata[seq_id][k] = v
+
+                    # yield from here
+                    #print(f"Expanding {metadata[seq_id]['seq_ID']}:", file=sys.stderr)
+                    for processed_row in iterate_and_replicate_rows(metadata[seq_id]):
+                        metadata[processed_row['seq_ID']] = processed_row
+                        #print(f"{records}\t{processed_row['seq_ID']}:", ";".join(metadata[processed_row['seq_ID']].values()))
+                        records += 1
+                    del metadata[seq_id]
+
+                except IndexError:
+                    print(f"Error parsing data line from {tsv_file}.", file=sys.stderr)
+                    print(f"line: >{line}<", file=sys.stderr)
+                    print("Fields:",  fields, file=sys.stderr)
+                    raise
+            else:
+                print(f"{GREY}{tsv_file}: Encountered blank line at index: {line_i}{RESET}", file= sys.stderr)
+
+        print(f"{GREEN}Processed {records} records from {line_i+1} lines from {BOLD}{tsv_file}.{RESET}",  file=sys.stderr)
     
-        fields = []
-        for f in line.strip().split("\t"):
-            if f == '': # blank cell means end of data in row
-                break
-            else: 
-                fields.append(f.strip())
+    metadata_df = pd.DataFrame(metadata.values())
+    processed_df = pd.DataFrame() # transfer rows here when processed
+    track_seq_id_unique = defaultdict(lambda: [])
 
-        # first line encountered
-        if not header:
-            header = fields
-            print(f"{GREEN}{tsv_file}: Encountered header at index: {line_i}{RESET}", file= sys.stderr)
-            continue
-
-        # all else a data line
-        if len(line.strip()) > 0:
-            try:
-                seq_id = fields[0]
-                for k,v in zip(header, fields):
-                    if v == '': break # for the rows with notes off to the right (cell is empty), end of data was reached
-                    metadata[seq_id][k] = v
-
-                # yield from here
-                #print(f"Expanding {metadata[seq_id]['seq_ID']}:", file=sys.stderr)
-                for processed_row in iterate_and_replicate_rows(metadata[seq_id]):
-                    metadata[processed_row['seq_ID']] = processed_row
-                    #print(f"{records}\t{processed_row['seq_ID']}:", ";".join(metadata[processed_row['seq_ID']].values()))
-                    records += 1
-                del metadata[seq_id]
-
-            except IndexError:
-                print(f"Error parsing data line from {tsv_file}.", file=sys.stderr)
-                print(f"line: >{line}<", file=sys.stderr)
-                print("Fields:",  fields, file=sys.stderr)
-                raise
-        else:
-            print(f"{GREY}{tsv_file}: Encountered blank line at index: {line_i}{RESET}", file= sys.stderr)
-
-    print(f"{GREEN}Processed {records} records from {line_i+1} lines from {BOLD}{tsv_file}.{RESET}",  file=sys.stderr)
- 
-metadata_df = pd.DataFrame(metadata.values())
-processed_df = pd.DataFrame() # transfer rows here when processed
-track_seq_id_unique = defaultdict(lambda: [])
-
-for i, record in enumerate(SeqIO.parse(fasta_file, "fasta")):
-    seq_id = record.description.strip()
-    parsed_seq_id = parse_seq_header(seq_id)
-    matched_row_in_metadata = metadata_df[(metadata_df['product'] == parsed_seq_id['prot']) & (metadata_df['strain'] == parsed_seq_id['strain'])]
-    if len(matched_row_in_metadata) != 1:
-        if len(matched_row_in_metadata) == 0:
-            print(f"Error, sequence {seq_id} matched no rows in metadata looking for strain = {parsed_seq_id['strain']} AND prot = {parsed_seq_id['prot']}", file=sys.stderr)   
-        raise ValueError
+    for i, record in enumerate(SeqIO.parse(fasta_file, "fasta")):
+        seq_id = record.description.strip()
+        parsed_seq_id = parse_seq_header(seq_id)
+        matched_row_in_metadata = metadata_df[(metadata_df['product'] == parsed_seq_id['prot']) & (metadata_df['strain'] == parsed_seq_id['strain'])]
+        if len(matched_row_in_metadata) != 1:
+            if len(matched_row_in_metadata) == 0:
+                print(f"Error, sequence {seq_id} matched no rows in metadata looking for strain = {parsed_seq_id['strain']} AND prot = {parsed_seq_id['prot']}", file=sys.stderr)   
+            raise ValueError
 
 
-    processed_df = pd.concat([processed_df, matched_row_in_metadata], axis=0)
-    metadata_df = metadata_df.drop(matched_row_in_metadata.index)
+        processed_df = pd.concat([processed_df, matched_row_in_metadata], axis=0)
+        metadata_df = metadata_df.drop(matched_row_in_metadata.index)
 
-    matched_seq_id = matched_row_in_metadata['seq_ID'].item()
-    annotations = []
-    for k,v in matched_row_in_metadata.items():
-        if k == 'seq_ID': continue
-        if k == 'prot': continue
-        if k == 'genotype' and v.item() == 'NA': continue
-        if k == 'product': 
-            k = 'gene'
-        if k == 'number_segment_sequences':
-            continue
-        if k == 'BTV':
-            continue
-        else:
-            val = str(v.item()).replace('"','')
-            annotations.append( f"[{str(k).strip()}={val}]" )
+        matched_seq_id = matched_row_in_metadata['seq_ID'].item()
+        annotations = []
+        for k,v in matched_row_in_metadata.items():
+            if k == 'seq_ID': continue
+            if k == 'prot': continue
+            if k == 'genotype' and v.item() == 'NA': continue
+            if k == 'product': 
+                k = 'gene'
+            if k == 'number_segment_sequences':
+                continue
+            if k == 'BTV':
+                continue
+            else:
+                val = str(v.item()).replace('"','')
+                annotations.append( f"[{str(k).strip()}={val}]" )
 
-    #annotations.append(f"[orig_seq_name = {seq_id}]")
-    # write annotated header and sequence
-    product = matched_row_in_metadata['product'].item()
-    btv = matched_row_in_metadata['BTV'].item()
-    strain = matched_row_in_metadata['strain'].item()
-    sanitized_seq_id = f"{product}_{btv}_{strain}"
+        #annotations.append(f"[orig_seq_name = {seq_id}]")
+        # write annotated header and sequence
+        product = matched_row_in_metadata['product'].item()
+        btv = matched_row_in_metadata['BTV'].item()
+        strain = matched_row_in_metadata['strain'].item()
+        sanitized_seq_id = f"{product}_{btv}_{strain}"
 
-    # the following is to make sure the sanitized_seq_id stays unique
-    if sanitized_seq_id in track_seq_id_unique:
-        print(f"error: {sanitized_seq_id} already used for {','.join(track_seq_id_unique[sanitized_seq_id])}", file = sys.stderr)
-        sys.exit(1)
-    
-    track_seq_id_unique[sanitized_seq_id].append(matched_seq_id)
+        # the following is to make sure the sanitized_seq_id stays unique
+        if sanitized_seq_id in track_seq_id_unique:
+            print(f"error: {sanitized_seq_id} already used for {','.join(track_seq_id_unique[sanitized_seq_id])}", file = sys.stderr)
+            sys.exit(1)
+        
+        track_seq_id_unique[sanitized_seq_id].append(matched_seq_id)
 
-    # done, print new sequence info
-    print('>' + sanitized_seq_id, *annotations)
-    print(textwrap.fill(str(record.seq),width=150))
+        # done, print new sequence info
+        print('>' + sanitized_seq_id, *annotations)
+        print(textwrap.fill(str(record.seq),width=150))
 
-print(f"{GREEN}Processed {i + 1} sequences from {BOLD}{fasta_file}.{RESET}", file=sys.stderr)
-print("Done!", file=sys.stderr)
+    print(f"{GREEN}Processed {i + 1} sequences from {BOLD}{fasta_file}.{RESET}", file=sys.stderr)
+    print("Done!", file=sys.stderr)
 
-print("left over in metadata:", file=sys.stderr)
-metadata_df.to_csv(sys.stderr, sep="\t", index=False)
+    print("left over in metadata:", file=sys.stderr)
+    metadata_df.to_csv(sys.stderr, sep="\t", index=False)
+
+if __name__ == "__main__": main()

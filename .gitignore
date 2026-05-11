@@ -5,3 +5,4 @@ mollie/SRA_Materials/Aim_3_SRA_Stuff/GFF_Annotations/
 *.swp
 .DS_Store
 *.zip
+__pycache__

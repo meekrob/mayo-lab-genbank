@@ -69,10 +69,22 @@ def id_seqid_type(fields, btv_col):
             'location': location
         }
     
+    if btv_col == 1 and len(fields) == 6:
+        prot, btv, genotype, strain, location, date = fields
+        return {
+            'prot': prot,
+            'btv': btv,
+            'genotype': genotype,
+            'strain': strain,
+            'location': location,
+            'date': date
+            
+        }
+    raise ValueError
     return { 'error': ';'.join(fields)}
 
 def parse_seq_header(header_line):
-    fields = re.split('[/|]', header_line.strip())
+    fields = [field for field in re.split('[/|]', header_line.strip()) if field != '']
     found_BTV = False
     for i, f in enumerate(fields):
         if f.startswith('BTV'):

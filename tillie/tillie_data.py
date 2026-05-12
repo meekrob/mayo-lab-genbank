@@ -4,15 +4,26 @@ import re
 from datetime import datetime
 from genbank_vals import geoloc_countries, state_names_to_abbrev, host_lookup
 
-
-def canonical_seq_name(header_line):
-    parsed = parse_seq_header(header_line)
+def canonical_seq_name_from_parsed(parsed):
     if 'date' in parsed:
         date_str = parsed['date'].replace('-','_').replace('.','_') + "_"
     else:
         date_str = ""
+
+    if 'gene_name' in parsed:
+        if 'prot' in parsed and parsed['prot'] != parsed['gene_name']:
+            print(f"Info: correcting prot '{parsed['prot']}' -> '{parsed['gene_name']}' via Name attribute", file=sys.stderr)
+    
+        parsed['prot'] = parsed['gene_name'] # this dijection comes from GFFs where we had to get 
+                                                                   # the gene name out of the attribute field
+                                                                   # Caused by: overlapping CDSs
+
     canonical_name = f"Bluetongue_virus_{parsed['strain']}_{date_str}{parsed['prot']}"
     return canonical_name
+
+def canonical_seq_name(header_line):
+    parsed = parse_seq_header(header_line)
+    return canonical_seq_name_from_parsed(parsed)
 
 def canonical_host(host_field):
     host = host_field.lower()

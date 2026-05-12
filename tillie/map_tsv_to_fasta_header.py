@@ -62,14 +62,60 @@ gff_file = sys.argv[3]
 
 metadata = defaultdict(dict) # map by seq_id: { header_field: value }
 
+def examine_sequence(seq, start, end):
+    cds = seq[start-1:end]  # convert to 0-based
+    stop_codons = {'TAA', 'TAG', 'TGA'}
+    
+    has_start = cds[:3].upper() == 'ATG'
+    has_stop  = cds[-3:].upper() in stop_codons
+    is_5prime_partial = not has_start
+    is_3prime_partial = not has_stop
+    
+    # codon_start: how many bases into the first codon are we?
+    # If 5' partial and length % 3 != 0, you need to figure out the offset
+    # Usually set to 1 unless you have evidence otherwise
+    codon_start = 1
+    if is_5prime_partial and not is_3prime_partial: # here is a situation where the STOP codon exists but with no START codon,
+                                                    # so the 1-based frameshift is gotten from the modulus
+        codon_start = (len(seq) % 3) + 1
+    
+    return is_5prime_partial, is_3prime_partial, codon_start
+
+def get_gene_name(attributes):
+    match = re.search(r'Name=(\S+)', attributes)
+    if match and match.group(1).strip():
+        return match.group(1)
+    return None
 
 def main():
 
     # gff
     GFF = pd.read_csv(gff_file, sep="\t", header = None, comment='#')
     GFF.columns = ["seqid", "source", "type", "start", "end", "score", "strand", "phase", "attributes"]
+
+    # processing and filtering
+    GFF = GFF[ (GFF['type'] == 'CDS') & 
+              (~GFF['attributes'].str.contains(r'Name=$', regex=True))].copy() # filter out Geneious "Editing History..." feature rows
+                                                                               # and empty Name= attribute rows.
+
+    # extract gene name from attributes
+    GFF['gene_name'] = GFF['attributes'].apply(get_gene_name)
+    missing_gene_name = GFF[GFF['gene_name'].isna()]
+    if not missing_gene_name.empty:
+        print("CDS rows with unparseable gene names:")
+        print(missing_gene_name[['seqid', 'attributes']])
+        raise ValueError(f"{len(missing_gene_name)} CDS rows failed gene name extraction")
+    
+    # parse sedid into our canonical one
+    GFF['orig_id'] = GFF['seqid']
     GFF['seqid'] = GFF['seqid'].apply(unquote)
     GFF['seqid'] = GFF['seqid'].apply(tillie.canonical_seq_name)
+
+    # check for duplicate records and crash if found
+    dupes = GFF.groupby(['seqid', 'gene_name']).size()
+    dupes = dupes[dupes > 1]
+    if not dupes.empty:
+        raise ValueError(f"Genuine duplicate (seqid, gene_name) pairs found:\n{dupes}")
 
     records = 0
     with open(tsv_file) as tsv_fh:
@@ -132,6 +178,11 @@ def main():
                     print(f"Error, sequence {seq_id} matched no rows in metadata looking for strain = {parsed_seq_id['strain']} AND prot = {parsed_seq_id['prot']}", file=sys.stderr)   
                 raise ValueError
 
+            # determine CDS features
+            gff = GFF[ GFF['seqid'] == genbank_id]
+            start = gff['start'].item()
+            end = gff['end'].item()
+            partial5prime, partial3prime, codon_start = examine_sequence(str(record.seq), start, end)
             # the sequence header has more specific host values, use if available
             if 'host' in parsed_seq_id:
                 matched_row_in_metadata['host'] = parsed_seq_id['host']

@@ -147,16 +147,17 @@ def main():
             for k,v in matched_row_in_metadata.items():
                 if k in export_fields_keys:
                     if k == 'genotype' and v.item() == 'NA': continue
+                    if k == 'Collection_date' and v.item() == 'NA': continue
 
                 else: 
                     continue
 
                 val = str(v.item()).replace('"','')
                 annotations.append( f"[{str(k).strip()}={val}]" )
-            annotations.append( '[organism: Bluetongue virus]')
+            annotations.append( '[organism=Bluetongue virus]')
             # write annotated header and sequence
             print('>' + genbank_id, *annotations, file=fsa_out)
-            print(textwrap.fill(str(record.seq),width=150), file=fsa_out)
+            print(str(record.seq), file=fsa_out)
 
     print(f"{GREEN}Processed {i + 1} sequences from {BOLD}{fasta_file}.{RESET}", file=sys.stderr)
     print("Done!", file=sys.stderr)

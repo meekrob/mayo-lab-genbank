@@ -6,7 +6,7 @@ from genbank_vals import geoloc_countries, state_names_to_abbrev, host_lookup
 import pandas as pd
 from urllib.parse import unquote # Geneious output is URL-quoted
 
-def get_gene_name(attributes) -> str | None:
+def get_gene_name(attributes:str) -> str | None:
     match = re.search(r'Name=(\S+)', attributes)
     if match and match.group(1).strip():
         return match.group(1)
@@ -19,14 +19,21 @@ def get_seq_id_prot(orig_seq_id:str) -> str:
     return parsed['prot']
 
 def read_GFF(gff_file) -> pd.DataFrame:
-    # gff
+    """
+    read_GFF -
+    Use pandas dataframes to filter and format the Geneious-output annotations
+    1. Only CDS annotations are used
+    2. Unique records must be enforced so that the mapping to the fasta file is 1-to-1
+    3. The function canonical_seq_name() detects the original seqname form and make them consistent across input files
+    """
+    
     GFF = pd.read_csv(gff_file, sep="\t", header = None, comment='#')
     GFF.columns = ["seqid", "source", "type", "start", "end", "score", "strand", "phase", "attributes"]
 
-    # processing and filtering
+    # filter out Geneious "Editing History..." feature rows
+    # and empty Name= attribute rows.
     GFF = GFF[ (GFF['type'] == 'CDS') & 
-              (~GFF['attributes'].str.contains(r'Name=$', regex=True))].copy() # filter out Geneious "Editing History..." feature rows
-                                                                               # and empty Name= attribute rows.
+              (~GFF['attributes'].str.contains(r'Name=$', regex=True))].copy() 
 
     # extract gene name from attributes, but fail if not found
     GFF['gene_name'] = GFF['attributes'].apply(get_gene_name)
@@ -44,14 +51,8 @@ def read_GFF(gff_file) -> pd.DataFrame:
         axis = 1
     )
 
-    # identify the misnamed entries and correct them
-    # GFF['prot'] = GFF['seqid'].apply(get_seq_id_prot)
-    # misnamed_rows = GFF['prot'] != GFF['gene_name']
-    # if len(misnamed_rows) > 0:
-    #     raise ValueError(f"There are still {len(misnamed_rows)}")
-
-
-    # multi-annotated CDS rows (only 56, but still an issue), differ by length. Record span to take the longer one
+    # multi-annotated CDS rows (only 56, but still an issue), differ by length. 
+    # Take the length of the sequence "span" to take the longer one
     GFF['span'] = GFF['end'] - GFF['start']
     GFF = GFF.sort_values('span', ascending=False)
 
@@ -64,15 +65,16 @@ def read_GFF(gff_file) -> pd.DataFrame:
     GFF = GFF.drop_duplicates(subset=['seqid', 'gene_name'], keep='first')
     GFF = GFF.drop(columns='span')
 
-    # check for duplicate records and crash if found
+    # check for duplicate records that filtered througgh and crash if still found
     dupes = GFF.groupby(['seqid', 'gene_name']).size()
     dupes = dupes[dupes > 1]
     if not dupes.empty:
         raise ValueError(f"Genuine duplicate (seqid, gene_name) pairs found:\n{dupes}")
     
+    # entries are now unique and have a name acceptable to genbank
     return GFF
 
-def canonical_seq_name_from_parsed(parsed:dict):
+def canonical_seq_name_from_parsed(parsed:dict) -> str:
     if 'date' in parsed:
         date_str = parsed['date'].replace('-','_').replace('.','_') + "_"
     else:
@@ -82,27 +84,27 @@ def canonical_seq_name_from_parsed(parsed:dict):
         if 'prot' in parsed and parsed['prot'] != parsed['gene_name']:
             print(f"Info: correcting prot '{parsed['prot']}' -> '{parsed['gene_name']}' via Name attribute", file=sys.stderr)
     
-        parsed['prot'] = parsed['gene_name'] # this dijection comes from GFFs where we had to get 
-                                                                   # the gene name out of the attribute field
-                                                                   # Caused by: overlapping CDSs
+        parsed['prot'] = parsed['gene_name'] # this intervention comes from GFFs where we had  
+                                             # to get the gene name out of the attribute field
+                                             # Caused by: overlapping CDSs
 
     canonical_name = f"Bluetongue_virus_{parsed['strain']}_{date_str}{parsed['prot']}"
     return canonical_name
 
-def canonical_seq_name(header_line:str, gene_name:str | None = None):
+def canonical_seq_name(header_line:str, gene_name:str | None = None) -> str:
     parsed = parse_seq_header(header_line)
     if gene_name is not None:
         parsed['prot'] = gene_name
     return canonical_seq_name_from_parsed(parsed)
 
-def canonical_host(host_field):
+def canonical_host(host_field) -> str:
     host = host_field.lower()
     if host in host_lookup:
         return host_lookup[host]
     
     return host
 
-def id_seqid_type(fields, btv_col) -> dict:
+def id_seqid_type(fields: list[str], btv_col:int) -> dict:
     """
     fields - parsed from sequence header
     btv_col - the column index containing the "BTV" entry. -1 if missing.
@@ -205,7 +207,7 @@ def print_parsed_header(parsed_dict):
     print()
 
 
-def convert_date_and_location(row):
+def convert_date_and_location(row:dict) -> dict:
 
     # combine columns to make the geo location
     if row['country'] == 'United States':
@@ -264,7 +266,7 @@ isolation_source_map = {
     "Pool: Lung & Spleen": "pooled sample"
 }
 
-def validate_genbank_fields(fields):
+def validate_genbank_fields(fields:dict) -> dict:
     if 'sequencing_platform' in fields:
         fields['note'] = f"sequenced with {platform_mapping[ fields['sequencing_platform'] ]}"
         del fields['sequencing_platform']

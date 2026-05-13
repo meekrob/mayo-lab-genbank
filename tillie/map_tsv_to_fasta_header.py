@@ -5,6 +5,7 @@ import textwrap # for wrapping sequence lines
 from datetime import datetime
 from collections import defaultdict
 from urllib.parse import unquote # Geneious output is URL-quoted
+from typing import TextIO,Generator
 import pandas as pd
 from Bio import SeqIO
 
@@ -62,7 +63,7 @@ gff_file = sys.argv[3]
 
 metadata = defaultdict(dict) # map by seq_id: { header_field: value }
 
-def examine_sequence(seq, start, end, phase):
+def examine_sequence(seq:str, start:int, end:int, phase:int) -> tuple:
     cds = seq[(start-1)+phase:end]  # convert to 0-based
     stop_codons = {'TAA', 'TAG', 'TGA'}
     
@@ -81,7 +82,7 @@ def examine_sequence(seq, start, end, phase):
     
     return is_5prime_partial, is_3prime_partial, codon_start
 
-def write_tbl_entry(genbank_id, partial3prime, partial5prime, start, end, codon_start, gene_name, tbl_out):
+def write_tbl_entry(genbank_id:str, partial3prime: bool, partial5prime: bool, start: int, end: int, codon_start: int, gene_name:str, tbl_out: TextIO) -> None:
     s = f"<{start}" if partial5prime else str(start)
     e = f">{end}"   if partial3prime else str(end)
     print(f">Feature {genbank_id}", file=tbl_out)
@@ -218,7 +219,7 @@ def main():
 ################
 
 
-def iterate_and_replicate_rows(fields):
+def iterate_and_replicate_rows(fields:dict[str,str]) -> Generator[dict, None, None]:
     """
     iterate_and_replicate_rows - take a metadata row and repeat it for each of the gene products specified by the "number_segment_sequences" column
     """

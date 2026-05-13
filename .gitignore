@@ -6,3 +6,21 @@ mollie/SRA_Materials/Aim_3_SRA_Stuff/GFF_Annotations/
 .DS_Store
 *.zip
 __pycache__
+.vscode
+# input and generated files, might want to add back in
+*.fa
+*.fsa
+*.fasta
+*.gff
+*.tbl
+*.txt
+*.tsv
+*.sqn
+*.val
+*.stats
+*.tgz
+# generated while debugging
+*.xlsx
+err
+*.log
+almost_working

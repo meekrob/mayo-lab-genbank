@@ -3,8 +3,76 @@ import sys
 import re
 from datetime import datetime
 from genbank_vals import geoloc_countries, state_names_to_abbrev, host_lookup
+import pandas as pd
+from urllib.parse import unquote # Geneious output is URL-quoted
 
-def canonical_seq_name_from_parsed(parsed):
+def get_gene_name(attributes) -> str | None:
+    match = re.search(r'Name=(\S+)', attributes)
+    if match and match.group(1).strip():
+        return match.group(1)
+    return None
+
+def get_seq_id_prot(orig_seq_id:str) -> str:
+    # this is a special function to get just the gene name as specified by the seq ID in the GFF file. 
+    # It needs to be called separately in order to contrast it with the gene_name parsed from the attribute column
+    parsed = parse_seq_header(orig_seq_id)
+    return parsed['prot']
+
+def read_GFF(gff_file) -> pd.DataFrame:
+    # gff
+    GFF = pd.read_csv(gff_file, sep="\t", header = None, comment='#')
+    GFF.columns = ["seqid", "source", "type", "start", "end", "score", "strand", "phase", "attributes"]
+
+    # processing and filtering
+    GFF = GFF[ (GFF['type'] == 'CDS') & 
+              (~GFF['attributes'].str.contains(r'Name=$', regex=True))].copy() # filter out Geneious "Editing History..." feature rows
+                                                                               # and empty Name= attribute rows.
+
+    # extract gene name from attributes, but fail if not found
+    GFF['gene_name'] = GFF['attributes'].apply(get_gene_name)
+    missing_gene_name = GFF[GFF['gene_name'].isna()]
+    if not missing_gene_name.empty:
+        print("CDS rows with unparseable gene names:", file=sys.stderr)
+        print(missing_gene_name[['seqid', 'attributes']], file=sys.stderr)
+        raise ValueError(f"{len(missing_gene_name)} CDS rows failed gene name extraction")
+    
+    # parse seqid into our canonical one
+    GFF['orig_id'] = GFF['seqid']
+    GFF['seqid'] = GFF['seqid'].apply(unquote)
+    GFF['seqid'] = GFF.apply(
+        lambda row: canonical_seq_name(row['seqid'], row['gene_name']),
+        axis = 1
+    )
+
+    # identify the misnamed entries and correct them
+    # GFF['prot'] = GFF['seqid'].apply(get_seq_id_prot)
+    # misnamed_rows = GFF['prot'] != GFF['gene_name']
+    # if len(misnamed_rows) > 0:
+    #     raise ValueError(f"There are still {len(misnamed_rows)}")
+
+
+    # multi-annotated CDS rows (only 56, but still an issue), differ by length. Record span to take the longer one
+    GFF['span'] = GFF['end'] - GFF['start']
+    GFF = GFF.sort_values('span', ascending=False)
+
+    # Log the discarded duplicates before dropping them
+    discarded = GFF[GFF.duplicated(subset=['seqid', 'gene_name'], keep='first')]
+    if not discarded.empty:
+        print(f"Discarding {len(discarded)} redundant CDS annotations; keeping the longest entry.", file=sys.stderr)
+        #print(discarded[['seqid', 'gene_name', 'start', 'end', 'span']], file=sys.stderr)
+
+    GFF = GFF.drop_duplicates(subset=['seqid', 'gene_name'], keep='first')
+    GFF = GFF.drop(columns='span')
+
+    # check for duplicate records and crash if found
+    dupes = GFF.groupby(['seqid', 'gene_name']).size()
+    dupes = dupes[dupes > 1]
+    if not dupes.empty:
+        raise ValueError(f"Genuine duplicate (seqid, gene_name) pairs found:\n{dupes}")
+    
+    return GFF
+
+def canonical_seq_name_from_parsed(parsed:dict):
     if 'date' in parsed:
         date_str = parsed['date'].replace('-','_').replace('.','_') + "_"
     else:
@@ -21,8 +89,10 @@ def canonical_seq_name_from_parsed(parsed):
     canonical_name = f"Bluetongue_virus_{parsed['strain']}_{date_str}{parsed['prot']}"
     return canonical_name
 
-def canonical_seq_name(header_line):
+def canonical_seq_name(header_line:str, gene_name:str | None = None):
     parsed = parse_seq_header(header_line)
+    if gene_name is not None:
+        parsed['prot'] = gene_name
     return canonical_seq_name_from_parsed(parsed)
 
 def canonical_host(host_field):
@@ -32,7 +102,7 @@ def canonical_host(host_field):
     
     return host
 
-def id_seqid_type(fields, btv_col):
+def id_seqid_type(fields, btv_col) -> dict:
     """
     fields - parsed from sequence header
     btv_col - the column index containing the "BTV" entry. -1 if missing.
@@ -52,7 +122,8 @@ def id_seqid_type(fields, btv_col):
     # VP3     Clinical_16     BTV6    mule_deer       5.5yo   female  2021.10.19      2/7
     if btv_col == 2 and len(fields) == 7:
         prot, strain, btv, host, age, sex, date = fields
-        return { 'prot': prot,
+        return { 
+            'prot': prot,
             'strain': strain,
             'btv': btv,
             'host': canonical_host(host),
@@ -111,7 +182,7 @@ def id_seqid_type(fields, btv_col):
     raise ValueError
     return { 'error': ';'.join(fields)}
 
-def parse_seq_header(header_line):
+def parse_seq_header(header_line:str) -> dict:
     fields = [field for field in re.split('[/|]', header_line.strip()) if field != '']
     found_BTV = False
     for i, f in enumerate(fields):

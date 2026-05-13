@@ -62,8 +62,8 @@ gff_file = sys.argv[3]
 
 metadata = defaultdict(dict) # map by seq_id: { header_field: value }
 
-def examine_sequence(seq, start, end):
-    cds = seq[start-1:end]  # convert to 0-based
+def examine_sequence(seq, start, end, phase):
+    cds = seq[(start-1)+phase:end]  # convert to 0-based
     stop_codons = {'TAA', 'TAG', 'TGA'}
     
     has_start = cds[:3].upper() == 'ATG'
@@ -74,48 +74,26 @@ def examine_sequence(seq, start, end):
     # codon_start: how many bases into the first codon are we?
     # If 5' partial and length % 3 != 0, you need to figure out the offset
     # Usually set to 1 unless you have evidence otherwise
-    codon_start = 1
-    if is_5prime_partial and not is_3prime_partial: # here is a situation where the STOP codon exists but with no START codon,
+    codon_start = phase + 1
+    #if is_5prime_partial and not is_3prime_partial: # here is a situation where the STOP codon exists but with no START codon,
                                                     # so the 1-based frameshift is gotten from the modulus
-        codon_start = (len(seq) % 3) + 1
+        #codon_start = (len(seq) % 3) + 1
     
     return is_5prime_partial, is_3prime_partial, codon_start
 
-def get_gene_name(attributes):
-    match = re.search(r'Name=(\S+)', attributes)
-    if match and match.group(1).strip():
-        return match.group(1)
-    return None
+def write_tbl_entry(genbank_id, partial3prime, partial5prime, start, end, codon_start, gene_name, tbl_out):
+    s = f"<{start}" if partial5prime else str(start)
+    e = f">{end}"   if partial3prime else str(end)
+    print(f">Feature {genbank_id}", file=tbl_out)
+    print(s, e, "CDS", sep="\t", file=tbl_out)
+    print("\t" * 3 + "product", gene_name, sep="\t", file=tbl_out)
+    print("\t" * 3 + "codon_start", codon_start, sep="\t", file=tbl_out)
+    print("\t" * 3 + "transl_table", 1, sep="\t", file=tbl_out)
+
 
 def main():
 
-    # gff
-    GFF = pd.read_csv(gff_file, sep="\t", header = None, comment='#')
-    GFF.columns = ["seqid", "source", "type", "start", "end", "score", "strand", "phase", "attributes"]
-
-    # processing and filtering
-    GFF = GFF[ (GFF['type'] == 'CDS') & 
-              (~GFF['attributes'].str.contains(r'Name=$', regex=True))].copy() # filter out Geneious "Editing History..." feature rows
-                                                                               # and empty Name= attribute rows.
-
-    # extract gene name from attributes
-    GFF['gene_name'] = GFF['attributes'].apply(get_gene_name)
-    missing_gene_name = GFF[GFF['gene_name'].isna()]
-    if not missing_gene_name.empty:
-        print("CDS rows with unparseable gene names:")
-        print(missing_gene_name[['seqid', 'attributes']])
-        raise ValueError(f"{len(missing_gene_name)} CDS rows failed gene name extraction")
-    
-    # parse sedid into our canonical one
-    GFF['orig_id'] = GFF['seqid']
-    GFF['seqid'] = GFF['seqid'].apply(unquote)
-    GFF['seqid'] = GFF['seqid'].apply(tillie.canonical_seq_name)
-
-    # check for duplicate records and crash if found
-    dupes = GFF.groupby(['seqid', 'gene_name']).size()
-    dupes = dupes[dupes > 1]
-    if not dupes.empty:
-        raise ValueError(f"Genuine duplicate (seqid, gene_name) pairs found:\n{dupes}")
+    GFF = tillie.read_GFF(gff_file)
 
     records = 0
     with open(tsv_file) as tsv_fh:
@@ -163,7 +141,7 @@ def main():
     metadata_df['id_for_genbank'] = metadata_df['seq_ID'].apply(tillie.canonical_seq_name)
     processed_df = pd.DataFrame() # transfer rows here when processed
 
-    with open("additional_oc_sequences_for_submission.fsa", "w") as fsa_out:
+    with open("additional_oc_sequences_for_submission.fsa", "w") as fsa_out, open("additional_oc_sequences_for_submission.tbl", "w") as tbl_out:
 
         for i, record in enumerate(SeqIO.parse(fasta_file, "fasta")):
             seq_id = record.description.strip()
@@ -176,13 +154,25 @@ def main():
             if len(matched_row_in_metadata) != 1:
                 if len(matched_row_in_metadata) == 0:
                     print(f"Error, sequence {seq_id} matched no rows in metadata looking for strain = {parsed_seq_id['strain']} AND prot = {parsed_seq_id['prot']}", file=sys.stderr)   
+                # else:
+                    # match prot to gene_name to get the right GFF row (there are erroneous annotations)
                 raise ValueError
 
             # determine CDS features
             gff = GFF[ GFF['seqid'] == genbank_id]
             start = gff['start'].item()
             end = gff['end'].item()
-            partial5prime, partial3prime, codon_start = examine_sequence(str(record.seq), start, end)
+            gene_name = gff['gene_name'].item()
+            phase = int(gff['phase'].item())
+            #codon_start = int(gff['phase'].item()) + 1
+            partial5prime, partial3prime, codon_start = examine_sequence(str(record.seq), start, end, phase)
+            # If we found a start codon, override phase to codon_start=1
+            if not partial5prime:
+                codon_start = 1
+
+            # create a new entry for the .tbl file
+            write_tbl_entry(genbank_id, partial3prime, partial5prime, start, end, codon_start, gene_name, tbl_out)
+
             # the sequence header has more specific host values, use if available
             if 'host' in parsed_seq_id:
                 matched_row_in_metadata['host'] = parsed_seq_id['host']
@@ -212,6 +202,8 @@ def main():
 
     print(f"{GREEN}Processed {i + 1} sequences from {BOLD}{fasta_file}.{RESET}", file=sys.stderr)
     print("Done!", file=sys.stderr)
+    print("Wrote additional_oc_sequences_for_submission.fsa", file=sys.stderr)
+    print("Wrote additional_oc_sequences_for_submission.tbl", file=sys.stderr)
 
     processed_df.to_csv("additional_oc_sequences_for_submission.txt", sep="\t", index=False)
     with open("additional_oc_sequences_for_submission.gff","w") as gff_out:
@@ -220,6 +212,8 @@ def main():
 
     print("left over in metadata:", file=sys.stderr)
     metadata_df.to_csv(sys.stderr, sep="\t", index=False)
+
+    print("Wrote additional_oc_sequences_for_submission.txt", file=sys.stderr)
 
 ################
 

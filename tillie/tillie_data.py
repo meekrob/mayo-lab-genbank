@@ -88,7 +88,10 @@ def canonical_seq_name_from_parsed(parsed:dict) -> str:
                                              # to get the gene name out of the attribute field
                                              # Caused by: overlapping CDSs
 
-    canonical_name = f"Bluetongue_virus_{parsed['strain']}_{date_str}{parsed['prot']}"
+    canonical_name = f"BTV_{parsed['strain']}_{date_str}{parsed['prot']}"
+    if len(canonical_name) > 40:
+        print(f"name is too long: {canonical_name}: {len(canonical_name)}", file=sys.stderr)
+        raise ValueError
     return canonical_name
 
 def canonical_seq_name(header_line:str, gene_name:str | None = None) -> str:

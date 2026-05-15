@@ -64,6 +64,8 @@ gff_file = sys.argv[3]
 metadata = defaultdict(dict) # map by seq_id: { header_field: value }
 
 def examine_sequence(seq:str, start:int, end:int, phase:int) -> tuple:
+    if end > len(seq):
+        raise ValueError
     cds = seq[(start-1)+phase:end]  # convert to 0-based
     stop_codons = {'TAA', 'TAG', 'TGA'}
     
@@ -142,7 +144,7 @@ def main():
     metadata_df['id_for_genbank'] = metadata_df['seq_ID'].apply(tillie.canonical_seq_name)
     processed_df = pd.DataFrame() # transfer rows here when processed
 
-    with open("additional_oc_sequences_for_submission.fsa", "w") as fsa_out, open("additional_oc_sequences_for_submission.tbl", "w") as tbl_out:
+    with open("tillie/additional_oc_sequences_for_submission.fsa", "w") as fsa_out, open("tillie/additional_oc_sequences_for_submission.tbl", "w") as tbl_out:
 
         for i, record in enumerate(SeqIO.parse(fasta_file, "fasta")):
             seq_id = record.description.strip()
@@ -206,8 +208,15 @@ def main():
     print("Wrote additional_oc_sequences_for_submission.fsa", file=sys.stderr)
     print("Wrote additional_oc_sequences_for_submission.tbl", file=sys.stderr)
 
-    processed_df.to_csv("additional_oc_sequences_for_submission.txt", sep="\t", index=False)
-    with open("additional_oc_sequences_for_submission.gff","w") as gff_out:
+    # extra genbank steps for the metadata file
+    processed_df.replace("NA", "missing: lab stock", inplace=True)
+    processed_df.drop(['BTV', 'number_segment_sequences','product','seq_ID'], axis=1, inplace=True)
+    processed_df.rename(columns={'id_for_genbank': 'seq_ID'}, inplace=True)
+    processed_df['Organism'] = "Bluetongue virus"
+    processed_df.to_csv("tillie/additional_oc_sequences_for_submission.txt", sep="\t", index=False)
+
+
+    with open("tillie/additional_oc_sequences_for_submission.gff","w") as gff_out:
         print("##gff-version 3", file=gff_out)
         GFF.to_csv(gff_out, sep="\t", index=False, mode="a", header= False)
 

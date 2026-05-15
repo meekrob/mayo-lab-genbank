@@ -1,7 +1,6 @@
 SHELL := /bin/bash
 
 default: additional_oc_sequences_for_submission.fsa additional_oc_sequences_for_submission.tbl additional_oc_sequences_for_submission.A2.sqn additional_oc_sequences_for_submission.A3.sqn working_submission_files.tgz
-	cat tillie.stats
 
 working_submission_files.tgz: additional_oc_sequences_for_submission.txt additional_oc_sequences_for_submission.fsa additional_oc_sequences_for_submission.tbl additional_oc_sequences_for_submission.A2.sqn additional_oc_sequences_for_submission.A3.sqn
 	cp $^ working
@@ -19,6 +18,7 @@ additional_oc_sequences_for_submission.A2.sqn: additional_oc_sequences_for_submi
 	mv additional_oc_sequences_for_submission.gbf additional_oc_sequences_for_submission.A2.gbf
 	mv additional_oc_sequences_for_submission.sqn additional_oc_sequences_for_submission.A2.sqn
 	mv additional_oc_sequences_for_submission.val additional_oc_sequences_for_submission.A2.val 
+	cat tillie.A2.stats
 
 additional_oc_sequences_for_submission.A3.sqn: additional_oc_sequences_for_submission.fsa additional_oc_sequences_for_submission.tbl
 	table2asn -indir . -a s -V vb -t A3_template.sbt
@@ -26,3 +26,4 @@ additional_oc_sequences_for_submission.A3.sqn: additional_oc_sequences_for_submi
 	mv additional_oc_sequences_for_submission.gbf additional_oc_sequences_for_submission.A3.gbf
 	mv additional_oc_sequences_for_submission.sqn additional_oc_sequences_for_submission.A3.sqn
 	mv additional_oc_sequences_for_submission.val additional_oc_sequences_for_submission.A3.val 
+	cat tillie.A3.stats

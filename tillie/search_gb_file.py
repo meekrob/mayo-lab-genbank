@@ -43,9 +43,9 @@ warnings.simplefilter('ignore', BiopythonParserWarning) # apparently now the LOC
 
 for i, record in enumerate(SeqIO.parse(gb_file, "genbank")):
     # add some missing data
-    record.annotations["data_file_division"] = "VRL"
-    record.annotations['molecule_type'] = "DNA"
-    record.annotations["taxonomy"] = bluetongue_lineage
+    if 'data_file_division' not in record.annotations: record.annotations["data_file_division"] = "VRL"
+    if 'molecular_annotations' not in record.annotations: record.annotations['molecule_type'] = "RNA"
+    if 'taxonomy' not in record.annotations: record.annotations["taxonomy"] = bluetongue_lineage
     all_gb[record.id] = record
 
     if IDs:

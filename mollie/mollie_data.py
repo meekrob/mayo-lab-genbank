@@ -1,6 +1,8 @@
 # tillie_data.py
 import sys
 import re
+import os
+import glob
 from datetime import datetime
 from genbank_vals import geoloc_countries, state_names_to_abbrev, host_lookup
 import pandas as pd
@@ -97,7 +99,6 @@ def get_virus_prefix(term):
     if term.startswith('Culicoides Partiti-like'): return "CPlV_"
     if term.find('Bovine hepacivirus') > -1: return "BHC_"
     raise ValueError
-    return "UNKNOWN_"
 
 def parse_seq_header(header_line:str, gene_name:str) -> dict:
     gene = gene_name.replace('CDS','').strip()
@@ -201,7 +202,6 @@ def validate_genbank_fields(fields:dict) -> dict:
 
     return fields
 
-import os, glob
 def read_all_Gffs() -> pd.DataFrame:
     return pd.concat([read_Aim2_Gffs(), read_Aim3_Gffs()], axis = 0)
 
@@ -228,16 +228,6 @@ def read_Aim2_Fastas() -> dict:
         for i, record in enumerate(SeqIO.parse(path, "fasta")):
             seq_id = record.description.strip().replace(' ','_').replace('/', '_').replace('Bluetongue_virus_isolate_','')
             all_seqs[seq_id] = str(record.seq)
-            # if seq_id in metadata:
-            #     print('>' + seq_id.replace(' ', '_'), end=' ')
-            #     for h in header:
-            #         print(f"[{h}={metadata[seq_id][h]}]", end=" ")
-            #     print()
-            # else:
-            #     print(f"Warning: {seq_id} not in data file", file=sys.stderr)
-            #     continue
-
-            #print(str(record.seq))
 
     return all_seqs
 
@@ -245,16 +235,11 @@ def read_Aim3_Fastas() -> dict:
     all_seqs = {}
     for path in glob.glob(f"{os.path.dirname(sys.argv[0])}/**/Aim_3_SRA_Stuff/**/*_*.fasta", recursive=True):
         for i, record in enumerate(SeqIO.parse(path, "fasta")):
-            seq_id = record.description.strip()
+            sample_ID = record.description.strip()
+            gene_name = get_gene_name_from_spreadsheet_sampleID(sample_ID)
+            seq_id = parse_seq_header(sample_ID, gene_name)['canonical']
+
             all_seqs[seq_id] = str(record.seq)
-            # if seq_id in metadata:
-            #     print('>' + seq_id.replace(' ', '_'), end=' ')
-            #     for h in header:
-            #         print(f"[{h}={metadata[seq_id][h]}]", end=" ")
-            #     print()
-            # else:
-            #     print(f"Warning: {seq_id} not in data file", file=sys.stderr)
-            #     continue
 
             print(str(record.seq))
 

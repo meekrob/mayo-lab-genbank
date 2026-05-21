@@ -2,6 +2,9 @@
 import sys
 from collections import defaultdict
 from Bio import SeqIO
+import pandas as pd
+import mollie_data as mollie
+
 USAGE = f"""
  This script is designed to help create FASTA files in the right format for Genbank submission.
 
@@ -47,8 +50,10 @@ GREY = '\033[90m'
 BOLD = '\033[1m'
 RESET = '\033[0m'
 
-tsv_file = sys.argv[1]
-fasta_file = sys.argv[2]
+#tsv_file = sys.argv[1]
+import os
+tsv_file = os.path.dirname(sys.argv[0])
+#fasta_file = sys.argv[2]
 
 metadata = defaultdict(lambda: {}) # map by seq_id: { header_field: value }
 

@@ -114,7 +114,6 @@ dfs = {
 }
 
 for name, df in dfs.items():
-    df['organism'] = "Bluetongue virus"
     df['gene_name'] = df['sample_ID'].apply(mollie.get_gene_name_from_spreadsheet_sampleID)    
     df['seq_fa'] = df['consensus_sequence.fasta'].apply(lambda x: x.replace(' ', '_').replace('/','_').replace('.fasta',''))
     df['collection_date'] = df['collection_date'].dt.strftime("%d-%b-%Y")
@@ -131,6 +130,8 @@ for name, df in dfs.items():
 # separate back out
 aim2 = dfs['aim2']
 aim3 = dfs['aim3']
+
+aim2['organism'] = "Bluetongue virus"
 
 ### Aim 2
 if False:

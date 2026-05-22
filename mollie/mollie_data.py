@@ -241,7 +241,7 @@ def read_Aim3_Fastas() -> dict:
 
             all_seqs[seq_id] = str(record.seq)
 
-            print(str(record.seq))
+            #print(str(record.seq))
 
     return all_seqs
 

@@ -6,13 +6,18 @@ import pandas as pd
 from typing import TextIO
 import mollie_data as mollie
 
-
-# richer messages are in vogue
-GREEN = '\033[92m'
-RED = '\033[91m'
-GREY = '\033[90m'
-BOLD = '\033[1m'
-RESET = '\033[0m'
+### hard-code paths- this is not a generalizable script
+basedir= os.path.dirname(sys.argv[0]) # where are we?
+## input metadata file paths
+aim2_tsv_file = f"{basedir}/SRA_materials/Aim_2_SRA_Stuff/Aim_2_SRA_metadata.xlsx"
+aim3_tsv_file = f"{basedir}/SRA_materials/Aim_3_SRA_Stuff/Aim_3_SRA_metadata.xlsx"
+## output file paths
+### Aim 2
+aim2_tbl_file = f"{basedir}/Aim2_submission_files/aim2_feature.tbl"
+aim2_fsa_file = f"{basedir}/Aim2_submission_files/aim2_feature.fsa"
+### Aim 3
+aim3_tbl_file = f"{basedir}/Aim3_submission_files/aim3_feature.tbl"
+aim3_fsa_file = f"{basedir}/Aim3_submission_files/aim3_feature.fsa"
 
 def dfprint(df, out=sys.stderr, sep ="\t"):
     df.to_csv(out,sep)
@@ -61,8 +66,8 @@ def make_tbl_entry(cds_row, seq):
         'end': end,
         'gene_name': gene_name,
         'partial5prime': is_5prime_partial, 
-                        'partial3prime': is_3prime_partial, 
-                        'codon_start': codon_start}
+        'partial3prime': is_3prime_partial, 
+        'codon_start': codon_start}
 
 def write_fsa_entry(fasta_id, metarow, fsa_fh):
 
@@ -79,22 +84,30 @@ def write_fsa_entry(fasta_id, metarow, fsa_fh):
         print(" ".join(annotations), file=fsa_fh)
         print(seq, file=fsa_fh)
 
+### global fields and data
+frame_lookup = { '.':0, 
+                '0': 0, 
+                '1': 1, 
+                '2': 2,
+                 0: 0, 
+                 1: 1, 
+                 2: 2
+                }
+
 platform_mapping = {
     "Oxford Nanopore Technologies": "nanopore",
     "Illumina Sequencing": "illumina" # not in Mollie's data
 }
 
-# where are we?
-basedir= os.path.dirname(sys.argv[0])
-# input file paths
-aim2_tsv_file = f"{basedir}/SRA_materials/Aim_2_SRA_Stuff/Aim_2_SRA_metadata.xlsx"
-aim3_tsv_file = f"{basedir}/SRA_materials/Aim_3_SRA_Stuff/Aim_3_SRA_metadata.xlsx"
-# output file paths
-aim2_tbl_file = f"{basedir}/Aim2_submission_files/aim2_feature.tbl"
-aim2_fsa_file = f"{basedir}/Aim2_submission_files/aim2_feature.fsa"
-
+export_fields_keys = ["genotype", "host", "strain", 
+                      "collected_by", "geo_loc_name", "collection_date", 
+                      "note", "isolation_source", "organism"] 
 
 metadata = defaultdict(lambda: {}) # map by seq_id: { header_field: value }
+
+### common munging operations needed on boths metadata sheets
+### most of them are vectorized pandas.DataFrame operations
+### put them together temporarily so the same code can be used while keeping modifications in-place
 dfs = {
     'aim2' : pd.read_excel(aim2_tsv_file).dropna(how='all'),
     'aim3' : pd.read_excel(aim3_tsv_file).dropna(how='all')
@@ -115,62 +128,73 @@ for name, df in dfs.items():
     lambda row: mollie.canonical_seq_name(row['sample_ID'], row['gene_name']),
     axis=1
 )
-
+# separate back out
 aim2 = dfs['aim2']
 aim3 = dfs['aim3']
 
+### Aim 2
+if False:
+    aim2_fa = mollie.read_Aim2_Fastas()
+    gff2 = mollie.read_Aim2_Gffs()
 
-aim2_fa = mollie.read_Aim2_Fastas()
+    with open(aim2_tbl_file,"w") as aim2_tbl, open(aim2_fsa_file, "w") as aim2_fsa:
 
+        for source_file, group in gff2.groupby('source_file'):
+            metarow = aim2[aim2['seqid'] == group.iloc[0]['seqid'] ]
+            fasta_id = group.iloc[0]['seqid']
+            
+            seq = aim2_fa[fasta_id]
+            tbl_entries = []
+            for idx, cds_row in group.iterrows():
+                tbl_entries.append(make_tbl_entry(cds_row, seq))
 
+            write_tbl_entry(fasta_id, tbl_entries, aim2_tbl)
+            write_fsa_entry(fasta_id, metarow, aim2_fsa)
 
-metarows = pd.concat([aim2,aim3], axis=0)
+    print(f"Wrote:\n\tfsa={aim2_fsa_file},\n\ttbl={aim2_tbl_file}", file=sys.stderr)
 
-frame_lookup = { '.':0, '0': 0, '1': 1, '2': 2}
-gff2 = mollie.read_Aim2_Gffs()
+### Aim 3
+aim3_fa = mollie.read_Aim3_Fastas()
+gff3 = mollie.read_Aim3_Gffs()
 
-export_fields_keys = ["genotype", "host", "strain", "collected_by", "geo_loc_name", "collection_date", "note", "isolation_source", "organism"] 
+with open(aim3_tbl_file,"w") as aim3_tbl, open(aim3_fsa_file, "w") as aim3_fsa:
 
-with open(aim2_tbl_file,"w") as aim2_tbl, open(aim2_fsa_file, "w") as aim2_fsa:
-
-    for source_file, group in gff2.groupby('source_file'):
-        metarow = aim2[aim2['seqid'] == group.iloc[0]['seqid'] ]
+    for source_file, group in gff3.groupby('source_file'):
+        metarow = aim3[aim3['seqid'] == group.iloc[0]['seqid'] ]
         fasta_id = group.iloc[0]['seqid']
         
-        seq = aim2_fa[fasta_id]
+        seq = aim3_fa[fasta_id]
         tbl_entries = []
         for idx, cds_row in group.iterrows():
             tbl_entries.append(make_tbl_entry(cds_row, seq))
-            # start = int(cds_row['start'])
-            # end = int(cds_row['end'])
-            # gene_name = cds_row['gene_name']
-            # phase = frame_lookup[cds_row['phase']]
-            # # match annotation to sequence
-            # is_5prime_partial, is_3prime_partial, codon_start = examine_sequence(seq, start, end, phase)
-            # tbl_entries.append({ 
-            #     'start': start,
-            #     'end': end,
-            #     'gene_name': gene_name,
-            #     'partial5prime': is_5prime_partial, 
-            #                     'partial3prime': is_3prime_partial, 
-            #                     'codon_start': codon_start})
+        if fasta_id == 'TVN_CO_USA_2021_pol':
+            # manual case of ribosome slipping that doesn't register as a polyprotein in the usual workflow
+            TAB="\t"
+            print(f""">Feature TVN_CO_USA_2021_pol
+16	1938	gene
+1938	4526	
+			gene	pol
+16	1938	CDS
+1938	4526	
+			gene	pol
+			product	polyprotein
+			exception	ribosomal slippage
+			codon_start	1
+16	1938	gene
+			gene	cap
+16	1938	CDS
+			gene	cap
+			product	capsid protein
+			codon_start	1
+16	4526	gene
+			gene	pol
+<1938	4526	CDS
+			gene	pol
+			product	RNA-dependent RNA polymerase
+			codon_start	1
+""", file=aim3_tbl)
+        else:
+            write_tbl_entry(fasta_id, tbl_entries, aim3_tbl)
+        write_fsa_entry(fasta_id, metarow, aim3_fsa)
 
-        write_tbl_entry(fasta_id, tbl_entries, aim2_tbl)
-        write_fsa_entry(fasta_id, metarow, aim2_fsa)
-
-        # print(f">{fasta_id}", file=aim2_fsa, end=' ')
-
-        # annotations = []
-        # for k,v in metarow.items():
-        #     if k in export_fields_keys:
-        #         if v.item() == 'NA': continue
-
-        #         modifier = f"[{k}={v.item()}]"
-        #         annotations.append(modifier)
-
-        # print(" ".join(annotations), file=aim2_fsa)
-        # print(seq, file=aim2_fsa)
-
-print(f"Wrote:\n\tfsa={aim2_fsa_file},\n\ttbl={aim2_tbl_file}", file=sys.stderr)
-
-
+print(f"Wrote:\n\tfsa={aim3_fsa_file},\n\ttbl={aim3_tbl_file}", file=sys.stderr)

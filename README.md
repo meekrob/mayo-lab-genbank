@@ -1,7 +1,8 @@
 # Scripts for genbank submissions
 
-The following code has custom scripts that convert sequence names to a Genbank-ready 
-format in three different file types: GFF (exported from Geneious), FASTA (exported from Geneious), TSV/Excel (user's annotations).
+This project has custom scripts that convert sequence names to a Genbank-ready 
+format in three different file types: GFF (exported from Geneious), FASTA (exported from Geneious), TSV/Excel (user's annotations),
+and prepares files as input for *table2asn*.
 
 The submitters are Tillie Dunham and Mollie Burton, whose sequences and annotation formats are similar but require individual attention.
 
@@ -42,6 +43,20 @@ graph LR;
         canonical_seqid-->CDS;
         metadata_parser-->user_variation_xl;
         metadata_parser-->metadata;
+
+        validate_host([validate host])
+        validate_date_format([validate date])
+        validate_geo-loc([validate geo-loc])
+
+        metadata-->validate_date_format;
+        validate_date_format-->metadata;
+
+        metadata-->validate_geo-loc;
+        validate_geo-loc-->metadata;
+
+        metadata-->validate_host;
+        validate_host-->metadata;
+
         canonical_seqid-->metadata;
         canonical_seqid-->sequences;
         user_variation_xl-->canonical_seqid;

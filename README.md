@@ -7,29 +7,34 @@ The submitters are Tillie Dunham and Mollie Burton, whose sequences and annotati
 
 ```mermaid
 graph LR;
-    Py_in@{ shape: tri, label: "map.py\nin" }
-    Py_out@{ shape: manual-file, label: "map.py\nout" }
     user_annot@{ shape: manual-input, label: "TSV/Excel" }
     Fasta@{ shape: docs }
     GFF@{ shape: docs }
     user_variation_geneious@{ shape: subproc, label: "Detect user label conventions in Geneious"}
     user_variation_xl@{ shape: subproc, label: "Detect user label conventions in Excel Spreadsheet"}
-    canonical_seqid@{ shape: subproc, label: "Genbank-ready seq IDs"}
+    canonical_seqid@{ shape: subproc, label: "canonicalize seqid"}
+    add_modifiers@{ shape: subproc}
+    validate_seq@{ shape: subproc}
+    table2asn@{ shape: diamond}
 
     CDS@{ shape: bow-rect, label: "CDS ranges" }
     sequences@{ shape: docs }
     metadata@{ shape: bow-rect, label: "metadata"}; 
 
+    subgraph "user data"
+    GFF;
+    user_annot;
+    Fasta;
+    end
 
-    GFF-->map_tsv_to_fasta_header.py;
-    user_annot-->map_tsv_to_fasta_header.py;
-    Fasta-->map_tsv_to_fasta_header.py;
+    
+    GFF-->gff_parser;
+    user_annot-->metadata_parser;
+    Fasta-->seq_parser;
 
-    subgraph map_tsv_to_fasta_header.py
+
+    subgraph scripts
         direction LR
-        Py_in-->seq_parser;
-        Py_in-->gff_parser;
-        Py_in-->metadata_parser;
         seq_parser-->user_variation_geneious;
         seq_parser-->sequences;
         gff_parser-->user_variation_geneious;
@@ -41,19 +46,24 @@ graph LR;
         canonical_seqid-->sequences;
         user_variation_xl-->canonical_seqid;
         user_variation_geneious-->canonical_seqid;
-        Py_in== User-specific data module ==>Py_out;
         sequences-->validate_seq;
         sequences-->add_modifiers;
         CDS-->validate_seq;
         metadata-->add_modifiers;
         
     end
+
     validate_seq-->tbl;
     add_modifiers-->fsa;
     table2asn-->sqn;
     tbl-->table2asn;
     fsa-->table2asn;
-    
-    table2asn-->val;
+
+    subgraph "submission files"
+        table2asn
+        tbl
+        fsa
+        sqn
+    end
 
 ```

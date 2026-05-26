@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import sys
+import sys,os
 import re
 import textwrap # for wrapping sequence lines
 from datetime import datetime
@@ -45,11 +45,6 @@ USAGE = f"""
   Adapted further by David King 5/7/2026 to replicate rows, adding protein names to seq ID
 """
 
-if len(sys.argv) < 2 or sys.argv[1] == '-h':
-    print(USAGE)
-    sys.exit(0)
-
-
 # richer messages are in vogue
 GREEN = '\033[92m'
 RED = '\033[91m'
@@ -57,15 +52,55 @@ GREY = '\033[90m'
 BOLD = '\033[1m'
 RESET = '\033[0m'
 
-tsv_file = sys.argv[1]
-fasta_file = sys.argv[2]
-gff_file = sys.argv[3]
+### hard-code paths- this is not a generalizable script
+basedir= os.path.dirname(sys.argv[0]) # where are we?
+if len(sys.argv) == 3:
+    tsv_file = sys.argv[1]
+    fasta_file = sys.argv[2]
+    gff_file = sys.argv[3]
+else:
+    tsv_file = f"{basedir}/new_files/GenBank_Sequences_A2_A3_CLEAN_fixed_strain.txt"
+    fasta_file = f"{basedir}/new_files/TD_n1257_GenBank.fasta"
+    gff_file = f"{basedir}/new_files/TD_n1257_GenBank.gff"
 
 metadata = defaultdict(dict) # map by seq_id: { header_field: value }
+def argmax(l):
+    max_el = max(l)
+    return l.index(max_el)
+
+pat = re.compile(r'N+')
+
+def find_inner_chunk_no_N(seq):
+    # split on Ns, take largest as trimmed sequence
+    chunks = re.split(pat, seq)
+    largest_chunk_ix = argmax([len(chunk) for chunk in chunks])
+    largest_chunk = chunks[ largest_chunk_ix ]
+
+    # validate
+    flanks = seq.split(largest_chunk)
+    # this should yield the flanks of leftFlank, largest_chunk, rightFlank
+    # but if the largest chunk isn't unique, the result will be larger than 
+    # 2 and this might not work
+    if len(flanks) != 2:
+        raise ValueError
+
+    # return bounds
+    s = len(flanks[0])
+    e = s + len(largest_chunk)
+    # core sequence will be seq[s:e]
+    return s, e
 
 def examine_sequence(seq:str, start:int, end:int, phase:int) -> tuple:
+    if seq.find('N') >= 0:
+        trimmed_range = find_inner_chunk_no_N(seq)
+        # adjust coordinates
+        # start = start - trimmed_range[0]
+        # end = end - trimmed_range[0]
+        # seq = seq[trimmed_range[0]:trimmed_range[1]]
+
     if end > len(seq):
         raise ValueError
+    
     cds = seq[(start-1)+phase:end]  # convert to 0-based
     stop_codons = {'TAA', 'TAG', 'TGA'}
     
@@ -97,6 +132,32 @@ def write_tbl_entry(genbank_id:str, partial3prime: bool, partial5prime: bool, st
 def main():
 
     GFF = tillie.read_GFF(gff_file)
+    # corrections
+    fasta_corrections = {}
+
+    c = "VP7_Clinical_3_20x_BTV13_bighorn_sheep_adult_male_2021.09.03"
+    c_fa = SeqIO.parse(f"{basedir}/new_files/{c}/{c}.fasta", "fasta")
+    for record in c_fa:
+        seq_id = record.description.strip()
+        parsed_seq_id = tillie.parse_seq_header(seq_id)
+        genbank_id = tillie.canonical_seq_name(seq_id)
+        fasta_corrections[genbank_id] = record
+
+    c_gff = tillie.read_GFF(f"{basedir}/new_files/{c}/{c}.gff")
+    c_gff['phase'] = c_gff['phase'].astype(str)
+    if sum(GFF['seqid'].isin(c_gff.seqid)) == 1:
+        print(f"Note: Replacing {c_gff.seqid.item()} with manual annotation.")
+        mask = GFF['seqid'] == c_gff['seqid'].iloc[0]
+        GFF[mask].to_csv(sys.stderr, sep="\t")
+        GFF.loc[mask] = c_gff.iloc[0].values
+        GFF.loc[mask].to_csv(sys.stderr, sep="\t")
+
+    elif sum(GFF['seqid'].isin(c_gff.seqid)) == 0:
+        print(f"Warning: Looking to replace GFF entry {c_gff.seqid.item()} but it is not found in the larger GFF file.", file=sys.stderr)
+    else:
+        print(f"Warning: Looking to replace GFF entry {c_gff.seqid.item()} but it does not map uniquely to the GFF file ({sum(GFF['seqid'].isin(c_gff.seqid))} seqid matches)", file=sys.stderr)
+
+
 
     records = 0
     with open(tsv_file) as tsv_fh:
@@ -144,13 +205,17 @@ def main():
     metadata_df['id_for_genbank'] = metadata_df['seq_ID'].apply(tillie.canonical_seq_name)
     processed_df = pd.DataFrame() # transfer rows here when processed
 
-    with open("tillie/additional_oc_sequences_for_submission.fsa", "w") as fsa_out, open("tillie/additional_oc_sequences_for_submission.tbl", "w") as tbl_out:
+
+    with open(f"{basedir}/additional_oc_sequences_for_submission.fsa", "w") as fsa_out, open(f"{basedir}/additional_oc_sequences_for_submission.tbl", "w") as tbl_out:
 
         for i, record in enumerate(SeqIO.parse(fasta_file, "fasta")):
             seq_id = record.description.strip()
             parsed_seq_id = tillie.parse_seq_header(seq_id)
             genbank_id = tillie.canonical_seq_name(seq_id)
-            #matched_row_in_metadata = metadata_df[(metadata_df['product'] == parsed_seq_id['prot']) & (metadata_df['strain'] == parsed_seq_id['strain'])]
+            if genbank_id in fasta_corrections:
+                print(f"Replacing sequence {genbank_id} from corrections.", file=sys.stderr)
+                record = fasta_corrections[genbank_id]
+
             matched_row_in_metadata = metadata_df[metadata_df['id_for_genbank'] == genbank_id]
 
             # crash if no match found
@@ -213,10 +278,13 @@ def main():
     processed_df.drop(['BTV', 'number_segment_sequences','product','seq_ID'], axis=1, inplace=True)
     processed_df.rename(columns={'id_for_genbank': 'seq_ID'}, inplace=True)
     processed_df['Organism'] = "Bluetongue virus"
-    processed_df.to_csv("tillie/additional_oc_sequences_for_submission.txt", sep="\t", index=False)
+
+        
+
+    processed_df.to_csv(f"additional_oc_sequences_for_submission.txt", sep="\t", index=False)
 
 
-    with open("tillie/additional_oc_sequences_for_submission.gff","w") as gff_out:
+    with open(f"additional_oc_sequences_for_submission.gff","w") as gff_out:
         print("##gff-version 3", file=gff_out)
         GFF.to_csv(gff_out, sep="\t", index=False, mode="a", header= False)
 

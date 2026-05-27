@@ -8,11 +8,13 @@ The submitters are Tillie Dunham and Mollie Burton, whose sequences and annotati
 
 ```mermaid
 graph LR;
+    classDef validation fill:#f9f,stroke:#333,stroke-width:4px;
+    class validate_seq,canonical_seqid,validate_host,validate_geo-loc,validate_date_format validation;
     user_annot@{ shape: manual-input, label: "TSV/Excel" }
     Fasta@{ shape: docs }
     GFF@{ shape: docs }
-    user_variation_geneious@{ shape: subproc, label: "Detect user label conventions in Geneious"}
-    user_variation_xl@{ shape: subproc, label: "Detect user label conventions in Excel Spreadsheet"}
+    user_variation_geneious@{ shape: subproc, label: "Detect user's conventions (Geneious)"}
+    user_variation_xl@{ shape: subproc, label: "Detect user's conventions (Excel Spreadsheet)"}
     canonical_seqid@{ shape: subproc, label: "canonicalize seqid"}
     add_modifiers@{ shape: subproc}
     validate_seq@{ shape: subproc}
@@ -48,14 +50,16 @@ graph LR;
         validate_date_format([validate date])
         validate_geo-loc([validate geo-loc])
 
-        metadata-->validate_date_format;
-        validate_date_format-->metadata;
+        metadata<-->validate_date_format;
 
-        metadata-->validate_geo-loc;
-        validate_geo-loc-->metadata;
+        metadata<-->validate_geo-loc;
 
-        metadata-->validate_host;
-        validate_host-->metadata;
+        metadata<-->validate_host;
+
+        A@{ shape: sm-circ, label: "Small start" }
+        validate_host-->A
+        validate_geo-loc-->A
+        validate_date_format-->A
 
         canonical_seqid-->metadata;
         canonical_seqid-->sequences;
@@ -64,10 +68,10 @@ graph LR;
         sequences-->validate_seq;
         sequences-->add_modifiers;
         CDS-->validate_seq;
-        metadata-->add_modifiers;
+        A-->add_modifiers;
         
     end
-
+    A-->tsv;
     validate_seq-->tbl;
     add_modifiers-->fsa;
     table2asn-->sqn;
@@ -80,5 +84,17 @@ graph LR;
         fsa
         sqn
     end
+
+    table2asn-->gbn;
+    table2asn-->val;
+
+    subgraph "extra output"
+        direction LR
+        tsv;
+        gbn;
+        val;
+    end
+
+
 
 ```

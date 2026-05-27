@@ -6,6 +6,13 @@ and prepares files as input for *table2asn*.
 
 This follows the approach used in [Mark Stenglein's workflow](https://github.com/stenglein-lab/Helpful_code_snippets/tree/main/create_files_for_genbank_submission), but too much customization was required to make use of his scripts.
 
+### Requirements
+
+* Python
+    * biopython (for seqio)
+    * pandas
+* [table2asn](https://www.ncbi.nlm.nih.gov/genbank/table2asn/)
+
 ## Workflow
 
 The following graph summarizes the approach common to both submitters (Mollie Burton and Tillie Dunham). There are customizations unique to each project not reflected here. **Main Scripts** represents the body of work in this repository.

@@ -150,32 +150,6 @@ def main():
     gff_outpath = f"{out_dir}/{outfile_prefix}.gff"
 
     GFF = tillie.read_GFF(gff_file)
-    # corrections
-    fasta_corrections = {}
-
-    # c = "VP7_Clinical_3_20x_BTV13_bighorn_sheep_adult_male_2021.09.03"
-    # c_fa = SeqIO.parse(f"{basedir}/new_files/{c}/{c}.fasta", "fasta")
-    # for record in c_fa:
-    #     seq_id = record.description.strip()
-    #     parsed_seq_id = tillie.parse_seq_header(seq_id)
-    #     genbank_id = tillie.canonical_seq_name(seq_id)
-    #     fasta_corrections[genbank_id] = record
-
-    # c_gff = tillie.read_GFF(f"{basedir}/new_files/{c}/{c}.gff")
-    # c_gff['phase'] = c_gff['phase'].astype(str)
-    # if sum(GFF['seqid'].isin(c_gff.seqid)) == 1:
-    #     print(f"Note: Replacing {c_gff.seqid.item()} with manual annotation.")
-    #     mask = GFF['seqid'] == c_gff['seqid'].iloc[0]
-    #     GFF[mask].to_csv(sys.stderr, sep="\t")
-    #     GFF.loc[mask] = c_gff.iloc[0].values
-    #     GFF.loc[mask].to_csv(sys.stderr, sep="\t")
-
-    # elif sum(GFF['seqid'].isin(c_gff.seqid)) == 0:
-    #     print(f"Warning: Looking to replace GFF entry {c_gff.seqid.item()} but it is not found in the larger GFF file.", file=sys.stderr)
-    # else:
-    #     print(f"Warning: Looking to replace GFF entry {c_gff.seqid.item()} but it does not map uniquely to the GFF file ({sum(GFF['seqid'].isin(c_gff.seqid))} seqid matches)", file=sys.stderr)
-
-
 
     records = 0
     with open(tsv_file) as tsv_fh:
@@ -230,10 +204,6 @@ def main():
             seq_id = record.description.strip()
             parsed_seq_id = tillie.parse_seq_header(seq_id)
             genbank_id = tillie.canonical_seq_name(seq_id)
-            if genbank_id in fasta_corrections:
-                print(f"Replacing sequence {genbank_id} from corrections.", file=sys.stderr)
-                record = fasta_corrections[genbank_id]
-
             matched_row_in_metadata = metadata_df[metadata_df['id_for_genbank'] == genbank_id]
 
             # crash if no match found

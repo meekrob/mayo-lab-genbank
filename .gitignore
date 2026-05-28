@@ -24,3 +24,4 @@ __pycache__
 err
 *.log
 almost_working
+.RHistory

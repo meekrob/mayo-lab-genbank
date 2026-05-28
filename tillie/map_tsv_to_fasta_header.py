@@ -52,16 +52,7 @@ GREY = '\033[90m'
 BOLD = '\033[1m'
 RESET = '\033[0m'
 
-### hard-code paths- this is not a generalizable script
-basedir= os.path.dirname(sys.argv[0]) # where are we?
-if len(sys.argv) == 3:
-    tsv_file = sys.argv[1]
-    fasta_file = sys.argv[2]
-    gff_file = sys.argv[3]
-else:
-    tsv_file = f"{basedir}/new_files/GenBank_Sequences_A2_A3_CLEAN_fixed_strain.txt"
-    fasta_file = f"{basedir}/new_files/TD_n1257_GenBank.fasta"
-    gff_file = f"{basedir}/new_files/TD_n1257_GenBank.gff"
+
 
 metadata = defaultdict(dict) # map by seq_id: { header_field: value }
 def argmax(l):
@@ -128,34 +119,61 @@ def write_tbl_entry(genbank_id:str, partial3prime: bool, partial5prime: bool, st
     print("\t" * 3 + "codon_start", codon_start, sep="\t", file=tbl_out)
     print("\t" * 3 + "transl_table", 1, sep="\t", file=tbl_out)
 
+import glob
 
 def main():
+
+    ### hard-code paths- this is not a generalizable script
+    basedir= os.path.dirname(sys.argv[0]) # where are we?
+
+    # get prefix (like "current/A2")
+    if len(sys.argv) < 2:
+        user_prefix = "current/send_to_david/FABADRU_SA"
+    else:
+        user_prefix = sys.argv[1]
+
+    out_dir = f"{user_prefix}_submission_files"
+    if os.path.exists(out_dir):
+        print(f"Output director {out_dir} exists")
+    else:
+        os.mkdir(out_dir)
+        print(f"Made output directory {out_dir}")
+
+    gff_file = glob.glob(f"{user_prefix}*.gff")[0]
+    tsv_file = glob.glob(f"{user_prefix}*.txt")[0]
+    fasta_file = glob.glob(f"{user_prefix}*.fasta")[0]
+
+    outfile_prefix = os.path.basename(user_prefix)
+    tbl_outpath = f"{out_dir}/{outfile_prefix}.tbl"
+    fsa_outpath = f"{out_dir}/{outfile_prefix}.fsa"
+    txt_outpath = f"{out_dir}/{outfile_prefix}.txt"
+    gff_outpath = f"{out_dir}/{outfile_prefix}.gff"
 
     GFF = tillie.read_GFF(gff_file)
     # corrections
     fasta_corrections = {}
 
-    c = "VP7_Clinical_3_20x_BTV13_bighorn_sheep_adult_male_2021.09.03"
-    c_fa = SeqIO.parse(f"{basedir}/new_files/{c}/{c}.fasta", "fasta")
-    for record in c_fa:
-        seq_id = record.description.strip()
-        parsed_seq_id = tillie.parse_seq_header(seq_id)
-        genbank_id = tillie.canonical_seq_name(seq_id)
-        fasta_corrections[genbank_id] = record
+    # c = "VP7_Clinical_3_20x_BTV13_bighorn_sheep_adult_male_2021.09.03"
+    # c_fa = SeqIO.parse(f"{basedir}/new_files/{c}/{c}.fasta", "fasta")
+    # for record in c_fa:
+    #     seq_id = record.description.strip()
+    #     parsed_seq_id = tillie.parse_seq_header(seq_id)
+    #     genbank_id = tillie.canonical_seq_name(seq_id)
+    #     fasta_corrections[genbank_id] = record
 
-    c_gff = tillie.read_GFF(f"{basedir}/new_files/{c}/{c}.gff")
-    c_gff['phase'] = c_gff['phase'].astype(str)
-    if sum(GFF['seqid'].isin(c_gff.seqid)) == 1:
-        print(f"Note: Replacing {c_gff.seqid.item()} with manual annotation.")
-        mask = GFF['seqid'] == c_gff['seqid'].iloc[0]
-        GFF[mask].to_csv(sys.stderr, sep="\t")
-        GFF.loc[mask] = c_gff.iloc[0].values
-        GFF.loc[mask].to_csv(sys.stderr, sep="\t")
+    # c_gff = tillie.read_GFF(f"{basedir}/new_files/{c}/{c}.gff")
+    # c_gff['phase'] = c_gff['phase'].astype(str)
+    # if sum(GFF['seqid'].isin(c_gff.seqid)) == 1:
+    #     print(f"Note: Replacing {c_gff.seqid.item()} with manual annotation.")
+    #     mask = GFF['seqid'] == c_gff['seqid'].iloc[0]
+    #     GFF[mask].to_csv(sys.stderr, sep="\t")
+    #     GFF.loc[mask] = c_gff.iloc[0].values
+    #     GFF.loc[mask].to_csv(sys.stderr, sep="\t")
 
-    elif sum(GFF['seqid'].isin(c_gff.seqid)) == 0:
-        print(f"Warning: Looking to replace GFF entry {c_gff.seqid.item()} but it is not found in the larger GFF file.", file=sys.stderr)
-    else:
-        print(f"Warning: Looking to replace GFF entry {c_gff.seqid.item()} but it does not map uniquely to the GFF file ({sum(GFF['seqid'].isin(c_gff.seqid))} seqid matches)", file=sys.stderr)
+    # elif sum(GFF['seqid'].isin(c_gff.seqid)) == 0:
+    #     print(f"Warning: Looking to replace GFF entry {c_gff.seqid.item()} but it is not found in the larger GFF file.", file=sys.stderr)
+    # else:
+    #     print(f"Warning: Looking to replace GFF entry {c_gff.seqid.item()} but it does not map uniquely to the GFF file ({sum(GFF['seqid'].isin(c_gff.seqid))} seqid matches)", file=sys.stderr)
 
 
 
@@ -206,7 +224,7 @@ def main():
     processed_df = pd.DataFrame() # transfer rows here when processed
 
 
-    with open(f"{basedir}/additional_oc_sequences_for_submission.fsa", "w") as fsa_out, open(f"{basedir}/additional_oc_sequences_for_submission.tbl", "w") as tbl_out:
+    with open(fsa_outpath, "w") as fsa_out, open(tbl_outpath, "w") as tbl_out:
 
         for i, record in enumerate(SeqIO.parse(fasta_file, "fasta")):
             seq_id = record.description.strip()
@@ -231,7 +249,12 @@ def main():
             start = gff['start'].item()
             end = gff['end'].item()
             gene_name = gff['gene_name'].item()
-            phase = int(gff['phase'].item())
+            phase = 0
+            try:
+                phase = int(gff['phase'].item())
+            except:
+                pass
+            
             #codon_start = int(gff['phase'].item()) + 1
             partial5prime, partial3prime, codon_start = examine_sequence(str(record.seq), start, end, phase)
             # If we found a start codon, override phase to codon_start=1
@@ -270,8 +293,8 @@ def main():
 
     print(f"{GREEN}Processed {i + 1} sequences from {BOLD}{fasta_file}.{RESET}", file=sys.stderr)
     print("Done!", file=sys.stderr)
-    print("Wrote additional_oc_sequences_for_submission.fsa", file=sys.stderr)
-    print("Wrote additional_oc_sequences_for_submission.tbl", file=sys.stderr)
+    print(f"Wrote {fsa_outpath}", file=sys.stderr)
+    print(f"Wrote {tbl_outpath}", file=sys.stderr)
 
     # extra genbank steps for the metadata file
     processed_df.replace("NA", "missing: lab stock", inplace=True)
@@ -279,19 +302,19 @@ def main():
     processed_df.rename(columns={'id_for_genbank': 'seq_ID'}, inplace=True)
     processed_df['Organism'] = "Bluetongue virus"
 
-        
-
-    processed_df.to_csv(f"additional_oc_sequences_for_submission.txt", sep="\t", index=False)
+    processed_df.to_csv(txt_outpath, sep="\t", index=False)
 
 
-    with open(f"additional_oc_sequences_for_submission.gff","w") as gff_out:
+    with open(gff_outpath,"w") as gff_out:
         print("##gff-version 3", file=gff_out)
         GFF.to_csv(gff_out, sep="\t", index=False, mode="a", header= False)
+    if len(metadata_df) > 0:
+        print("left over in metadata:", file=sys.stderr)
+        metadata_df.to_csv(sys.stderr, sep="\t", index=False)
+    else:
+        print("No unaccounted for metadata (good).", file=sys.stderr)
 
-    print("left over in metadata:", file=sys.stderr)
-    metadata_df.to_csv(sys.stderr, sep="\t", index=False)
-
-    print("Wrote additional_oc_sequences_for_submission.txt", file=sys.stderr)
+    print(f"Wrote {txt_outpath}", file=sys.stderr)
 
 ################
 

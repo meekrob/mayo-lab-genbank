@@ -183,9 +183,7 @@ def id_seqid_type(fields: list[str], btv_col:int) -> dict:
                 
             }
     
-    
     raise ValueError
-    return { 'error': ';'.join(fields)}
 
 def parse_seq_header(header_line:str) -> dict:
     fields = [field for field in re.split('[/|]', header_line.strip()) if field != '']

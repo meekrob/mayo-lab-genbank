@@ -1,0 +1,751 @@
+##gff-version 3
+##source-version geneious 2025.0.1
+##sequence-region	NS1/Clinical_1/BTV13/llama/10yo/male|2019.09.05	1	1639
+NS1/Clinical_1/BTV13/llama/10yo/male|2019.09.05	Geneious	CDS	1	1639	.	+	1	Name=NS1 CDS
+##sequence-region	NS1/Clinical_3_20x/BTV13/bighorn_sheep/adult/male|2021.09.03	1	1716
+NS1/Clinical_3_20x/BTV13/bighorn_sheep/adult/male|2021.09.03	Geneious	CDS	1	1634	.	+	2	Name=NS1 CDS
+NS1/Clinical_3_20x/BTV13/bighorn_sheep/adult/male|2021.09.03	Geneious	Editing History Replacement	467	468	.	.	.	Name=TT
+##sequence-region	NS1/Clinical_3_40x/BTV13/bighorn_sheep/adult/male|2021.09.03	1	1763
+NS1/Clinical_3_40x/BTV13/bighorn_sheep/adult/male|2021.09.03	Geneious	CDS	48	1681	.	+	2	Name=NS1 CDS
+##sequence-region	NS1/Clinical_4/BTV17/bighorn_sheep/adult/female|2021.09.24	1	1747
+NS1/Clinical_4/BTV17/bighorn_sheep/adult/female|2021.09.24	Geneious	CDS	33	1671	.	+	1	Name=NS1 CDS
+NS1/Clinical_4/BTV17/bighorn_sheep/adult/female|2021.09.24	Geneious	Editing History Replacement	505	505	.	.	.	Name=T
+##sequence-region	NS1/Clinical_5/BTV17/bighorn_sheep/adult/female|2021.10.04	1	1711
+NS1/Clinical_5/BTV17/bighorn_sheep/adult/female|2021.10.04	Geneious	CDS	1	1635	.	+	0	Name=NS1 CDS
+NS1/Clinical_5/BTV17/bighorn_sheep/adult/female|2021.10.04	Geneious	Editing History Insertion	4	4	.	.	.	Name=
+NS1/Clinical_5/BTV17/bighorn_sheep/adult/female|2021.10.04	Geneious	Editing History Replacement	468	469	.	.	.	Name=TT
+##sequence-region	NS1/Clinical_6/BTV6/sheep/1yo/female|2021.09.26	1	1657
+NS1/Clinical_6/BTV6/sheep/1yo/female|2021.09.26	Geneious	CDS	21	1657	.	+	1	Name=NS1 CDS
+##sequence-region	NS1/Clinical_8/BTV11/bighorn_sheep/11yo/female|2023.10.23	1	1704
+NS1/Clinical_8/BTV11/bighorn_sheep/11yo/female|2023.10.23	Geneious	CDS	60	1693	.	+	2	Name=NS1 CDS
+##sequence-region	NS1/Clinical_10/BTV17/bighorn_sheep/NA/female|2021.10.04	1	1753
+NS1/Clinical_10/BTV17/bighorn_sheep/NA/female|2021.10.04	Geneious	CDS	39	1677	.	+	1	Name=NS1 CDS
+##sequence-region	NS1/Clinical_11/BTV11/sheep/9yo/female|2021.09.13	1	1659
+NS1/Clinical_11/BTV11/sheep/9yo/female|2021.09.13	Geneious	CDS	21	1659	.	+	1	Name=NS1 CDS
+##sequence-region	NS1/Clinical_13/BTV6/mule_deer/2yo/male|2021.08.19	1	1658
+NS1/Clinical_13/BTV6/mule_deer/2yo/male|2021.08.19	Geneious	CDS	20	1658	.	+	1	Name=NS1 CDS
+##sequence-region	NS1/Clinical_14/BTV6/mule_deer/2yo/female|2021.08.23	1	1659
+NS1/Clinical_14/BTV6/mule_deer/2yo/female|2021.08.23	Geneious	CDS	21	1659	.	+	1	Name=NS1 CDS
+##sequence-region	NS1/Clinical_15/BTV6/mule_deer/4yo/male|2021.11.03	1	1691
+NS1/Clinical_15/BTV6/mule_deer/4yo/male|2021.11.03	Geneious	CDS	47	1680	.	+	2	Name=NS1 CDS
+##sequence-region	NS1/Clinical_16/BTV6/mule_deer/5.5yo/female|2021.10.19	1	1774
+NS1/Clinical_16/BTV6/mule_deer/5.5yo/female|2021.10.19	Geneious	CDS	55	1693	.	+	1	Name=NS1 CDS
+##sequence-region	NS1/Clinical_18/BTV6/mule_deer/2.5yo/female|2021.10.20	1	1774
+NS1/Clinical_18/BTV6/mule_deer/2.5yo/female|2021.10.20	Geneious	CDS	55	1693	.	+	1	Name=NS1 CDS
+##sequence-region	NS1/Clinical_23/BTV6/white_tailed_deer/NA/NA|2021.01.01	1	1659
+NS1/Clinical_23/BTV6/white_tailed_deer/NA/NA|2021.01.01	Geneious	CDS	21	1659	.	+	1	Name=NS1 CDS
+##sequence-region	NS1/Subclinical_A/BTV6/cow/NA/female|2023.10.12	1	1675
+NS1/Subclinical_A/BTV6/cow/NA/female|2023.10.12	Geneious	CDS	31	1664	.	+	2	Name=NS1 CDS
+##sequence-region	NS1/Subclinical_BB/BTV11/white_tailed_deer/2.5yo/female|2025.01.15	1	1704
+NS1/Subclinical_BB/BTV11/white_tailed_deer/2.5yo/female|2025.01.15	Geneious	CDS	60	1693	.	+	2	Name=NS1 CDS
+##sequence-region	NS1/Subclinical_E/BTV17/sheep/adult/female|2023.11.27	1	1038
+NS1/Subclinical_E/BTV17/sheep/adult/female|2023.11.27	Geneious	CDS	1	1038	.	+	1	Name=NS1 CDS
+##sequence-region	NS1/Subclinical_F/BTV10/sheep/adult/female|2023.12.20	1	1728
+NS1/Subclinical_F/BTV10/sheep/adult/female|2023.12.20	Geneious	CDS	16	1649	.	+	2	Name=NS1 CDS
+##sequence-region	NS1/Subclinical_G/BTV13/sheep/adult/female|2022.09.22	1	1738
+NS1/Subclinical_G/BTV13/sheep/adult/female|2022.09.22	Geneious	CDS	24	1657	.	+	2	Name=NS1 CDS
+##sequence-region	NS1/Subclinical_I/BTV10/sheep/NA/female|2022.10.19	1	1706
+NS1/Subclinical_I/BTV10/sheep/NA/female|2022.10.19	Geneious	CDS	1	1630	.	+	1	Name=NS1 CDS
+NS1/Subclinical_I/BTV10/sheep/NA/female|2022.10.19	Geneious	Editing History Replacement	10	10	.	.	.	Name=N
+NS1/Subclinical_I/BTV10/sheep/NA/female|2022.10.19	Geneious	Editing History Replacement	66	70	.	.	.	Name=NNN
+NS1/Subclinical_I/BTV10/sheep/NA/female|2022.10.19	Geneious	Editing History Replacement	88	88	.	.	.	Name=T
+NS1/Subclinical_I/BTV10/sheep/NA/female|2022.10.19	Geneious	Editing History Insertion	338	338	.	.	.	Name=
+##sequence-region	NS1/Subclinical_J/BTV10/sheep/adult/female|2022.10.13	1	1731
+NS1/Subclinical_J/BTV10/sheep/adult/female|2022.10.13	Geneious	CDS	22	1655	.	+	2	Name=NS1 CDS
+##sequence-region	NS1/Subclinical_K/BTV10/cow/adult/female|2022.09.16	1	1714
+NS1/Subclinical_K/BTV10/cow/adult/female|2022.09.16	Geneious	CDS	1	1633	.	+	1	Name=NS1 CDS
+##sequence-region	NS1/Subclinical_M/BTV17/cow/NA/NA|2022.10.21	1	1487
+NS1/Subclinical_M/BTV17/cow/NA/NA|2022.10.21	Geneious	CDS	1	1423	.	+	1	Name=NS1 CDS
+NS1/Subclinical_M/BTV17/cow/NA/NA|2022.10.21	Geneious	Editing History Insertion	30	30	.	.	.	Name=
+NS1/Subclinical_M/BTV17/cow/NA/NA|2022.10.21	Geneious	Editing History Insertion	84	84	.	.	.	Name=
+NS1/Subclinical_M/BTV17/cow/NA/NA|2022.10.21	Geneious	Editing History Insertion	1483	1483	.	.	.	Name=
+##sequence-region	NS1/Subclinical_N/BTV17/cow/NA/NA|2022.10.21	1	1664
+NS1/Subclinical_N/BTV17/cow/NA/NA|2022.10.21	Geneious	CDS	1	1501	.	+	1	Name=NS1 CDS
+NS1/Subclinical_N/BTV17/cow/NA/NA|2022.10.21	Geneious	Editing History Replacement	416	416	.	.	.	Name=T
+NS1/Subclinical_N/BTV17/cow/NA/NA|2022.10.21	Geneious	Editing History Insertion	1562	1562	.	.	.	Name=
+##sequence-region	NS1/Subclinical_O/BTV13/cow/NA/male|2022.10.21	1	1762
+NS1/Subclinical_O/BTV13/cow/NA/male|2022.10.21	Geneious	CDS	47	1680	.	+	2	Name=NS1 CDS
+##sequence-region	NS1/Subclinical_P/BTV6/cow/adult/male|2021.10.13	1	1659
+NS1/Subclinical_P/BTV6/cow/adult/male|2021.10.13	Geneious	CDS	26	1659	.	+	2	Name=NS1 CDS
+##sequence-region	NS1/Subclinical_Q/BTV17/cow/adult/male|2021.10.13	1	1714
+NS1/Subclinical_Q/BTV17/cow/adult/male|2021.10.13	Geneious	CDS	52	1552	.	+	1	Name=NS1 CDS
+##sequence-region	NS1/Subclinical_R/BTV13/cow/adult/female|2021.12.02	1	1762
+NS1/Subclinical_R/BTV13/cow/adult/female|2021.12.02	Geneious	CDS	47	1680	.	+	2	Name=NS1 CDS
+##sequence-region	NS1/Subclinical_U/BTV11/white_tailed_deer/2.5yo/male|2024.10.07	1	1704
+NS1/Subclinical_U/BTV11/white_tailed_deer/2.5yo/male|2024.10.07	Geneious	CDS	60	1693	.	+	2	Name=NS1 CDS
+##sequence-region	NS1/Subclinical_V/BTV13/mule_deer/2yo/female|2023.10.02	1	1682
+NS1/Subclinical_V/BTV13/mule_deer/2yo/female|2023.10.02	Geneious	Editing History Replacement	2	4	.	.	.	Name=NNN
+NS1/Subclinical_V/BTV13/mule_deer/2yo/female|2023.10.02	Geneious	CDS	20	1520	.	+	1	Name=NS1 CDS
+##sequence-region	NS1/Subclinical_X/BTV11/mule_deer/2yo/male|2024.10.03	1	1640
+NS1/Subclinical_X/BTV11/mule_deer/2yo/male|2024.10.03	Geneious	CDS	112	1612	.	+	1	Name=NS1 CDS
+##sequence-region	NS2/Clinical_1/BTV13/llama/10yo/male|2019.09.05	1	1094
+NS2/Clinical_1/BTV13/llama/10yo/male|2019.09.05	Geneious	CDS	1	1065	.	+	0	Name=NS2 CDS
+##sequence-region	NS2/Clinical_3_20x/BTV13/bighorn_sheep/adult/male|2021.09.03	1	1112
+NS2/Clinical_3_20x/BTV13/bighorn_sheep/adult/male|2021.09.03	Geneious	CDS	12	1076	.	+	0	Name=NS2 CDS
+##sequence-region	NS2/Clinical_3_40x/BTV13/bighorn_sheep/adult/male|2021.09.03	1	1120
+NS2/Clinical_3_40x/BTV13/bighorn_sheep/adult/male|2021.09.03	Geneious	CDS	20	1084	.	+	0	Name=NS2 CDS
+##sequence-region	NS2/Clinical_4/BTV17/bighorn_sheep/adult/female|2021.09.24	1	1115
+NS2/Clinical_4/BTV17/bighorn_sheep/adult/female|2021.09.24	Geneious	CDS	114	1070	.	+	0	Name=NS2 CDS
+##sequence-region	NS2/Clinical_5/BTV17/bighorn_sheep/adult/female|2021.10.04	1	1037
+NS2/Clinical_5/BTV17/bighorn_sheep/adult/female|2021.10.04	Geneious	CDS	42	998	.	+	0	Name=NS2 CDS
+NS2/Clinical_5/BTV17/bighorn_sheep/adult/female|2021.10.04	Geneious	Editing History Replacement	999	999	.	.	.	Name=N
+NS2/Clinical_5/BTV17/bighorn_sheep/adult/female|2021.10.04	Geneious	Editing History Replacement	1002	1002	.	.	.	Name=N
+##sequence-region	NS2/Clinical_6/BTV6/sheep/1yo/female|2021.09.26	1	1094
+NS2/Clinical_6/BTV6/sheep/1yo/female|2021.09.26	Geneious	CDS	1	1083	.	+	0	Name=NS2 CDS
+##sequence-region	NS2/Clinical_8/BTV11/bighorn_sheep/11yo/female|2023.10.23	1	1120
+NS2/Clinical_8/BTV11/bighorn_sheep/11yo/female|2023.10.23	Geneious	CDS	119	1075	.	+	0	Name=NS2 CDS
+##sequence-region	NS2/Clinical_10/BTV17/bighorn_sheep/NA/female|2021.10.04	1	970
+NS2/Clinical_10/BTV17/bighorn_sheep/NA/female|2021.10.04	Geneious	Editing History Replacement	7	10	.	.	.	Name=NNNN
+NS2/Clinical_10/BTV17/bighorn_sheep/NA/female|2021.10.04	Geneious	Editing History Replacement	13	14	.	.	.	Name=NN
+NS2/Clinical_10/BTV17/bighorn_sheep/NA/female|2021.10.04	Geneious	Editing History Replacement	16	17	.	.	.	Name=NN
+NS2/Clinical_10/BTV17/bighorn_sheep/NA/female|2021.10.04	Geneious	Editing History Replacement	21	23	.	.	.	Name=NNN
+NS2/Clinical_10/BTV17/bighorn_sheep/NA/female|2021.10.04	Geneious	Editing History Replacement	25	25	.	.	.	Name=N
+NS2/Clinical_10/BTV17/bighorn_sheep/NA/female|2021.10.04	Geneious	CDS	58	970	.	+	0	Name=NS2 CDS
+##sequence-region	NS2/Clinical_11/BTV11/sheep/9yo/female|2021.09.13	1	1120
+NS2/Clinical_11/BTV11/sheep/9yo/female|2021.09.13	Geneious	CDS	119	1075	.	+	0	Name=NS2 CDS
+##sequence-region	NS2/Clinical_13/BTV6/mule_deer/2yo/male|2021.08.19	1	1094
+NS2/Clinical_13/BTV6/mule_deer/2yo/male|2021.08.19	Geneious	CDS	1	1065	.	+	0	Name=NS2 CDS
+##sequence-region	NS2/Clinical_14/BTV6/mule_deer/2yo/female|2021.08.23	1	1094
+NS2/Clinical_14/BTV6/mule_deer/2yo/female|2021.08.23	Geneious	CDS	1	1065	.	+	0	Name=NS2 CDS
+##sequence-region	NS2/Clinical_15/BTV6/mule_deer/4yo/male|2021.11.03	1	1094
+NS2/Clinical_15/BTV6/mule_deer/4yo/male|2021.11.03	Geneious	CDS	1	1065	.	+	0	Name=NS2 CDS
+##sequence-region	NS2/Clinical_16/BTV6/mule_deer/5.5yo/female|2021.10.19	1	1094
+NS2/Clinical_16/BTV6/mule_deer/5.5yo/female|2021.10.19	Geneious	CDS	1	1065	.	+	0	Name=NS2 CDS
+##sequence-region	NS2/Clinical_18/BTV6/mule_deer/2.5yo/female|2021.10.20	1	1117
+NS2/Clinical_18/BTV6/mule_deer/2.5yo/female|2021.10.20	Geneious	CDS	12	1076	.	+	0	Name=NS2 CDS
+##sequence-region	NS2/Clinical_23/BTV6/white_tailed_deer/NA/NA|2021.01.01	1	1094
+NS2/Clinical_23/BTV6/white_tailed_deer/NA/NA|2021.01.01	Geneious	CDS	1	1065	.	+	0	Name=NS2 CDS
+##sequence-region	NS2/Clinical_27/BTV17/reindeer/6.25yo/female|2025.08.15	1	957
+NS2/Clinical_27/BTV17/reindeer/6.25yo/female|2025.08.15	Geneious	CDS	1	957	.	+	0	Name=NS2 CDS
+##sequence-region	NS2/Subclinical_A/BTV6/cow/NA/female|2023.10.12	1	1125
+NS2/Subclinical_A/BTV6/cow/NA/female|2023.10.12	Geneious	CDS	119	1075	.	+	0	Name=NS2 CDS
+##sequence-region	NS2/Subclinical_BB/BTV11/white_tailed_deer/2.5yo/female|2025.01.15	1	1125
+NS2/Subclinical_BB/BTV11/white_tailed_deer/2.5yo/female|2025.01.15	Geneious	CDS	20	1084	.	+	0	Name=NS2 CDS
+##sequence-region	NS2/Subclinical_E/BTV17/sheep/adult/female|2023.11.27	1	965
+NS2/Subclinical_E/BTV17/sheep/adult/female|2023.11.27	Geneious	CDS	1	940	.	+	1	Name=NS2 CDS
+##sequence-region	NS2/Subclinical_F/BTV10/sheep/adult/female|2023.12.20	1	1025
+NS2/Subclinical_F/BTV10/sheep/adult/female|2023.12.20	Geneious	CDS	31	987	.	+	0	Name=NS2 CDS
+##sequence-region	NS2/Subclinical_G/BTV13/sheep/adult/female|2022.09.22	1	1106
+NS2/Subclinical_G/BTV13/sheep/adult/female|2022.09.22	Geneious	CDS	12	1076	.	+	0	Name=NS2 CDS
+##sequence-region	NS2/Subclinical_I/BTV10/sheep/NA/female|2022.10.19	1	954
+NS2/Subclinical_I/BTV10/sheep/NA/female|2022.10.19	Geneious	CDS	1	918	.	+	0	Name=NS2 CDS
+NS2/Subclinical_I/BTV10/sheep/NA/female|2022.10.19	Geneious	Editing History Insertion	20	20	.	.	.	Name=
+NS2/Subclinical_I/BTV10/sheep/NA/female|2022.10.19	Geneious	Editing History Replacement	841	841	.	.	.	Name=T
+##sequence-region	NS2/Subclinical_J/BTV10/sheep/adult/female|2022.10.13	1	1125
+NS2/Subclinical_J/BTV10/sheep/adult/female|2022.10.13	Geneious	CDS	20	1084	.	+	0	Name=NS2 CDS
+##sequence-region	NS2/Subclinical_K/BTV10/cow/adult/female|2022.09.16	1	1117
+NS2/Subclinical_K/BTV10/cow/adult/female|2022.09.16	Geneious	CDS	12	1076	.	+	0	Name=NS2 CDS
+##sequence-region	NS2/Subclinical_L/BTV11/cow/NA/male|2022.10.21	1	1011
+NS2/Subclinical_L/BTV11/cow/NA/male|2022.10.21	Geneious	CDS	36	975	.	+	1	Name=NS2 CDS
+##sequence-region	NS2/Subclinical_M/BTV17/cow/NA/NA|2022.10.21	1	1037
+NS2/Subclinical_M/BTV17/cow/NA/NA|2022.10.21	Geneious	CDS	80	996	.	+	2	Name=NS2 CDS
+##sequence-region	NS2/Subclinical_N/BTV17/cow/NA/NA|2022.10.21	1	1032
+NS2/Subclinical_N/BTV17/cow/NA/NA|2022.10.21	Geneious	CDS	80	996	.	+	2	Name=NS2 CDS
+##sequence-region	NS2/Subclinical_O/BTV13/cow/NA/male|2022.10.21	1	1088
+NS2/Subclinical_O/BTV13/cow/NA/male|2022.10.21	Geneious	CDS	120	1059	.	+	1	Name=NS2 CDS
+##sequence-region	NS2/Subclinical_P/BTV6/cow/adult/male|2021.10.13	1	1094
+NS2/Subclinical_P/BTV6/cow/adult/male|2021.10.13	Geneious	CDS	1	1065	.	+	0	Name=NS2 CDS
+##sequence-region	NS2/Subclinical_Q/BTV17/cow/adult/male|2021.10.13	1	1117
+NS2/Subclinical_Q/BTV17/cow/adult/male|2021.10.13	Geneious	CDS	12	1076	.	+	0	Name=NS2 CDS
+##sequence-region	NS2/Subclinical_R/BTV13/cow/adult/female|2021.12.02	1	1120
+NS2/Subclinical_R/BTV13/cow/adult/female|2021.12.02	Geneious	CDS	20	1084	.	+	0	Name=NS2 CDS
+##sequence-region	NS2/Subclinical_U/BTV11/white_tailed_deer/2.5yo/male|2024.10.07	1	1094
+NS2/Subclinical_U/BTV11/white_tailed_deer/2.5yo/male|2024.10.07	Geneious	CDS	1	1065	.	+	0	Name=NS2 CDS
+##sequence-region	NS2/Subclinical_V/BTV13/mule_deer/2yo/female|2023.10.02	1	1105
+NS2/Subclinical_V/BTV13/mule_deer/2yo/female|2023.10.02	Geneious	CDS	12	1076	.	+	0	Name=NS2 CDS
+##sequence-region	NS2/Subclinical_X/BTV11/mule_deer/2yo/male|2024.10.03	1	1086
+NS2/Subclinical_X/BTV11/mule_deer/2yo/male|2024.10.03	Geneious	CDS	1	1065	.	+	0	Name=NS2 CDS
+##sequence-region	NS3/Clinical_1/BTV13/llama/10yo/male|2019.09.05	1	820
+NS3/Clinical_1/BTV13/llama/10yo/male|2019.09.05	Geneious	CDS	20	709	.	+	0	Name=NS3 CDS
+NS3/Clinical_1/BTV13/llama/10yo/male|2019.09.05	Geneious	CDS	108	287	.	+	0	Name=NS5 CDS
+##sequence-region	NS3/Clinical_3_20x/BTV13/bighorn_sheep/adult/male|2021.09.03	1	686
+NS3/Clinical_3_20x/BTV13/bighorn_sheep/adult/male|2021.09.03	Geneious	CDS	1	686	.	+	2	Name=NS3 CDS
+NS3/Clinical_3_20x/BTV13/bighorn_sheep/adult/male|2021.09.03	Geneious	CDS	85	264	.	+	0	Name=NS5 CDS
+##sequence-region	NS3/Clinical_3_40x/BTV13/bighorn_sheep/adult/male|2021.09.03	1	690
+NS3/Clinical_3_40x/BTV13/bighorn_sheep/adult/male|2021.09.03	Geneious	CDS	5	690	.	+	2	Name=NS3 CDS
+##sequence-region	NS3/Clinical_4/BTV17/bighorn_sheep/adult/female|2021.09.24	1	690
+NS3/Clinical_4/BTV17/bighorn_sheep/adult/female|2021.09.24	Geneious	CDS	5	690	.	+	2	Name=NS3 CDS
+NS3/Clinical_4/BTV17/bighorn_sheep/adult/female|2021.09.24	Geneious	CDS	89	268	.	+	0	Name=NS5 CDS
+##sequence-region	NS3/Clinical_5/BTV17/bighorn_sheep/adult/female|2021.10.04	1	686
+NS3/Clinical_5/BTV17/bighorn_sheep/adult/female|2021.10.04	Geneious	CDS	1	686	.	+	2	Name=NS3 CDS
+##sequence-region	NS3/Clinical_6/BTV6/sheep/1yo/female|2021.09.26	1	794
+NS3/Clinical_6/BTV6/sheep/1yo/female|2021.09.26	Geneious	CDS	24	709	.	+	2	Name=NS3 CDS
+##sequence-region	NS3/Clinical_8/BTV11/bighorn_sheep/11yo/female|2023.10.23	1	690
+NS3/Clinical_8/BTV11/bighorn_sheep/11yo/female|2023.10.23	Geneious	CDS	5	690	.	+	2	Name=NS3 CDS
+##sequence-region	NS3/Clinical_10/BTV17/bighorn_sheep/NA/female|2021.10.04	1	686
+NS3/Clinical_10/BTV17/bighorn_sheep/NA/female|2021.10.04	Geneious	CDS	1	686	.	+	2	Name=NS3 CDS
+NS3/Clinical_10/BTV17/bighorn_sheep/NA/female|2021.10.04	Geneious	CDS	85	264	.	+	0	Name=NS5 CDS
+NS3/Clinical_10/BTV17/bighorn_sheep/NA/female|2021.10.04	Geneious	Editing History Insertion	576	576	.	.	.	Name=
+##sequence-region	NS3/Clinical_11/BTV11/sheep/9yo/female|2021.09.13	1	690
+NS3/Clinical_11/BTV11/sheep/9yo/female|2021.09.13	Geneious	CDS	5	690	.	+	2	Name=NS3 CDS
+NS3/Clinical_11/BTV11/sheep/9yo/female|2021.09.13	Geneious	CDS	89	268	.	+	0	Name=NS5 CDS
+##sequence-region	NS3/Clinical_13/BTV6/mule_deer/2yo/male|2021.08.19	1	690
+NS3/Clinical_13/BTV6/mule_deer/2yo/male|2021.08.19	Geneious	CDS	5	690	.	+	2	Name=NS3 CDS
+NS3/Clinical_13/BTV6/mule_deer/2yo/male|2021.08.19	Geneious	CDS	89	268	.	+	0	Name=NS5 CDS
+##sequence-region	NS3/Clinical_14/BTV6/mule_deer/2yo/female|2021.08.23	1	690
+NS3/Clinical_14/BTV6/mule_deer/2yo/female|2021.08.23	Geneious	CDS	5	690	.	+	2	Name=NS3 CDS
+NS3/Clinical_14/BTV6/mule_deer/2yo/female|2021.08.23	Geneious	CDS	89	268	.	+	0	Name=NS5 CDS
+##sequence-region	NS3/Clinical_15/BTV6/mule_deer/4yo/male|2021.11.03	1	822
+NS3/Clinical_15/BTV6/mule_deer/4yo/male|2021.11.03	Geneious	CDS	20	709	.	+	0	Name=NS3 CDS
+NS3/Clinical_15/BTV6/mule_deer/4yo/male|2021.11.03	Geneious	CDS	108	287	.	+	0	Name=NS5 CDS
+##sequence-region	NS3/Clinical_16/BTV6/mule_deer/5.5yo/female|2021.10.19	1	690
+NS3/Clinical_16/BTV6/mule_deer/5.5yo/female|2021.10.19	Geneious	CDS	5	690	.	+	2	Name=NS3 CDS
+NS3/Clinical_16/BTV6/mule_deer/5.5yo/female|2021.10.19	Geneious	CDS	89	268	.	+	0	Name=NS5 CDS
+##sequence-region	NS3/Clinical_18/BTV6/mule_deer/2.5yo/female|2021.10.20	1	690
+NS3/Clinical_18/BTV6/mule_deer/2.5yo/female|2021.10.20	Geneious	CDS	5	690	.	+	2	Name=NS3 CDS
+NS3/Clinical_18/BTV6/mule_deer/2.5yo/female|2021.10.20	Geneious	CDS	89	268	.	+	0	Name=NS5 CDS
+##sequence-region	NS3/Clinical_23/BTV6/white_tailed_deer/NA/NA|2021.01.01	1	794
+NS3/Clinical_23/BTV6/white_tailed_deer/NA/NA|2021.01.01	Geneious	CDS	24	709	.	+	2	Name=NS3 CDS
+NS3/Clinical_23/BTV6/white_tailed_deer/NA/NA|2021.01.01	Geneious	CDS	108	287	.	+	0	Name=NS5 CDS
+##sequence-region	NS3/Subclinical_A/BTV6/cow/NA/female|2023.10.12	1	677
+NS3/Subclinical_A/BTV6/cow/NA/female|2023.10.12	Geneious	CDS	16	677	.	+	2	Name=NS3 CDS
+NS3/Subclinical_A/BTV6/cow/NA/female|2023.10.12	Geneious	CDS	100	279	.	+	0	Name=NS5 CDS
+NS3/Subclinical_A/BTV6/cow/NA/female|2023.10.12	Geneious	Editing History Insertion	385	385	.	.	.	Name=
+NS3/Subclinical_A/BTV6/cow/NA/female|2023.10.12	Geneious	Editing History Replacement	653	653	.	.	.	Name=N
+NS3/Subclinical_A/BTV6/cow/NA/female|2023.10.12	Geneious	Editing History Replacement	656	656	.	.	.	Name=N
+NS3/Subclinical_A/BTV6/cow/NA/female|2023.10.12	Geneious	Editing History Replacement	659	661	.	.	.	Name=NNN
+NS3/Subclinical_A/BTV6/cow/NA/female|2023.10.12	Geneious	Editing History Replacement	665	668	.	.	.	Name=NNNN
+##sequence-region	NS3/Subclinical_BB/BTV11/white_tailed_deer/2.5yo/female|2025.01.15	1	822
+NS3/Subclinical_BB/BTV11/white_tailed_deer/2.5yo/female|2025.01.15	Geneious	CDS	20	709	.	+	0	Name=NS3 CDS
+NS3/Subclinical_BB/BTV11/white_tailed_deer/2.5yo/female|2025.01.15	Geneious	CDS	108	287	.	+	0	Name=NS5 CDS
+##sequence-region	NS3/Subclinical_F/BTV10/sheep/adult/female|2023.12.20	1	682
+NS3/Subclinical_F/BTV10/sheep/adult/female|2023.12.20	Geneious	CDS	21	682	.	+	2	Name=NS3 CDS
+NS3/Subclinical_F/BTV10/sheep/adult/female|2023.12.20	Geneious	CDS	105	284	.	+	0	Name=NS5 CDS
+##sequence-region	NS3/Subclinical_G/BTV13/sheep/adult/female|2022.09.22	1	688
+NS3/Subclinical_G/BTV13/sheep/adult/female|2022.09.22	Geneious	CDS	5	666	.	+	2	Name=NS3 CDS
+NS3/Subclinical_G/BTV13/sheep/adult/female|2022.09.22	Geneious	CDS	89	268	.	+	0	Name=NS5 CDS
+##sequence-region	NS3/Subclinical_I/BTV10/sheep/NA/female|2022.10.19	1	736
+NS3/Subclinical_I/BTV10/sheep/NA/female|2022.10.19	Geneious	CDS	20	709	.	+	0	Name=NS3 CDS
+NS3/Subclinical_I/BTV10/sheep/NA/female|2022.10.19	Geneious	CDS	108	287	.	+	0	Name=NS5 CDS
+##sequence-region	NS3/Subclinical_J/BTV10/sheep/adult/female|2022.10.13	1	811
+NS3/Subclinical_J/BTV10/sheep/adult/female|2022.10.13	Geneious	CDS	9	698	.	+	0	Name=NS3 CDS
+NS3/Subclinical_J/BTV10/sheep/adult/female|2022.10.13	Geneious	CDS	97	276	.	+	0	Name=NS5 CDS
+##sequence-region	NS3/Subclinical_K/BTV10/cow/adult/female|2022.09.16	1	711
+NS3/Subclinical_K/BTV10/cow/adult/female|2022.09.16	Geneious	CDS	9	698	.	+	0	Name=NS3 CDS
+NS3/Subclinical_K/BTV10/cow/adult/female|2022.09.16	Geneious	CDS	97	276	.	+	0	Name=NS5 CDS
+##sequence-region	NS3/Subclinical_L/BTV11/cow/NA/male|2022.10.21	1	686
+NS3/Subclinical_L/BTV11/cow/NA/male|2022.10.21	Geneious	CDS	1	686	.	+	2	Name=NS3 CDS
+NS3/Subclinical_L/BTV11/cow/NA/male|2022.10.21	Geneious	CDS	85	264	.	+	0	Name=NS5 CDS
+##sequence-region	NS3/Subclinical_M/BTV17/cow/NA/NA|2022.10.21	1	812
+NS3/Subclinical_M/BTV17/cow/NA/NA|2022.10.21	Geneious	CDS	10	699	.	+	0	Name=NS3 CDS
+##sequence-region	NS3/Subclinical_N/BTV17/cow/NA/NA|2022.10.21	1	690
+NS3/Subclinical_N/BTV17/cow/NA/NA|2022.10.21	Geneious	CDS	1	690	.	+	0	Name=NS3 CDS
+NS3/Subclinical_N/BTV17/cow/NA/NA|2022.10.21	Geneious	CDS	89	268	.	+	0	Name=NS5 CDS
+##sequence-region	NS3/Subclinical_O/BTV13/cow/NA/male|2022.10.21	1	783
+NS3/Subclinical_O/BTV13/cow/NA/male|2022.10.21	Geneious	CDS	13	674	.	+	2	Name=NS3 CDS
+NS3/Subclinical_O/BTV13/cow/NA/male|2022.10.21	Geneious	CDS	97	276	.	+	0	Name=NS5 CDS
+##sequence-region	NS3/Subclinical_P/BTV6/cow/adult/male|2021.10.13	1	794
+NS3/Subclinical_P/BTV6/cow/adult/male|2021.10.13	Geneious	CDS	24	685	.	+	2	Name=NS3 CDS
+NS3/Subclinical_P/BTV6/cow/adult/male|2021.10.13	Geneious	CDS	108	287	.	+	0	Name=NS5 CDS
+##sequence-region	NS3/Subclinical_Q/BTV17/cow/adult/male|2021.10.13	1	690
+NS3/Subclinical_Q/BTV17/cow/adult/male|2021.10.13	Geneious	CDS	1	690	.	+	0	Name=NS3 CDS
+NS3/Subclinical_Q/BTV17/cow/adult/male|2021.10.13	Geneious	CDS	89	268	.	+	0	Name=NS5 CDS
+##sequence-region	NS3/Subclinical_R/BTV13/cow/adult/female|2021.12.02	1	690
+NS3/Subclinical_R/BTV13/cow/adult/female|2021.12.02	Geneious	CDS	1	690	.	+	0	Name=NS3 CDS
+NS3/Subclinical_R/BTV13/cow/adult/female|2021.12.02	Geneious	CDS	89	268	.	+	0	Name=NS5 CDS
+##sequence-region	NS3/Subclinical_U/BTV11/white_tailed_deer/2.5yo/male|2024.10.07	1	822
+NS3/Subclinical_U/BTV11/white_tailed_deer/2.5yo/male|2024.10.07	Geneious	CDS	20	709	.	+	0	Name=NS3 CDS
+NS3/Subclinical_U/BTV11/white_tailed_deer/2.5yo/male|2024.10.07	Geneious	CDS	108	287	.	+	0	Name=NS5 CDS
+##sequence-region	NS3/Subclinical_V/BTV13/mule_deer/2yo/female|2023.10.02	1	690
+NS3/Subclinical_V/BTV13/mule_deer/2yo/female|2023.10.02	Geneious	CDS	1	690	.	+	0	Name=NS3 CDS
+NS3/Subclinical_V/BTV13/mule_deer/2yo/female|2023.10.02	Geneious	CDS	89	268	.	+	0	Name=NS5 CDS
+##sequence-region	NS3/Subclinical_X/BTV11/mule_deer/2yo/male|2024.10.03	1	608
+NS3/Subclinical_X/BTV11/mule_deer/2yo/male|2024.10.03	Geneious	CDS	10	608	.	+	0	Name=NS3 CDS
+NS3/Subclinical_X/BTV11/mule_deer/2yo/male|2024.10.03	Geneious	CDS	98	277	.	+	0	Name=NS5 CDS
+##sequence-region	VP1/Clinical_1/BTV13/llama/10yo/male|2019.09.05	1	3933
+VP1/Clinical_1/BTV13/llama/10yo/male|2019.09.05	Geneious	CDS	3	3911	.	+	0	Name=VP1 CDS
+##sequence-region	VP1/Clinical_3_20x/BTV13/bighorn_sheep/adult/male|2021.09.03	1	3894
+VP1/Clinical_3_20x/BTV13/bighorn_sheep/adult/male|2021.09.03	Geneious	CDS	1	3870	.	+	0	Name=VP1 CDS
+##sequence-region	VP1/Clinical_3_40x/BTV13/bighorn_sheep/adult/male|2021.09.03	1	3944
+VP1/Clinical_3_40x/BTV13/bighorn_sheep/adult/male|2021.09.03	Geneious	CDS	51	3920	.	+	0	Name=VP1 CDS
+##sequence-region	VP1/Clinical_4/BTV17/bighorn_sheep/adult/female|2021.09.24	1	3934
+VP1/Clinical_4/BTV17/bighorn_sheep/adult/female|2021.09.24	Geneious	CDS	12	3920	.	+	0	Name=VP1 CDS
+##sequence-region	VP1/Clinical_5/BTV17/bighorn_sheep/adult/female|2021.10.04	1	3815
+VP1/Clinical_5/BTV17/bighorn_sheep/adult/female|2021.10.04	Geneious	CDS	1	3791	.	+	2	Name=VP1 CDS
+VP1/Clinical_5/BTV17/bighorn_sheep/adult/female|2021.10.04	Geneious	Editing History Replacement	2131	2131	.	.	.	Name=N
+VP1/Clinical_5/BTV17/bighorn_sheep/adult/female|2021.10.04	Geneious	Editing History Replacement	2133	2136	.	.	.	Name=NNNN
+##sequence-region	VP1/Clinical_6/BTV6/sheep/1yo/female|2021.09.26	1	3815
+VP1/Clinical_6/BTV6/sheep/1yo/female|2021.09.26	Geneious	CDS	29	3815	.	+	2	Name=VP1 CDS
+##sequence-region	VP1/Clinical_8/BTV11/bighorn_sheep/11yo/female|2023.10.23	1	3829
+VP1/Clinical_8/BTV11/bighorn_sheep/11yo/female|2023.10.23	Geneious	CDS	43	3829	.	+	2	Name=VP1 CDS
+##sequence-region	VP1/Clinical_10/BTV17/bighorn_sheep/NA/female|2021.10.04	1	3934
+VP1/Clinical_10/BTV17/bighorn_sheep/NA/female|2021.10.04	Geneious	CDS	12	3920	.	+	0	Name=VP1 CDS
+##sequence-region	VP1/Clinical_11/BTV11/sheep/9yo/female|2021.09.13	1	3944
+VP1/Clinical_11/BTV11/sheep/9yo/female|2021.09.13	Geneious	CDS	43	3920	.	+	2	Name=VP1 CDS
+##sequence-region	VP1/Clinical_13/BTV6/mule_deer/2yo/male|2021.08.19	1	3829
+VP1/Clinical_13/BTV6/mule_deer/2yo/male|2021.08.19	Geneious	CDS	43	3829	.	+	2	Name=VP1 CDS
+##sequence-region	VP1/Clinical_14/BTV6/mule_deer/2yo/female|2021.08.23	1	3900
+VP1/Clinical_14/BTV6/mule_deer/2yo/female|2021.08.23	Geneious	CDS	1	3878	.	+	2	Name=VP1 CDS
+##sequence-region	VP1/Clinical_15/BTV6/mule_deer/4yo/male|2021.11.03	1	3914
+VP1/Clinical_15/BTV6/mule_deer/4yo/male|2021.11.03	Geneious	CDS	1	3900	.	+	0	Name=VP1 CDS
+##sequence-region	VP1/Clinical_16/BTV6/mule_deer/5.5yo/female|2021.10.19	1	3944
+VP1/Clinical_16/BTV6/mule_deer/5.5yo/female|2021.10.19	Geneious	CDS	12	3920	.	+	0	Name=VP1 CDS
+##sequence-region	VP1/Clinical_18/BTV6/mule_deer/2.5yo/female|2021.10.20	1	3909
+VP1/Clinical_18/BTV6/mule_deer/2.5yo/female|2021.10.20	Geneious	CDS	1	3909	.	+	0	Name=VP1 CDS
+##sequence-region	VP1/Clinical_23/BTV6/white_tailed_deer/NA/NA|2021.01.01	1	3829
+VP1/Clinical_23/BTV6/white_tailed_deer/NA/NA|2021.01.01	Geneious	CDS	43	3829	.	+	2	Name=VP1 CDS
+##sequence-region	VP1/Subclinical_A/BTV6/cow/NA/female|2023.10.12	1	3944
+VP1/Subclinical_A/BTV6/cow/NA/female|2023.10.12	Geneious	CDS	21	3920	.	+	0	Name=VP1 CDS
+##sequence-region	VP1/Subclinical_BB/BTV11/white_tailed_deer/2.5yo/female|2025.01.15	1	3876
+VP1/Subclinical_BB/BTV11/white_tailed_deer/2.5yo/female|2025.01.15	Geneious	CDS	1	3852	.	+	0	Name=VP1 CDS
+VP1/Subclinical_BB/BTV11/white_tailed_deer/2.5yo/female|2025.01.15	Geneious	Editing History Replacement	3761	3763	.	.	.	Name=NNN
+##sequence-region	VP1/Subclinical_F/BTV10/sheep/adult/female|2023.12.20	1	3914
+VP1/Subclinical_F/BTV10/sheep/adult/female|2023.12.20	Geneious	CDS	1	3900	.	+	0	Name=VP1 CDS
+##sequence-region	VP1/Subclinical_G/BTV13/sheep/adult/female|2022.09.22	1	3887
+VP1/Subclinical_G/BTV13/sheep/adult/female|2022.09.22	Geneious	CDS	12	3863	.	+	0	Name=VP1 CDS
+##sequence-region	VP1/Subclinical_I/BTV10/sheep/NA/female|2022.10.19	1	3924
+VP1/Subclinical_I/BTV10/sheep/NA/female|2022.10.19	Geneious	CDS	1	3900	.	+	0	Name=VP1 CDS
+##sequence-region	VP1/Subclinical_J/BTV10/sheep/adult/female|2022.10.13	1	3824
+VP1/Subclinical_J/BTV10/sheep/adult/female|2022.10.13	Geneious	CDS	21	3824	.	+	0	Name=VP1 CDS
+##sequence-region	VP1/Subclinical_K/BTV10/cow/adult/female|2022.09.16	1	3944
+VP1/Subclinical_K/BTV10/cow/adult/female|2022.09.16	Geneious	CDS	21	3920	.	+	0	Name=VP1 CDS
+##sequence-region	VP1/Subclinical_N/BTV17/cow/NA/NA|2022.10.21	1	3886
+VP1/Subclinical_N/BTV17/cow/NA/NA|2022.10.21	Geneious	CDS	1	3867	.	+	0	Name=VP1 CDS
+VP1/Subclinical_N/BTV17/cow/NA/NA|2022.10.21	Geneious	Editing History Replacement	4	4	.	.	.	Name=N
+VP1/Subclinical_N/BTV17/cow/NA/NA|2022.10.21	Geneious	Editing History Replacement	3858	3859	.	.	.	Name=NN
+VP1/Subclinical_N/BTV17/cow/NA/NA|2022.10.21	Geneious	Editing History Replacement	3884	3885	.	.	.	Name=NN
+##sequence-region	VP1/Subclinical_O/BTV13/cow/NA/male|2022.10.21	1	3818
+VP1/Subclinical_O/BTV13/cow/NA/male|2022.10.21	Geneious	CDS	10	3815	.	+	0	Name=VP1 CDS
+VP1/Subclinical_O/BTV13/cow/NA/male|2022.10.21	Geneious	Editing History Insertion	2330	2330	.	.	.	Name=
+##sequence-region	VP1/Subclinical_P/BTV6/cow/adult/male|2021.10.13	1	3829
+VP1/Subclinical_P/BTV6/cow/adult/male|2021.10.13	Geneious	CDS	21	3826	.	+	0	Name=VP1 CDS
+##sequence-region	VP1/Subclinical_Q/BTV17/cow/adult/male|2021.10.13	1	3909
+VP1/Subclinical_Q/BTV17/cow/adult/male|2021.10.13	Geneious	CDS	43	3909	.	+	0	Name=VP1 CDS
+##sequence-region	VP1/Subclinical_R/BTV13/cow/adult/female|2021.12.02	1	3944
+VP1/Subclinical_R/BTV13/cow/adult/female|2021.12.02	Geneious	CDS	69	3920	.	+	0	Name=VP1 CDS
+##sequence-region	VP1/Subclinical_U/BTV11/white_tailed_deer/2.5yo/male|2024.10.07	1	3944
+VP1/Subclinical_U/BTV11/white_tailed_deer/2.5yo/male|2024.10.07	Geneious	CDS	21	3920	.	+	0	Name=VP1 CDS
+##sequence-region	VP1/Subclinical_V/BTV13/mule_deer/2yo/female|2023.10.02	1	3944
+VP1/Subclinical_V/BTV13/mule_deer/2yo/female|2023.10.02	Geneious	CDS	21	3920	.	+	0	Name=VP1 CDS
+##sequence-region	VP1/Subclinical_X/BTV11/mule_deer/2yo/male|2024.10.03	1	3878
+VP1/Subclinical_X/BTV11/mule_deer/2yo/male|2024.10.03	Geneious	CDS	14	3865	.	+	0	Name=VP1 CDS
+##sequence-region	VP2/Clinical_1/BTV13/llama/10yo/male|2019.09.05	1	2930
+VP2/Clinical_1/BTV13/llama/10yo/male|2019.09.05	Geneious	CDS	5	2896	.	+	0	Name=VP2 CDS
+##sequence-region	VP2/Clinical_3_20x/BTV13/bighorn_sheep/adult/male|2021.09.03	1	2883
+VP2/Clinical_3_20x/BTV13/bighorn_sheep/adult/male|2021.09.03	Geneious	CDS	1	2867	.	+	2	Name=VP2 CDS
+VP2/Clinical_3_20x/BTV13/bighorn_sheep/adult/male|2021.09.03	Geneious	Editing History Insertion	5	5	.	.	.	Name=
+VP2/Clinical_3_20x/BTV13/bighorn_sheep/adult/male|2021.09.03	Geneious	Editing History Insertion	1996	1996	.	.	.	Name=
+##sequence-region	VP2/Clinical_3_40x/BTV13/bighorn_sheep/adult/male|2021.09.03	1	2935
+VP2/Clinical_3_40x/BTV13/bighorn_sheep/adult/male|2021.09.03	Geneious	CDS	36	2901	.	+	1	Name=VP2 CDS
+##sequence-region	VP2/Clinical_4/BTV17/bighorn_sheep/adult/female|2021.09.24	1	2868
+VP2/Clinical_4/BTV17/bighorn_sheep/adult/female|2021.09.24	Geneious	CDS	1	2868	.	+	0	Name=VP2 CDS
+##sequence-region	VP2/Clinical_5/BTV17/bighorn_sheep/adult/female|2021.10.04	1	2868
+VP2/Clinical_5/BTV17/bighorn_sheep/adult/female|2021.10.04	Geneious	CDS	1	2868	.	+	0	Name=VP2 CDS
+##sequence-region	VP2/Clinical_6/BTV6/sheep/1yo/female|2021.09.26	1	2911
+VP2/Clinical_6/BTV6/sheep/1yo/female|2021.09.26	Geneious	CDS	1	2874	.	+	0	Name=VP2 CDS
+##sequence-region	VP2/Clinical_8/BTV11/bighorn_sheep/11yo/female|2023.10.23	1	2926
+VP2/Clinical_8/BTV11/bighorn_sheep/11yo/female|2023.10.23	Geneious	CDS	20	2890	.	+	0	Name=VP2 CDS
+VP2/Clinical_8/BTV11/bighorn_sheep/11yo/female|2023.10.23	Geneious	Editing History Insertion	482	482	.	.	.	Name=
+VP2/Clinical_8/BTV11/bighorn_sheep/11yo/female|2023.10.23	Geneious	Editing History Insertion	2162	2162	.	.	.	Name=
+##sequence-region	VP2/Clinical_10/BTV17/bighorn_sheep/NA/female|2021.10.04	1	2810
+VP2/Clinical_10/BTV17/bighorn_sheep/NA/female|2021.10.04	Geneious	CDS	1	2810	.	+	2	Name=VP2 CDS
+##sequence-region	VP2/Clinical_11/BTV11/sheep/9yo/female|2021.09.13	1	2926
+VP2/Clinical_11/BTV11/sheep/9yo/female|2021.09.13	Geneious	CDS	20	2890	.	+	0	Name=VP2 CDS
+VP2/Clinical_11/BTV11/sheep/9yo/female|2021.09.13	Geneious	Editing History Insertion	482	482	.	.	.	Name=
+VP2/Clinical_11/BTV11/sheep/9yo/female|2021.09.13	Geneious	Editing History Insertion	2161	2161	.	.	.	Name=
+##sequence-region	VP2/Clinical_13/BTV6/mule_deer/2yo/male|2021.08.19	1	2922
+VP2/Clinical_13/BTV6/mule_deer/2yo/male|2021.08.19	Geneious	CDS	6	2885	.	+	0	Name=VP2 CDS
+##sequence-region	VP2/Clinical_14/BTV6/mule_deer/2yo/female|2021.08.23	1	2922
+VP2/Clinical_14/BTV6/mule_deer/2yo/female|2021.08.23	Geneious	CDS	6	2885	.	+	0	Name=VP2 CDS
+##sequence-region	VP2/Clinical_15/BTV6/mule_deer/4yo/male|2021.11.03	1	2922
+VP2/Clinical_15/BTV6/mule_deer/4yo/male|2021.11.03	Geneious	CDS	6	2885	.	+	0	Name=VP2 CDS
+##sequence-region	VP2/Clinical_16/BTV6/mule_deer/5.5yo/female|2021.10.19	1	2922
+VP2/Clinical_16/BTV6/mule_deer/5.5yo/female|2021.10.19	Geneious	CDS	6	2885	.	+	0	Name=VP2 CDS
+##sequence-region	VP2/Clinical_18/BTV6/mule_deer/2.5yo/female|2021.10.20	1	2922
+VP2/Clinical_18/BTV6/mule_deer/2.5yo/female|2021.10.20	Geneious	CDS	6	2885	.	+	0	Name=VP2 CDS
+##sequence-region	VP2/Clinical_23/BTV6/white_tailed_deer/NA/NA|2021.01.01	1	2922
+VP2/Clinical_23/BTV6/white_tailed_deer/NA/NA|2021.01.01	Geneious	CDS	6	2885	.	+	0	Name=VP2 CDS
+##sequence-region	VP2/Subclinical_A/BTV6/cow/NA/female|2023.10.12	1	2903
+VP2/Subclinical_A/BTV6/cow/NA/female|2023.10.12	Geneious	CDS	1	2866	.	+	1	Name=VP2 CDS
+##sequence-region	VP2/Subclinical_BB/BTV11/white_tailed_deer/2.5yo/female|2025.01.15	1	2844
+VP2/Subclinical_BB/BTV11/white_tailed_deer/2.5yo/female|2025.01.15	Geneious	CDS	1	2808	.	+	0	Name=VP2 CDS
+VP2/Subclinical_BB/BTV11/white_tailed_deer/2.5yo/female|2025.01.15	Geneious	Editing History Insertion	400	400	.	.	.	Name=
+##sequence-region	VP2/Subclinical_F/BTV10/sheep/adult/female|2023.12.20	1	2806
+VP2/Subclinical_F/BTV10/sheep/adult/female|2023.12.20	Geneious	CDS	12	2806	.	+	0	Name=VP2 CDS
+VP2/Subclinical_F/BTV10/sheep/adult/female|2023.12.20	Geneious	Editing History Insertion	2707	2707	.	.	.	Name=
+##sequence-region	VP2/Subclinical_G/BTV13/sheep/adult/female|2022.09.22	1	2900
+VP2/Subclinical_G/BTV13/sheep/adult/female|2022.09.22	Geneious	CDS	1	2866	.	+	1	Name=VP2 CDS
+VP2/Subclinical_G/BTV13/sheep/adult/female|2022.09.22	Geneious	Editing History Insertion	1995	1995	.	.	.	Name=
+VP2/Subclinical_G/BTV13/sheep/adult/female|2022.09.22	Geneious	Editing History Replacement	2046	2046	.	.	.	Name=N
+##sequence-region	VP2/Subclinical_I/BTV10/sheep/NA/female|2022.10.19	1	2920
+VP2/Subclinical_I/BTV10/sheep/NA/female|2022.10.19	Geneious	CDS	11	2808	.	+	0	Name=VP2 CDS
+VP2/Subclinical_I/BTV10/sheep/NA/female|2022.10.19	Geneious	Editing History Insertion	94	95	.	.	.	Name=
+VP2/Subclinical_I/BTV10/sheep/NA/female|2022.10.19	Geneious	Editing History Insertion	1717	1719	.	.	.	Name=
+VP2/Subclinical_I/BTV10/sheep/NA/female|2022.10.19	Geneious	Editing History Insertion	1730	1730	.	.	.	Name=
+VP2/Subclinical_I/BTV10/sheep/NA/female|2022.10.19	Geneious	Editing History Insertion	1733	1733	.	.	.	Name=
+##sequence-region	VP2/Subclinical_J/BTV10/sheep/adult/female|2022.10.13	1	2828
+VP2/Subclinical_J/BTV10/sheep/adult/female|2022.10.13	Geneious	CDS	1	2798	.	+	2	Name=VP2 CDS
+##sequence-region	VP2/Subclinical_K/BTV10/cow/adult/female|2022.09.16	1	2676
+VP2/Subclinical_K/BTV10/cow/adult/female|2022.09.16	Geneious	CDS	1	2676	.	+	0	Name=VP2 CDS
+##sequence-region	VP2/Subclinical_N/BTV17/cow/NA/NA|2022.10.21	1	2763
+VP2/Subclinical_N/BTV17/cow/NA/NA|2022.10.21	Geneious	CDS	1	2763	.	+	2	Name=VP2 CDS
+##sequence-region	VP2/Subclinical_O/BTV13/cow/NA/male|2022.10.21	1	2932
+VP2/Subclinical_O/BTV13/cow/NA/male|2022.10.21	Geneious	Editing History Replacement	14	28	.	.	.	Name=NNNNNNNNNNNNNNN
+VP2/Subclinical_O/BTV13/cow/NA/male|2022.10.21	Geneious	Editing History Replacement	30	31	.	.	.	Name=NN
+VP2/Subclinical_O/BTV13/cow/NA/male|2022.10.21	Geneious	CDS	36	2898	.	+	1	Name=VP2 CDS
+##sequence-region	VP2/Subclinical_P/BTV6/cow/adult/male|2021.10.13	1	2922
+VP2/Subclinical_P/BTV6/cow/adult/male|2021.10.13	Geneious	CDS	20	2885	.	+	1	Name=VP2 CDS
+##sequence-region	VP2/Subclinical_Q/BTV17/cow/adult/male|2021.10.13	1	2868
+VP2/Subclinical_Q/BTV17/cow/adult/male|2021.10.13	Geneious	CDS	59	2821	.	+	2	Name=VP2 CDS
+##sequence-region	VP2/Subclinical_R/BTV13/cow/adult/female|2021.12.02	1	2927
+VP2/Subclinical_R/BTV13/cow/adult/female|2021.12.02	Geneious	CDS	28	2893	.	+	1	Name=VP2 CDS
+##sequence-region	VP2/Subclinical_U/BTV11/white_tailed_deer/2.5yo/male|2024.10.07	1	2926
+VP2/Subclinical_U/BTV11/white_tailed_deer/2.5yo/male|2024.10.07	Geneious	CDS	83	2890	.	+	0	Name=VP2 CDS
+##sequence-region	VP2/Subclinical_V/BTV13/mule_deer/2yo/female|2023.10.02	1	2900
+VP2/Subclinical_V/BTV13/mule_deer/2yo/female|2023.10.02	Geneious	CDS	1	2866	.	+	1	Name=VP2 CDS
+##sequence-region	VP2/Subclinical_X/BTV11/mule_deer/2yo/male|2024.10.03	1	2844
+VP2/Subclinical_X/BTV11/mule_deer/2yo/male|2024.10.03	Geneious	CDS	83	2844	.	+	0	Name=VP2 CDS
+VP2/Subclinical_X/BTV11/mule_deer/2yo/male|2024.10.03	Geneious	Editing History Insertion	482	482	.	.	.	Name=
+##sequence-region	VP3/Clinical_1/BTV13/llama/10yo/male|2019.09.05	1	2772
+VP3/Clinical_1/BTV13/llama/10yo/male|2019.09.05	Geneious	CDS	18	2723	.	+	0	Name=VP3 CDS
+##sequence-region	VP3/Clinical_3_20x/BTV13/bighorn_sheep/adult/male|2021.09.03	1	2758
+VP3/Clinical_3_20x/BTV13/bighorn_sheep/adult/male|2021.09.03	Geneious	CDS	4	2709	.	+	0	Name=VP3 CDS
+##sequence-region	VP3/Clinical_3_40x/BTV13/bighorn_sheep/adult/male|2021.09.03	1	2772
+VP3/Clinical_3_40x/BTV13/bighorn_sheep/adult/male|2021.09.03	Geneious	CDS	18	2723	.	+	0	Name=VP3 CDS
+##sequence-region	VP3/Clinical_4/BTV17/bighorn_sheep/adult/female|2021.09.24	1	2706
+VP3/Clinical_4/BTV17/bighorn_sheep/adult/female|2021.09.24	Geneious	CDS	1	2706	.	+	0	Name=VP3 CDS
+##sequence-region	VP3/Clinical_5/BTV17/bighorn_sheep/adult/female|2021.10.04	1	2573
+VP3/Clinical_5/BTV17/bighorn_sheep/adult/female|2021.10.04	Geneious	CDS	1	2573	.	+	2	Name=VP3 CDS
+##sequence-region	VP3/Clinical_6/BTV6/sheep/1yo/female|2021.09.26	1	2538
+VP3/Clinical_6/BTV6/sheep/1yo/female|2021.09.26	Geneious	CDS	23	2538	.	+	1	Name=VP3 CDS
+##sequence-region	VP3/Clinical_8/BTV11/bighorn_sheep/11yo/female|2023.10.23	1	2538
+VP3/Clinical_8/BTV11/bighorn_sheep/11yo/female|2023.10.23	Geneious	CDS	23	2538	.	+	1	Name=VP3 CDS
+##sequence-region	VP3/Clinical_10/BTV17/bighorn_sheep/NA/female|2021.10.04	1	2644
+VP3/Clinical_10/BTV17/bighorn_sheep/NA/female|2021.10.04	Geneious	CDS	1	2644	.	+	1	Name=VP3 CDS
+##sequence-region	VP3/Clinical_11/BTV11/sheep/9yo/female|2021.09.13	1	2538
+VP3/Clinical_11/BTV11/sheep/9yo/female|2021.09.13	Geneious	CDS	23	2538	.	+	1	Name=VP3 CDS
+##sequence-region	VP3/Clinical_13/BTV6/mule_deer/2yo/male|2021.08.19	1	2538
+VP3/Clinical_13/BTV6/mule_deer/2yo/male|2021.08.19	Geneious	CDS	23	2538	.	+	1	Name=VP3 CDS
+##sequence-region	VP3/Clinical_14/BTV6/mule_deer/2yo/female|2021.08.23	1	2538
+VP3/Clinical_14/BTV6/mule_deer/2yo/female|2021.08.23	Geneious	CDS	23	2538	.	+	1	Name=VP3 CDS
+##sequence-region	VP3/Clinical_15/BTV6/mule_deer/4yo/male|2021.11.03	1	2772
+VP3/Clinical_15/BTV6/mule_deer/4yo/male|2021.11.03	Geneious	CDS	18	2723	.	+	0	Name=VP3 CDS
+##sequence-region	VP3/Clinical_16/BTV6/mule_deer/5.5yo/female|2021.10.19	1	2772
+VP3/Clinical_16/BTV6/mule_deer/5.5yo/female|2021.10.19	Geneious	CDS	18	2723	.	+	0	Name=VP3 CDS
+##sequence-region	VP3/Clinical_18/BTV6/mule_deer/2.5yo/female|2021.10.20	1	2538
+VP3/Clinical_18/BTV6/mule_deer/2.5yo/female|2021.10.20	Geneious	CDS	23	2538	.	+	1	Name=VP3 CDS
+##sequence-region	VP3/Clinical_23/BTV6/white_tailed_deer/NA/NA|2021.01.01	1	2538
+VP3/Clinical_23/BTV6/white_tailed_deer/NA/NA|2021.01.01	Geneious	CDS	23	2538	.	+	1	Name=VP3 CDS
+##sequence-region	VP3/Subclinical_A/BTV6/cow/NA/female|2023.10.12	1	2772
+VP3/Subclinical_A/BTV6/cow/NA/female|2023.10.12	Geneious	CDS	18	2723	.	+	0	Name=VP3 CDS
+##sequence-region	VP3/Subclinical_BB/BTV11/white_tailed_deer/2.5yo/female|2025.01.15	1	2772
+VP3/Subclinical_BB/BTV11/white_tailed_deer/2.5yo/female|2025.01.15	Geneious	CDS	18	2723	.	+	0	Name=VP3 CDS
+##sequence-region	VP3/Subclinical_E/BTV17/sheep/adult/female|2023.11.27	1	2706
+VP3/Subclinical_E/BTV17/sheep/adult/female|2023.11.27	Geneious	CDS	63	2706	.	+	1	Name=VP3 CDS
+##sequence-region	VP3/Subclinical_F/BTV10/sheep/adult/female|2023.12.20	1	2606
+VP3/Subclinical_F/BTV10/sheep/adult/female|2023.12.20	Geneious	CDS	34	2606	.	+	2	Name=VP3 CDS
+VP3/Subclinical_F/BTV10/sheep/adult/female|2023.12.20	Geneious	Editing History Replacement	44	45	.	.	.	Name=NN
+VP3/Subclinical_F/BTV10/sheep/adult/female|2023.12.20	Geneious	Editing History Replacement	48	53	.	.	.	Name=NNNNNN
+##sequence-region	VP3/Subclinical_G/BTV13/sheep/adult/female|2022.09.22	1	2688
+VP3/Subclinical_G/BTV13/sheep/adult/female|2022.09.22	Geneious	CDS	45	2688	.	+	1	Name=VP3 CDS
+##sequence-region	VP3/Subclinical_I/BTV10/sheep/NA/female|2022.10.19	1	2772
+VP3/Subclinical_I/BTV10/sheep/NA/female|2022.10.19	Geneious	CDS	18	2723	.	+	0	Name=VP3 CDS
+##sequence-region	VP3/Subclinical_J/BTV10/sheep/adult/female|2022.10.13	1	2762
+VP3/Subclinical_J/BTV10/sheep/adult/female|2022.10.13	Geneious	CDS	8	2713	.	+	0	Name=VP3 CDS
+##sequence-region	VP3/Subclinical_K/BTV10/cow/adult/female|2022.09.16	1	2536
+VP3/Subclinical_K/BTV10/cow/adult/female|2022.09.16	Geneious	CDS	21	2536	.	+	1	Name=VP3 CDS
+##sequence-region	VP3/Subclinical_N/BTV17/cow/NA/NA|2022.10.21	1	2706
+VP3/Subclinical_N/BTV17/cow/NA/NA|2022.10.21	Geneious	Editing History Replacement	17	17	.	.	.	Name=N
+VP3/Subclinical_N/BTV17/cow/NA/NA|2022.10.21	Geneious	Editing History Replacement	19	21	.	.	.	Name=NNN
+VP3/Subclinical_N/BTV17/cow/NA/NA|2022.10.21	Geneious	CDS	134	2706	.	+	2	Name=VP3 CDS
+VP3/Subclinical_N/BTV17/cow/NA/NA|2022.10.21	Geneious	Editing History Replacement	2589	2589	.	.	.	Name=N
+##sequence-region	VP3/Subclinical_O/BTV13/cow/NA/male|2022.10.21	1	2625
+VP3/Subclinical_O/BTV13/cow/NA/male|2022.10.21	Geneious	CDS	53	2625	.	+	2	Name=VP3 CDS
+##sequence-region	VP3/Subclinical_P/BTV6/cow/adult/male|2021.10.13	1	2538
+VP3/Subclinical_P/BTV6/cow/adult/male|2021.10.13	Geneious	CDS	23	2538	.	+	1	Name=VP3 CDS
+##sequence-region	VP3/Subclinical_Q/BTV17/cow/adult/male|2021.10.13	1	2663
+VP3/Subclinical_Q/BTV17/cow/adult/male|2021.10.13	Geneious	CDS	91	2663	.	+	2	Name=VP3 CDS
+##sequence-region	VP3/Subclinical_R/BTV13/cow/adult/female|2021.12.02	1	2762
+VP3/Subclinical_R/BTV13/cow/adult/female|2021.12.02	Geneious	CDS	8	2713	.	+	0	Name=VP3 CDS
+##sequence-region	VP3/Subclinical_U/BTV11/white_tailed_deer/2.5yo/male|2024.10.07	1	2772
+VP3/Subclinical_U/BTV11/white_tailed_deer/2.5yo/male|2024.10.07	Geneious	CDS	18	2723	.	+	0	Name=VP3 CDS
+##sequence-region	VP3/Subclinical_V/BTV13/mule_deer/2yo/female|2023.10.02	1	2606
+VP3/Subclinical_V/BTV13/mule_deer/2yo/female|2023.10.02	Geneious	CDS	34	2606	.	+	2	Name=VP3 CDS
+##sequence-region	VP3/Subclinical_X/BTV11/mule_deer/2yo/male|2024.10.03	1	2712
+VP3/Subclinical_X/BTV11/mule_deer/2yo/male|2024.10.03	Geneious	CDS	1	2663	.	+	2	Name=VP3 CDS
+##sequence-region	VP4/Clinical_1/BTV13/llama/10yo/male|2019.09.05	1	1934
+VP4/Clinical_1/BTV13/llama/10yo/male|2019.09.05	Geneious	CDS	1	1934	.	+	2	Name=VP4 CDS
+##sequence-region	VP4/Clinical_3_20x/BTV13/bighorn_sheep/adult/male|2021.09.03	1	1939
+VP4/Clinical_3_20x/BTV13/bighorn_sheep/adult/male|2021.09.03	Geneious	CDS	1	1917	.	+	0	Name=VP4 CDS
+VP4/Clinical_3_20x/BTV13/bighorn_sheep/adult/male|2021.09.03	Geneious	Editing History Replacement	1884	1884	.	.	.	Name=N
+VP4/Clinical_3_20x/BTV13/bighorn_sheep/adult/male|2021.09.03	Geneious	Editing History Replacement	1896	1899	.	.	.	Name=NNNN
+VP4/Clinical_3_20x/BTV13/bighorn_sheep/adult/male|2021.09.03	Geneious	Editing History Replacement	1901	1903	.	.	.	Name=NNN
+VP4/Clinical_3_20x/BTV13/bighorn_sheep/adult/male|2021.09.03	Geneious	Editing History Replacement	1935	1936	.	.	.	Name=NN
+##sequence-region	VP4/Clinical_3_40x/BTV13/bighorn_sheep/adult/male|2021.09.03	1	1972
+VP4/Clinical_3_40x/BTV13/bighorn_sheep/adult/male|2021.09.03	Geneious	CDS	27	1943	.	+	0	Name=VP4 CDS
+##sequence-region	VP4/Clinical_4/BTV17/bighorn_sheep/adult/female|2021.09.24	1	1966
+VP4/Clinical_4/BTV17/bighorn_sheep/adult/female|2021.09.24	Geneious	CDS	21	1937	.	+	0	Name=VP4 CDS
+##sequence-region	VP4/Clinical_5/BTV17/bighorn_sheep/adult/female|2021.10.04	1	1949
+VP4/Clinical_5/BTV17/bighorn_sheep/adult/female|2021.10.04	Geneious	CDS	10	1926	.	+	0	Name=VP4 CDS
+##sequence-region	VP4/Clinical_6/BTV6/sheep/1yo/female|2021.09.26	1	1949
+VP4/Clinical_6/BTV6/sheep/1yo/female|2021.09.26	Geneious	CDS	10	1926	.	+	0	Name=VP4 CDS
+##sequence-region	VP4/Clinical_8/BTV11/bighorn_sheep/11yo/female|2023.10.23	1	1972
+VP4/Clinical_8/BTV11/bighorn_sheep/11yo/female|2023.10.23	Geneious	CDS	27	1943	.	+	0	Name=VP4 CDS
+##sequence-region	VP4/Clinical_10/BTV17/bighorn_sheep/NA/female|2021.10.04	1	1972
+VP4/Clinical_10/BTV17/bighorn_sheep/NA/female|2021.10.04	Geneious	CDS	27	1943	.	+	0	Name=VP4 CDS
+##sequence-region	VP4/Clinical_11/BTV11/sheep/9yo/female|2021.09.13	1	1972
+VP4/Clinical_11/BTV11/sheep/9yo/female|2021.09.13	Geneious	CDS	27	1943	.	+	0	Name=VP4 CDS
+##sequence-region	VP4/Clinical_13/BTV6/mule_deer/2yo/male|2021.08.19	1	1949
+VP4/Clinical_13/BTV6/mule_deer/2yo/male|2021.08.19	Geneious	CDS	10	1926	.	+	0	Name=VP4 CDS
+##sequence-region	VP4/Clinical_14/BTV6/mule_deer/2yo/female|2021.08.23	1	1937
+VP4/Clinical_14/BTV6/mule_deer/2yo/female|2021.08.23	Geneious	CDS	1	1917	.	+	0	Name=VP4 CDS
+##sequence-region	VP4/Clinical_15/BTV6/mule_deer/4yo/male|2021.11.03	1	1972
+VP4/Clinical_15/BTV6/mule_deer/4yo/male|2021.11.03	Geneious	CDS	27	1943	.	+	0	Name=VP4 CDS
+##sequence-region	VP4/Clinical_16/BTV6/mule_deer/5.5yo/female|2021.10.19	1	1972
+VP4/Clinical_16/BTV6/mule_deer/5.5yo/female|2021.10.19	Geneious	CDS	9	1943	.	+	0	Name=VP4 CDS
+##sequence-region	VP4/Clinical_18/BTV6/mule_deer/2.5yo/female|2021.10.20	1	1972
+VP4/Clinical_18/BTV6/mule_deer/2.5yo/female|2021.10.20	Geneious	CDS	9	1943	.	+	0	Name=VP4 CDS
+##sequence-region	VP4/Clinical_23/BTV6/white_tailed_deer/NA/NA|2021.01.01	1	1949
+VP4/Clinical_23/BTV6/white_tailed_deer/NA/NA|2021.01.01	Geneious	CDS	10	1926	.	+	0	Name=VP4 CDS
+##sequence-region	VP4/Clinical_27/BTV17/reindeer/6.25yo/female|2025.08.15	1	1850
+VP4/Clinical_27/BTV17/reindeer/6.25yo/female|2025.08.15	Geneious	CDS	1	1850	.	+	0	Name=VP4 CDS
+##sequence-region	VP4/Subclinical_A/BTV6/cow/NA/female|2023.10.12	1	1961
+VP4/Subclinical_A/BTV6/cow/NA/female|2023.10.12	Geneious	CDS	16	1932	.	+	0	Name=VP4 CDS
+##sequence-region	VP4/Subclinical_BB/BTV11/white_tailed_deer/2.5yo/female|2025.01.15	1	1943
+VP4/Subclinical_BB/BTV11/white_tailed_deer/2.5yo/female|2025.01.15	Geneious	CDS	1	1914	.	+	0	Name=VP4 CDS
+##sequence-region	VP4/Subclinical_E/BTV17/sheep/adult/female|2023.11.27	1	1928
+VP4/Subclinical_E/BTV17/sheep/adult/female|2023.11.27	Geneious	CDS	1	1910	.	+	2	Name=VP4 CDS
+VP4/Subclinical_E/BTV17/sheep/adult/female|2023.11.27	Geneious	Editing History Replacement	1107	1111	.	.	.	Name=NNNNN
+##sequence-region	VP4/Subclinical_F/BTV10/sheep/adult/female|2023.12.20	1	1955
+VP4/Subclinical_F/BTV10/sheep/adult/female|2023.12.20	Geneious	CDS	10	1926	.	+	0	Name=VP4 CDS
+##sequence-region	VP4/Subclinical_G/BTV13/sheep/adult/female|2022.09.22	1	1958
+VP4/Subclinical_G/BTV13/sheep/adult/female|2022.09.22	Geneious	CDS	20	1929	.	+	2	Name=VP4 CDS
+##sequence-region	VP4/Subclinical_I/BTV10/sheep/NA/female|2022.10.19	1	1972
+VP4/Subclinical_I/BTV10/sheep/NA/female|2022.10.19	Geneious	CDS	27	1943	.	+	0	Name=VP4 CDS
+##sequence-region	VP4/Subclinical_J/BTV10/sheep/adult/female|2022.10.13	1	1937
+VP4/Subclinical_J/BTV10/sheep/adult/female|2022.10.13	Geneious	CDS	1	1913	.	+	2	Name=VP4 CDS
+##sequence-region	VP4/Subclinical_K/BTV10/cow/adult/female|2022.09.16	1	1889
+VP4/Subclinical_K/BTV10/cow/adult/female|2022.09.16	Geneious	CDS	14	1889	.	+	2	Name=VP4 CDS
+##sequence-region	VP4/Subclinical_N/BTV17/cow/NA/NA|2022.10.21	1	1873
+VP4/Subclinical_N/BTV17/cow/NA/NA|2022.10.21	Geneious	CDS	1	1873	.	+	0	Name=VP4 CDS
+##sequence-region	VP4/Subclinical_O/BTV13/cow/NA/male|2022.10.21	1	1937
+VP4/Subclinical_O/BTV13/cow/NA/male|2022.10.21	Geneious	CDS	1	1914	.	+	0	Name=VP4 CDS
+##sequence-region	VP4/Subclinical_P/BTV6/cow/adult/male|2021.10.13	1	1949
+VP4/Subclinical_P/BTV6/cow/adult/male|2021.10.13	Geneious	CDS	10	1926	.	+	0	Name=VP4 CDS
+##sequence-region	VP4/Subclinical_Q/BTV17/cow/adult/male|2021.10.13	1	1972
+VP4/Subclinical_Q/BTV17/cow/adult/male|2021.10.13	Geneious	CDS	30	1902	.	+	0	Name=VP4 CDS
+##sequence-region	VP4/Subclinical_R/BTV13/cow/adult/female|2021.12.02	1	1962
+VP4/Subclinical_R/BTV13/cow/adult/female|2021.12.02	Geneious	CDS	17	1933	.	+	0	Name=VP4 CDS
+##sequence-region	VP4/Subclinical_U/BTV11/white_tailed_deer/2.5yo/male|2024.10.07	1	1972
+VP4/Subclinical_U/BTV11/white_tailed_deer/2.5yo/male|2024.10.07	Geneious	CDS	30	1902	.	+	0	Name=VP4 CDS
+##sequence-region	VP4/Subclinical_V/BTV13/mule_deer/2yo/female|2023.10.02	1	1958
+VP4/Subclinical_V/BTV13/mule_deer/2yo/female|2023.10.02	Geneious	CDS	13	1929	.	+	0	Name=VP4 CDS
+##sequence-region	VP4/Subclinical_X/BTV11/mule_deer/2yo/male|2024.10.03	1	1943
+VP4/Subclinical_X/BTV11/mule_deer/2yo/male|2024.10.03	Geneious	CDS	1	1914	.	+	0	Name=VP4 CDS
+##sequence-region	VP5/Clinical_1/BTV13/llama/10yo/male|2019.09.05	1	1632
+VP5/Clinical_1/BTV13/llama/10yo/male|2019.09.05	Geneious	CDS	26	1606	.	+	0	Name=VP5 CDS
+##sequence-region	VP5/Clinical_3_20x/BTV13/bighorn_sheep/adult/male|2021.09.03	1	1618
+VP5/Clinical_3_20x/BTV13/bighorn_sheep/adult/male|2021.09.03	Geneious	CDS	18	1598	.	+	0	Name=VP5 CDS
+##sequence-region	VP5/Clinical_3_40x/BTV13/bighorn_sheep/adult/male|2021.09.03	1	1637
+VP5/Clinical_3_40x/BTV13/bighorn_sheep/adult/male|2021.09.03	Geneious	CDS	29	1609	.	+	0	Name=VP5 CDS
+##sequence-region	VP5/Clinical_4/BTV17/bighorn_sheep/adult/female|2021.09.24	1	1636
+VP5/Clinical_4/BTV17/bighorn_sheep/adult/female|2021.09.24	Geneious	CDS	49	1529	.	+	0	Name=VP5 CDS
+##sequence-region	VP5/Clinical_5/BTV17/bighorn_sheep/adult/female|2021.10.04	1	1576
+VP5/Clinical_5/BTV17/bighorn_sheep/adult/female|2021.10.04	Geneious	CDS	22	1502	.	+	0	Name=VP5 CDS
+##sequence-region	VP5/Clinical_6/BTV6/sheep/1yo/female|2021.09.26	1	1618
+VP5/Clinical_6/BTV6/sheep/1yo/female|2021.09.26	Geneious	CDS	20	1600	.	+	0	Name=VP5 CDS
+##sequence-region	VP5/Clinical_8/BTV11/bighorn_sheep/11yo/female|2023.10.23	1	1581
+VP5/Clinical_8/BTV11/bighorn_sheep/11yo/female|2023.10.23	Geneious	CDS	22	1502	.	+	0	Name=VP5 CDS
+##sequence-region	VP5/Clinical_10/BTV17/bighorn_sheep/NA/female|2021.10.04	1	1635
+VP5/Clinical_10/BTV17/bighorn_sheep/NA/female|2021.10.04	Geneious	CDS	49	1529	.	+	0	Name=VP5 CDS
+##sequence-region	VP5/Clinical_11/BTV11/sheep/9yo/female|2021.09.13	1	1581
+VP5/Clinical_11/BTV11/sheep/9yo/female|2021.09.13	Geneious	CDS	22	1502	.	+	0	Name=VP5 CDS
+##sequence-region	VP5/Clinical_13/BTV6/mule_deer/2yo/male|2021.08.19	1	1627
+VP5/Clinical_13/BTV6/mule_deer/2yo/male|2021.08.19	Geneious	CDS	29	1609	.	+	0	Name=VP5 CDS
+##sequence-region	VP5/Clinical_14/BTV6/mule_deer/2yo/female|2021.08.23	1	1627
+VP5/Clinical_14/BTV6/mule_deer/2yo/female|2021.08.23	Geneious	CDS	29	1609	.	+	0	Name=VP5 CDS
+##sequence-region	VP5/Clinical_15/BTV6/mule_deer/4yo/male|2021.11.03	1	1627
+VP5/Clinical_15/BTV6/mule_deer/4yo/male|2021.11.03	Geneious	CDS	29	1609	.	+	0	Name=VP5 CDS
+##sequence-region	VP5/Clinical_16/BTV6/mule_deer/5.5yo/female|2021.10.19	1	1627
+VP5/Clinical_16/BTV6/mule_deer/5.5yo/female|2021.10.19	Geneious	CDS	29	1609	.	+	0	Name=VP5 CDS
+##sequence-region	VP5/Clinical_18/BTV6/mule_deer/2.5yo/female|2021.10.20	1	1627
+VP5/Clinical_18/BTV6/mule_deer/2.5yo/female|2021.10.20	Geneious	CDS	29	1609	.	+	0	Name=VP5 CDS
+##sequence-region	VP5/Clinical_23/BTV6/white_tailed_deer/NA/NA|2021.01.01	1	1627
+VP5/Clinical_23/BTV6/white_tailed_deer/NA/NA|2021.01.01	Geneious	CDS	29	1609	.	+	0	Name=VP5 CDS
+##sequence-region	VP5/Clinical_27/BTV17/reindeer/6.25yo/female|2025.08.15	1	1481
+VP5/Clinical_27/BTV17/reindeer/6.25yo/female|2025.08.15	Geneious	CDS	1	1481	.	+	0	Name=VP5 CDS
+##sequence-region	VP5/Subclinical_A/BTV6/cow/NA/female|2023.10.12	1	1627
+VP5/Subclinical_A/BTV6/cow/NA/female|2023.10.12	Geneious	CDS	29	1609	.	+	0	Name=VP5 CDS
+##sequence-region	VP5/Subclinical_BB/BTV11/white_tailed_deer/2.5yo/female|2025.01.15	1	1509
+VP5/Subclinical_BB/BTV11/white_tailed_deer/2.5yo/female|2025.01.15	Geneious	CDS	49	1509	.	+	0	Name=VP5 CDS
+##sequence-region	VP5/Subclinical_E/BTV17/sheep/adult/female|2023.11.27	1	1619
+VP5/Subclinical_E/BTV17/sheep/adult/female|2023.11.27	Geneious	CDS	51	1531	.	+	0	Name=VP5 CDS
+VP5/Subclinical_E/BTV17/sheep/adult/female|2023.11.27	Geneious	Editing History Insertion	1357	1357	.	.	.	Name=
+##sequence-region	VP5/Subclinical_F/BTV10/sheep/adult/female|2023.12.20	1	1585
+VP5/Subclinical_F/BTV10/sheep/adult/female|2023.12.20	Geneious	CDS	23	1503	.	+	0	Name=VP5 CDS
+##sequence-region	VP5/Subclinical_G/BTV13/sheep/adult/female|2022.09.22	1	1620
+VP5/Subclinical_G/BTV13/sheep/adult/female|2022.09.22	Geneious	CDS	18	1598	.	+	0	Name=VP5 CDS
+##sequence-region	VP5/Subclinical_I/BTV10/sheep/NA/female|2022.10.19	1	1638
+VP5/Subclinical_I/BTV10/sheep/NA/female|2022.10.19	Geneious	CDS	51	1511	.	+	0	Name=VP5 CDS
+##sequence-region	VP5/Subclinical_J/BTV10/sheep/adult/female|2022.10.13	1	1628
+VP5/Subclinical_J/BTV10/sheep/adult/female|2022.10.13	Geneious	CDS	51	1511	.	+	0	Name=VP5 CDS
+##sequence-region	VP5/Subclinical_K/BTV10/cow/adult/female|2022.09.16	1	1635
+VP5/Subclinical_K/BTV10/cow/adult/female|2022.09.16	Geneious	CDS	49	1509	.	+	0	Name=VP5 CDS
+##sequence-region	VP5/Subclinical_L/BTV11/cow/NA/male|2022.10.21	1	1387
+VP5/Subclinical_L/BTV11/cow/NA/male|2022.10.21	Geneious	CDS	22	1387	.	+	0	Name=VP5 CDS
+VP5/Subclinical_L/BTV11/cow/NA/male|2022.10.21	Geneious	Editing History Insertion	992	992	.	.	.	Name=
+VP5/Subclinical_L/BTV11/cow/NA/male|2022.10.21	Geneious	Editing History Insertion	999	999	.	.	.	Name=
+##sequence-region	VP5/Subclinical_M/BTV17/cow/NA/NA|2022.10.21	1	1450
+VP5/Subclinical_M/BTV17/cow/NA/NA|2022.10.21	Geneious	CDS	1	1376	.	+	0	Name=VP5 CDS
+##sequence-region	VP5/Subclinical_N/BTV17/cow/NA/NA|2022.10.21	1	1581
+VP5/Subclinical_N/BTV17/cow/NA/NA|2022.10.21	Geneious	CDS	22	1502	.	+	0	Name=VP5 CDS
+##sequence-region	VP5/Subclinical_O/BTV13/cow/NA/male|2022.10.21	1	1637
+VP5/Subclinical_O/BTV13/cow/NA/male|2022.10.21	Geneious	CDS	29	1609	.	+	0	Name=VP5 CDS
+##sequence-region	VP5/Subclinical_P/BTV6/cow/adult/male|2021.10.13	1	1627
+VP5/Subclinical_P/BTV6/cow/adult/male|2021.10.13	Geneious	CDS	29	1609	.	+	0	Name=VP5 CDS
+##sequence-region	VP5/Subclinical_Q/BTV17/cow/adult/male|2021.10.13	1	1581
+VP5/Subclinical_Q/BTV17/cow/adult/male|2021.10.13	Geneious	CDS	22	1502	.	+	0	Name=VP5 CDS
+##sequence-region	VP5/Subclinical_R/BTV13/cow/adult/female|2021.12.02	1	1637
+VP5/Subclinical_R/BTV13/cow/adult/female|2021.12.02	Geneious	CDS	29	1609	.	+	0	Name=VP5 CDS
+##sequence-region	VP5/Subclinical_U/BTV11/white_tailed_deer/2.5yo/male|2024.10.07	1	1638
+VP5/Subclinical_U/BTV11/white_tailed_deer/2.5yo/male|2024.10.07	Geneious	CDS	51	1511	.	+	0	Name=VP5 CDS
+##sequence-region	VP5/Subclinical_V/BTV13/mule_deer/2yo/female|2023.10.02	1	1606
+VP5/Subclinical_V/BTV13/mule_deer/2yo/female|2023.10.02	Geneious	CDS	11	1591	.	+	0	Name=VP5 CDS
+##sequence-region	VP5/Subclinical_X/BTV11/mule_deer/2yo/male|2024.10.03	1	1551
+VP5/Subclinical_X/BTV11/mule_deer/2yo/male|2024.10.03	Geneious	CDS	22	1482	.	+	0	Name=VP5 CDS
+##sequence-region	VP6/Clinical_1/BTV13/llama/10yo/male|2019.09.05	1	1038
+VP6/Clinical_1/BTV13/llama/10yo/male|2019.09.05	Geneious	CDS	16	1005	.	+	0	Name=VP6 CDS
+##sequence-region	VP6/Clinical_3_20x/BTV13/bighorn_sheep/adult/male|2021.09.03	1	1016
+VP6/Clinical_3_20x/BTV13/bighorn_sheep/adult/male|2021.09.03	Geneious	CDS	1	983	.	+	2	Name=VP6 CDS
+##sequence-region	VP6/Clinical_3_40x/BTV13/bighorn_sheep/adult/male|2021.09.03	1	1049
+VP6/Clinical_3_40x/BTV13/bighorn_sheep/adult/male|2021.09.03	Geneious	CDS	23	1005	.	+	2	Name=VP6 CDS
+##sequence-region	VP6/Clinical_4/BTV17/bighorn_sheep/adult/female|2021.09.24	1	1049
+VP6/Clinical_4/BTV17/bighorn_sheep/adult/female|2021.09.24	Geneious	CDS	23	1005	.	+	2	Name=VP6 CDS
+VP6/Clinical_4/BTV17/bighorn_sheep/adult/female|2021.09.24	Geneious	Editing History Insertion	500	500	.	.	.	Name=
+##sequence-region	VP6/Clinical_5/BTV17/bighorn_sheep/adult/female|2021.10.04	1	1019
+VP6/Clinical_5/BTV17/bighorn_sheep/adult/female|2021.10.04	Geneious	CDS	1	975	.	+	0	Name=VP6 CDS
+VP6/Clinical_5/BTV17/bighorn_sheep/adult/female|2021.10.04	Geneious	Editing History Insertion	470	470	.	.	.	Name=
+##sequence-region	VP6/Clinical_6/BTV6/sheep/1yo/female|2021.09.26	1	924
+VP6/Clinical_6/BTV6/sheep/1yo/female|2021.09.26	Geneious	CDS	1	924	.	+	0	Name=VP6 CDS
+##sequence-region	VP6/Clinical_8/BTV11/bighorn_sheep/11yo/female|2023.10.23	1	924
+VP6/Clinical_8/BTV11/bighorn_sheep/11yo/female|2023.10.23	Geneious	CDS	1	924	.	+	0	Name=VP6 CDS
+VP6/Clinical_8/BTV11/bighorn_sheep/11yo/female|2023.10.23	Geneious	CDS	152	385	.	+	0	Name=NS4 CDS
+##sequence-region	VP6/Clinical_10/BTV17/bighorn_sheep/NA/female|2021.10.04	1	1040
+VP6/Clinical_10/BTV17/bighorn_sheep/NA/female|2021.10.04	Geneious	CDS	14	996	.	+	2	Name=VP6 CDS
+##sequence-region	VP6/Clinical_11/BTV11/sheep/9yo/female|2021.09.13	1	924
+VP6/Clinical_11/BTV11/sheep/9yo/female|2021.09.13	Geneious	CDS	1	924	.	+	0	Name=VP6 CDS
+##sequence-region	VP6/Clinical_13/BTV6/mule_deer/2yo/male|2021.08.19	1	924
+VP6/Clinical_13/BTV6/mule_deer/2yo/male|2021.08.19	Geneious	CDS	1	924	.	+	0	Name=VP6 CDS
+##sequence-region	VP6/Clinical_14/BTV6/mule_deer/2yo/female|2021.08.23	1	924
+VP6/Clinical_14/BTV6/mule_deer/2yo/female|2021.08.23	Geneious	CDS	1	924	.	+	0	Name=VP6 CDS
+VP6/Clinical_14/BTV6/mule_deer/2yo/female|2021.08.23	Geneious	CDS	152	385	.	+	0	Name=NS4 CDS
+##sequence-region	VP6/Clinical_15/BTV6/mule_deer/4yo/male|2021.11.03	1	1049
+VP6/Clinical_15/BTV6/mule_deer/4yo/male|2021.11.03	Geneious	CDS	23	1005	.	+	2	Name=VP6 CDS
+##sequence-region	VP6/Clinical_16/BTV6/mule_deer/5.5yo/female|2021.10.19	1	924
+VP6/Clinical_16/BTV6/mule_deer/5.5yo/female|2021.10.19	Geneious	CDS	1	924	.	+	0	Name=VP6 CDS
+VP6/Clinical_16/BTV6/mule_deer/5.5yo/female|2021.10.19	Geneious	CDS	152	385	.	+	0	Name=NS4 CDS
+##sequence-region	VP6/Clinical_18/BTV6/mule_deer/2.5yo/female|2021.10.20	1	924
+VP6/Clinical_18/BTV6/mule_deer/2.5yo/female|2021.10.20	Geneious	CDS	1	924	.	+	0	Name=VP6 CDS
+VP6/Clinical_18/BTV6/mule_deer/2.5yo/female|2021.10.20	Geneious	CDS	152	385	.	+	0	Name=NS4 CDS
+##sequence-region	VP6/Clinical_23/BTV6/white_tailed_deer/NA/NA|2021.01.01	1	925
+VP6/Clinical_23/BTV6/white_tailed_deer/NA/NA|2021.01.01	Geneious	CDS	1	924	.	+	0	Name=VP6 CDS
+##sequence-region	VP6/Subclinical_A/BTV6/cow/NA/female|2023.10.12	1	1043
+VP6/Subclinical_A/BTV6/cow/NA/female|2023.10.12	Geneious	CDS	10	999	.	+	0	Name=VP6 CDS
+VP6/Subclinical_A/BTV6/cow/NA/female|2023.10.12	Geneious	CDS	176	409	.	+	0	Name=NS4 CDS
+##sequence-region	VP6/Subclinical_BB/BTV11/white_tailed_deer/2.5yo/female|2025.01.15	1	1043
+VP6/Subclinical_BB/BTV11/white_tailed_deer/2.5yo/female|2025.01.15	Geneious	CDS	10	999	.	+	0	Name=VP6 CDS
+VP6/Subclinical_BB/BTV11/white_tailed_deer/2.5yo/female|2025.01.15	Geneious	CDS	176	409	.	+	0	Name=NS4 CDS
+VP6/Subclinical_BB/BTV11/white_tailed_deer/2.5yo/female|2025.01.15	Geneious	Editing History Insertion	495	495	.	.	.	Name=
+##sequence-region	VP6/Subclinical_F/BTV10/sheep/adult/female|2023.12.20	1	1044
+VP6/Subclinical_F/BTV10/sheep/adult/female|2023.12.20	Geneious	CDS	23	1005	.	+	2	Name=VP6 CDS
+##sequence-region	VP6/Subclinical_G/BTV13/sheep/adult/female|2022.09.22	1	924
+VP6/Subclinical_G/BTV13/sheep/adult/female|2022.09.22	Geneious	CDS	1	924	.	+	0	Name=VP6 CDS
+VP6/Subclinical_G/BTV13/sheep/adult/female|2022.09.22	Geneious	CDS	152	385	.	+	0	Name=NS4 CDS
+##sequence-region	VP6/Subclinical_I/BTV10/sheep/NA/female|2022.10.19	1	1038
+VP6/Subclinical_I/BTV10/sheep/NA/female|2022.10.19	Geneious	CDS	16	1005	.	+	0	Name=VP6 CDS
+VP6/Subclinical_I/BTV10/sheep/NA/female|2022.10.19	Geneious	CDS	182	415	.	+	0	Name=NS4 CDS
+##sequence-region	VP6/Subclinical_J/BTV10/sheep/adult/female|2022.10.13	1	1049
+VP6/Subclinical_J/BTV10/sheep/adult/female|2022.10.13	Geneious	CDS	16	1005	.	+	0	Name=VP6 CDS
+VP6/Subclinical_J/BTV10/sheep/adult/female|2022.10.13	Geneious	CDS	182	415	.	+	0	Name=NS4 CDS
+##sequence-region	VP6/Subclinical_K/BTV10/cow/adult/female|2022.09.16	1	912
+VP6/Subclinical_K/BTV10/cow/adult/female|2022.09.16	Geneious	CDS	1	912	.	+	0	Name=VP6 CDS
+VP6/Subclinical_K/BTV10/cow/adult/female|2022.09.16	Geneious	CDS	140	373	.	+	0	Name=NS4 CDS
+##sequence-region	VP6/Subclinical_L/BTV11/cow/NA/male|2022.10.21	1	981
+VP6/Subclinical_L/BTV11/cow/NA/male|2022.10.21	Geneious	CDS	1	897	.	+	0	Name=VP6 CDS
+VP6/Subclinical_L/BTV11/cow/NA/male|2022.10.21	Geneious	CDS	125	358	.	+	0	Name=NS4 CDS
+VP6/Subclinical_L/BTV11/cow/NA/male|2022.10.21	Geneious	Editing History Insertion	444	444	.	.	.	Name=
+##sequence-region	VP6/Subclinical_M/BTV17/cow/NA/NA|2022.10.21	1	845
+VP6/Subclinical_M/BTV17/cow/NA/NA|2022.10.21	Geneious	CDS	1	845	.	+	0	Name=VP6 CDS
+VP6/Subclinical_M/BTV17/cow/NA/NA|2022.10.21	Geneious	Editing History Insertion	60	60	.	.	.	Name=
+VP6/Subclinical_M/BTV17/cow/NA/NA|2022.10.21	Geneious	Editing History Insertion	68	68	.	.	.	Name=
+VP6/Subclinical_M/BTV17/cow/NA/NA|2022.10.21	Geneious	CDS	152	385	.	+	0	Name=NS4 CDS
+##sequence-region	VP6/Subclinical_N/BTV17/cow/NA/NA|2022.10.21	1	924
+VP6/Subclinical_N/BTV17/cow/NA/NA|2022.10.21	Geneious	CDS	1	924	.	+	0	Name=VP6 CDS
+##sequence-region	VP6/Subclinical_O/BTV13/cow/NA/male|2022.10.21	1	924
+VP6/Subclinical_O/BTV13/cow/NA/male|2022.10.21	Geneious	CDS	13	924	.	+	0	Name=VP6 CDS
+##sequence-region	VP6/Subclinical_P/BTV6/cow/adult/male|2021.10.13	1	924
+VP6/Subclinical_P/BTV6/cow/adult/male|2021.10.13	Geneious	CDS	13	924	.	+	0	Name=VP6 CDS
+##sequence-region	VP6/Subclinical_Q/BTV17/cow/adult/male|2021.10.13	1	925
+VP6/Subclinical_Q/BTV17/cow/adult/male|2021.10.13	Geneious	CDS	1	924	.	+	0	Name=VP6 CDS
+##sequence-region	VP6/Subclinical_R/BTV13/cow/adult/female|2021.12.02	1	1044
+VP6/Subclinical_R/BTV13/cow/adult/female|2021.12.02	Geneious	CDS	38	949	.	+	0	Name=VP6 CDS
+VP6/Subclinical_R/BTV13/cow/adult/female|2021.12.02	Geneious	CDS	177	410	.	+	0	Name=NS4 CDS
+##sequence-region	VP6/Subclinical_U/BTV11/white_tailed_deer/2.5yo/male|2024.10.07	1	1049
+VP6/Subclinical_U/BTV11/white_tailed_deer/2.5yo/male|2024.10.07	Geneious	CDS	43	954	.	+	0	Name=VP6 CDS
+VP6/Subclinical_U/BTV11/white_tailed_deer/2.5yo/male|2024.10.07	Geneious	CDS	182	415	.	+	0	Name=NS4 CDS
+##sequence-region	VP6/Subclinical_V/BTV13/mule_deer/2yo/female|2023.10.02	1	924
+VP6/Subclinical_V/BTV13/mule_deer/2yo/female|2023.10.02	Geneious	CDS	1	924	.	+	0	Name=VP6 CDS
+VP6/Subclinical_V/BTV13/mule_deer/2yo/female|2023.10.02	Geneious	CDS	152	385	.	+	0	Name=NS4 CDS
+##sequence-region	VP6/Subclinical_X/BTV11/mule_deer/2yo/male|2024.10.03	1	1038
+VP6/Subclinical_X/BTV11/mule_deer/2yo/male|2024.10.03	Geneious	CDS	5	994	.	+	0	Name=VP6 CDS
+VP6/Subclinical_X/BTV11/mule_deer/2yo/male|2024.10.03	Geneious	CDS	171	404	.	+	0	Name=NS4 CDS
+##sequence-region	VP7/Clinical_1/BTV13/llama/10yo/male|2019.09.05	1	1149
+VP7/Clinical_1/BTV13/llama/10yo/male|2019.09.05	Geneious	CDS	11	1060	.	+	0	Name=VP7 CDS
+##sequence-region	VP7/Clinical_3_20x/BTV13/bighorn_sheep/adult/male|2021.09.03	1	838
+VP7/Clinical_3_20x/BTV13/bighorn_sheep/adult/male|2021.09.03	Geneious	CDS	3	836	.	+	.	Name=VP7
+##sequence-region	VP7/Clinical_3_40x/BTV13/bighorn_sheep/adult/male|2021.09.03	1	1156
+VP7/Clinical_3_40x/BTV13/bighorn_sheep/adult/male|2021.09.03	Geneious	CDS	18	1067	.	+	0	Name=VP7 CDS
+##sequence-region	VP7/Clinical_4/BTV17/bighorn_sheep/adult/female|2021.09.24	1	1050
+VP7/Clinical_4/BTV17/bighorn_sheep/adult/female|2021.09.24	Geneious	CDS	1	1050	.	+	0	Name=VP7 CDS
+##sequence-region	VP7/Clinical_5/BTV17/bighorn_sheep/adult/female|2021.10.04	1	1050
+VP7/Clinical_5/BTV17/bighorn_sheep/adult/female|2021.10.04	Geneious	CDS	1	1050	.	+	0	Name=VP7 CDS
+##sequence-region	VP7/Clinical_6/BTV6/sheep/1yo/female|2021.09.26	1	1024
+VP7/Clinical_6/BTV6/sheep/1yo/female|2021.09.26	Geneious	CDS	72	986	.	+	0	Name=VP7 CDS
+##sequence-region	VP7/Clinical_8/BTV11/bighorn_sheep/11yo/female|2023.10.23	1	1050
+VP7/Clinical_8/BTV11/bighorn_sheep/11yo/female|2023.10.23	Geneious	CDS	1	1050	.	+	0	Name=VP7 CDS
+##sequence-region	VP7/Clinical_10/BTV17/bighorn_sheep/NA/female|2021.10.04	1	1067
+VP7/Clinical_10/BTV17/bighorn_sheep/NA/female|2021.10.04	Geneious	CDS	1	978	.	+	0	Name=VP7 CDS
+##sequence-region	VP7/Clinical_11/BTV11/sheep/9yo/female|2021.09.13	1	1050
+VP7/Clinical_11/BTV11/sheep/9yo/female|2021.09.13	Geneious	CDS	1	1050	.	+	0	Name=VP7 CDS
+##sequence-region	VP7/Clinical_13/BTV6/mule_deer/2yo/male|2021.08.19	1	1024
+VP7/Clinical_13/BTV6/mule_deer/2yo/male|2021.08.19	Geneious	CDS	72	986	.	+	0	Name=VP7 CDS
+##sequence-region	VP7/Clinical_14/BTV6/mule_deer/2yo/female|2021.08.23	1	1024
+VP7/Clinical_14/BTV6/mule_deer/2yo/female|2021.08.23	Geneious	CDS	72	986	.	+	0	Name=VP7 CDS
+##sequence-region	VP7/Clinical_15/BTV6/mule_deer/4yo/male|2021.11.03	1	1024
+VP7/Clinical_15/BTV6/mule_deer/4yo/male|2021.11.03	Geneious	CDS	72	986	.	+	0	Name=VP7 CDS
+##sequence-region	VP7/Clinical_16/BTV6/mule_deer/5.5yo/female|2021.10.19	1	1024
+VP7/Clinical_16/BTV6/mule_deer/5.5yo/female|2021.10.19	Geneious	CDS	72	986	.	+	0	Name=VP7 CDS
+##sequence-region	VP7/Clinical_18/BTV6/mule_deer/2.5yo/female|2021.10.20	1	1024
+VP7/Clinical_18/BTV6/mule_deer/2.5yo/female|2021.10.20	Geneious	CDS	72	986	.	+	0	Name=VP7 CDS
+##sequence-region	VP7/Clinical_23/BTV6/white_tailed_deer/NA/NA|2021.01.01	1	1024
+VP7/Clinical_23/BTV6/white_tailed_deer/NA/NA|2021.01.01	Geneious	CDS	72	986	.	+	0	Name=VP7 CDS
+##sequence-region	VP7/Subclinical_A/BTV6/cow/NA/female|2023.10.12	1	1156
+VP7/Subclinical_A/BTV6/cow/NA/female|2023.10.12	Geneious	CDS	18	1067	.	+	0	Name=VP7 CDS
+##sequence-region	VP7/Subclinical_BB/BTV11/white_tailed_deer/2.5yo/female|2025.01.15	1	1050
+VP7/Subclinical_BB/BTV11/white_tailed_deer/2.5yo/female|2025.01.15	Geneious	CDS	1	1050	.	+	0	Name=VP7 CDS
+##sequence-region	VP7/Subclinical_F/BTV10/sheep/adult/female|2023.12.20	1	1050
+VP7/Subclinical_F/BTV10/sheep/adult/female|2023.12.20	Geneious	CDS	1	1050	.	+	0	Name=VP7 CDS
+##sequence-region	VP7/Subclinical_G/BTV13/sheep/adult/female|2022.09.22	1	1156
+VP7/Subclinical_G/BTV13/sheep/adult/female|2022.09.22	Geneious	CDS	18	1067	.	+	0	Name=VP7 CDS
+##sequence-region	VP7/Subclinical_I/BTV10/sheep/NA/female|2022.10.19	1	1042
+VP7/Subclinical_I/BTV10/sheep/NA/female|2022.10.19	Geneious	CDS	1	1042	.	+	1	Name=VP7 CDS
+##sequence-region	VP7/Subclinical_J/BTV10/sheep/adult/female|2022.10.13	1	981
+VP7/Subclinical_J/BTV10/sheep/adult/female|2022.10.13	Geneious	CDS	1	981	.	+	0	Name=VP7 CDS
+##sequence-region	VP7/Subclinical_K/BTV10/cow/adult/female|2022.09.16	1	1050
+VP7/Subclinical_K/BTV10/cow/adult/female|2022.09.16	Geneious	CDS	1	1050	.	+	0	Name=VP7 CDS
+##sequence-region	VP7/Subclinical_N/BTV17/cow/NA/NA|2022.10.21	1	997
+VP7/Subclinical_N/BTV17/cow/NA/NA|2022.10.21	Geneious	CDS	17	997	.	+	0	Name=VP7 CDS
+##sequence-region	VP7/Subclinical_O/BTV13/cow/NA/male|2022.10.21	1	1156
+VP7/Subclinical_O/BTV13/cow/NA/male|2022.10.21	Geneious	CDS	18	1067	.	+	0	Name=VP7 CDS
+##sequence-region	VP7/Subclinical_P/BTV6/cow/adult/male|2021.10.13	1	1024
+VP7/Subclinical_P/BTV6/cow/adult/male|2021.10.13	Geneious	CDS	1	986	.	+	2	Name=VP7 CDS
+##sequence-region	VP7/Subclinical_Q/BTV17/cow/adult/male|2021.10.13	1	1042
+VP7/Subclinical_Q/BTV17/cow/adult/male|2021.10.13	Geneious	CDS	62	1042	.	+	0	Name=VP7 CDS
+##sequence-region	VP7/Subclinical_R/BTV13/cow/adult/female|2021.12.02	1	1156
+VP7/Subclinical_R/BTV13/cow/adult/female|2021.12.02	Geneious	CDS	18	1067	.	+	0	Name=VP7 CDS
+##sequence-region	VP7/Subclinical_U/BTV11/white_tailed_deer/2.5yo/male|2024.10.07	1	1156
+VP7/Subclinical_U/BTV11/white_tailed_deer/2.5yo/male|2024.10.07	Geneious	CDS	87	1067	.	+	0	Name=VP7 CDS
+##sequence-region	VP7/Subclinical_V/BTV13/mule_deer/2yo/female|2023.10.02	1	1051
+VP7/Subclinical_V/BTV13/mule_deer/2yo/female|2023.10.02	Geneious	CDS	1	962	.	+	2	Name=VP7 CDS
+##sequence-region	VP7/Subclinical_X/BTV11/mule_deer/2yo/male|2024.10.03	1	814
+VP7/Subclinical_X/BTV11/mule_deer/2yo/male|2024.10.03	Geneious	CDS	1	814	.	+	1	Name=VP7 CDS

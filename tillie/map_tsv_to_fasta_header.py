@@ -128,7 +128,7 @@ def main():
 
     # get prefix (like "current/A2")
     if len(sys.argv) < 2:
-        user_prefix = "current/send_to_david/FABADRU_SA"
+        user_prefix = "current/send_to_david/FABADRU_SA" # "current/send_to_david/A3" 
     else:
         user_prefix = sys.argv[1]
 
@@ -244,18 +244,21 @@ def main():
 
             matched_seq_id = matched_row_in_metadata['seq_ID'].item()
             annotations = []
-            export_fields_keys = ["genotype", "host", "strain", "collected_by", "geo_loc_name", "Collection_date", "note", "isolation_source"] # 'gene' in the sequence file is unsupported in future releases
+            export_fields_keys = ["genotype", "host", "strain", "collected_by", "geo_loc_name", 
+                                  "Collection_date", "note", "isolation_source", "Biosample", "Bioproject"] # 'gene' in the sequence file is unsupported in future releases
         
-            for k,v in matched_row_in_metadata.items():
-                if k in export_fields_keys:
-                    if k == 'genotype' and v.item() == 'NA': continue
-                    if k == 'Collection_date' and v.item() == 'NA': continue
-
-                else: 
+            # assemble a set of valid accessions
+            export_data = [(k,v) for k,v in matched_row_in_metadata.items() if k in export_fields_keys]
+            for k,v in export_data:
+                # remove values representing empty fields
+                if v.item() == 'NA': continue
+                if k in ["Biosample", "Bioproject"] and v.item().lower() == "unpublished":
                     continue
-
+                # valid modifier/data pair, produce modifier string
                 val = str(v.item()).replace('"','')
                 annotations.append( f"[{str(k).strip()}={val}]" )
+
+            # make the list of modifiers to print in the fasta header                
             annotations.append( '[organism=Bluetongue virus]')
             # write annotated header and sequence
             print('>' + genbank_id, *annotations, file=fsa_out)
